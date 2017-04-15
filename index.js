@@ -86,7 +86,7 @@ function renderEvents(events) {
                             '<div class="">' +
                                 '<img src="' + event.thumbImage + '" />' +
                                 '<h4 class="">' + event.name + '</h4>' +
-                                '<a class="save" href="#" data-event="' + event.id + '">Save</a>' +
+                                '<a class="save" href="#" data-event="' + event.id + '">' + (event.user_id == null ? 'Save' : 'Saved') + '</a>' +
                             '</div>' +
                         '</div>';
     });

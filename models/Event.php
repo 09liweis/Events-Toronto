@@ -17,7 +17,7 @@ class Event {
     }
     
     public function getUserEvents($userid) {
-        $sql = 'SELECT * FROM events JOIN user_events ON events.id = user_events.event_id WHERE user_events.user_id = :userid';
+        $sql = 'SELECT e.id, e.name, e.lat, e.lng, e.thumbImage, e.freeEvent, e.startDate, e.endDate, ue.user_id FROM events e LEFT JOIN user_events ue ON e.id = ue.event_id AND ue.user_id = :userid';
         $pdostmt = $this->db->prepare($sql);
         $pdostmt->bindValue(':userid', $userid, PDO::PARAM_STR);
         $pdostmt->execute();

@@ -13,8 +13,7 @@ $userid = $_SESSION['userid'];
 
 if ($_GET['action'] == 'getEvents') {
     if (isset($userid)) {
-        //$events = $event->getUserEvents($userid);
-        $events = $event->getEvents();
+        $events = $event->getUserEvents($userid);
     } else {
         $events = $event->getEvents();
     }
