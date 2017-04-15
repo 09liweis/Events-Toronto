@@ -22,6 +22,25 @@ $(document).ready(function() {
     });
     
     
+    $('#events').on('click', '.save', function(e) {
+        e.preventDefault();
+        var _this = $(this);
+        var eventId = _this.data('event');
+        $.ajax({
+            url: 'EventController.php?action=saveEvent',
+            method: 'POST',
+            data: {eventId: eventId},
+            success: function(res) {
+                if (res.status == 'delete') {
+                    _this.text('Save');
+                } else {
+                    _this.text('Saved');
+                }
+            }
+        });
+    });
+    
+    
     $.ajax({
         url: 'EventController.php?action=getEvents',
         method: 'GET',
@@ -67,6 +86,7 @@ function renderEvents(events) {
                             '<div class="">' +
                                 '<img src="' + event.thumbImage + '" />' +
                                 '<h4 class="">' + event.name + '</h4>' +
+                                '<a class="save" href="#" data-event="' + event.id + '">Save</a>' +
                             '</div>' +
                         '</div>';
     });

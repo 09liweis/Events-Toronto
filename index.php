@@ -30,12 +30,15 @@ if(isset($_GET['code'])) {
 if(isset($_SESSION['access_token']) && $_SESSION['access_token']){
     $googleUser = $googlePlus->getProfile($_SESSION['access_token']);
     $loginUser = $user->checkAuth($googleUser['google_plus_id']);
-    if ($loginUser) {
+
+    if ($loginUser != false) {
         $_SESSION['username'] = $loginUser['username'];
+        $_SESSION['userid'] = $loginUser['id'];
     } else {
-        $userGoogleId = $user->register($googleUser);
-        $loginUser = $user->checkAuth($userGoogleId);
+        $userid = $user->register($googleUser);
+        $loginUser = $user->getUser($userid);
         $_SESSION['username'] = $loginUser['username'];
+        $_SESSION['userid'] = $loginUser['id'];
     }
 } else {
     $authUrl = $googlePlus->getAuthUrl();

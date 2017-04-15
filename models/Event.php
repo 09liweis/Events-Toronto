@@ -16,12 +16,50 @@ class Event {
         return $events;
     }
     
+    public function getUserEvents($userid) {
+        $sql = 'SELECT * FROM events JOIN user_events ON events.id = user_events.event_id WHERE user_events.user_id = :userid';
+        $pdostmt = $this->db->prepare($sql);
+        $pdostmt->bindValue(':userid', $userid, PDO::PARAM_STR);
+        $pdostmt->execute();
+        $events = $pdostmt->fetchAll(PDO::FETCH_ASSOC);
+        return $events;
+    }
+    
     public function getDates() {
         $sql = 'SELECT DISTINCT(startDate) FROM events ORDER BY startDate ASC ';
         $pdostmt = $this->db->prepare($sql);
         $pdostmt->execute();
         $dates = $pdostmt->fetchAll(PDO::FETCH_COLUMN);
         return $dates;
+    }
+    
+    public function checkEvent($userid, $eventid) {
+        $sql = 'SELECT COUNT(*) FROM user_events WHERE user_id = :userid AND event_id = :eventid';
+        $pdostmt = $this->db->prepare($sql);
+        $pdostmt->bindValue(':userid', $userid, PDO::PARAM_STR);
+        $pdostmt->bindValue(':eventid', $eventid, PDO::PARAM_STR);
+        $pdostmt->execute();
+        $result = $pdostmt->fetch(PDO::FETCH_COLUMN);
+        return $result;
+    }
+    
+    public function userEvent($userid, $eventid) {
+        $count = $this->checkEvent($userid, $eventid);
+        if ($count >= 1) {
+            $sql = 'DELETE FROM user_events WHERE user_id = :userid AND event_id = :eventid';
+            $pdostmt = $this->db->prepare($sql);
+            $pdostmt->bindValue(':userid', $userid, PDO::PARAM_STR);
+            $pdostmt->bindValue(':eventid', $eventid, PDO::PARAM_STR);
+            $pdostmt->execute();
+            return array('code' => 200, 'msg' => 'success', 'status' => 'delete');
+        } else {
+            $sql = 'INSERT INTO user_events (user_id, event_id) VALUES (:userid, :eventid)';
+            $pdostmt = $this->db->prepare($sql);
+            $pdostmt->bindValue(':userid', $userid, PDO::PARAM_STR);
+            $pdostmt->bindValue(':eventid', $eventid, PDO::PARAM_STR);
+            $pdostmt->execute();
+            return array('code' => 200, 'msg' => 'success', 'status' => 'save');
+        }
     }
     
     // public function getOfficesByCountry($country) {
