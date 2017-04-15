@@ -32,8 +32,12 @@ $(document).ready(function() {
             data: {eventId: eventId},
             success: function(res) {
                 if (res.status == 'delete') {
+                    _this.removeClass('mdl-button--accent');
+                    _this.addClass(('mdl-button--colored'));
                     _this.text('Save');
                 } else {
+                    _this.removeClass('mdl-button--colored');
+                    _this.addClass(('mdl-button--accent'));
                     _this.text('Saved');
                 }
             }
@@ -82,11 +86,10 @@ function renderEvents(events) {
     var eventsHTML = '';
     events.map(function(event) {
         eventsHTML +=   '<div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">' +
-                            //'<div class="event__image" style="background-image: url(' + event.thumbImage + ')" ></div>' +
                             '<div class="">' +
                                 '<img src="' + event.thumbImage + '" />' +
                                 '<h4 class="">' + event.name + '</h4>' +
-                                '<a class="save" href="#" data-event="' + event.id + '">' + (event.user_id == null ? 'Save' : 'Saved') + '</a>' +
+                                '<a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--'+ (event.user_id == null ? 'colored' : 'accent') + ' save" href="#" data-event="' + event.id + '">' + (event.user_id == null ? 'Save' : 'Saved') + '</a>' +
                             '</div>' +
                         '</div>';
     });

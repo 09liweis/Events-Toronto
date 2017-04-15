@@ -24,7 +24,7 @@ if(isset($_REQUEST['logout'])) {
 if(isset($_GET['code'])) {
     $accessToken = $googlePlus->getAccessToken($_GET['code']);
     $_SESSION['access_token'] = $accessToken;
-    //header('Location:' . $redirectURL);
+    header('Location:' . $redirectURL);
 }
 
 if(isset($_SESSION['access_token']) && $_SESSION['access_token']){
