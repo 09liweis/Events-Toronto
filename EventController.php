@@ -20,6 +20,12 @@ if ($_GET['action'] == 'getEvents') {
     echo json_encode($events);
 }
 
+if ($_GET['action'] == 'getEvent') {
+    $eventid = $_GET['eventId'];
+    $evt = $event->getEvent($eventid);
+    echo json_encode($evt);
+}
+
 if ($_GET['action'] == 'updateEvents') {
     $api = new API();
     $data = $api->getData();

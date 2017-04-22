@@ -16,6 +16,15 @@ class Event {
         return $events;
     }
     
+    public function getEvent($id) {
+        $sql = 'SELECT * FROM events WHERE id = :id';
+        $pdostmt = $this->db->prepare($sql);
+        $pdostmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $pdostmt->execute();
+        $event = $pdostmt->fetch(PDO::FETCH_ASSOC);
+        return $event;
+    }
+    
     public function getUserEvents($userid) {
         $sql = 'SELECT e.id, e.name, e.lat, e.lng, e.thumbImage, e.freeEvent, e.startDate, e.endDate, ue.user_id FROM events e LEFT JOIN user_events ue ON e.id = ue.event_id AND ue.user_id = :userid';
         $pdostmt = $this->db->prepare($sql);
@@ -89,8 +98,8 @@ class Event {
     }
     
     public function insertEvent($event) {
-        $calEvent = $event['calEvent'];
         
+        $calEvent = $event['calEvent'];
         $name = $calEvent['eventName'];
         $description = $calEvent['description'];
         
@@ -106,7 +115,7 @@ class Event {
         $reservationsRequired = $calEvent['reservationsRequired'];
         $freeEvent = $calEvent['freeEvent'];
         
-        if (isset($calEvent['thumbImage'])) {
+        if (isset($calEvent['thumbImage']) && isset($calEvent['thumbImage']['url'])) {
             $thumbImage = $this->apiDomain . $calEvent['thumbImage']['url'];
         } else {
             $thumbImage = '';
@@ -162,14 +171,5 @@ class Event {
         $pdostmt->bindValue(':reservationsRequired', $reservationsRequired, PDO::PARAM_STR);
         $pdostmt->bindValue(':freeEvent', $freeEvent, PDO::PARAM_STR);
         $pdostmt->execute();
-    }
-    
-    public function updateDinosaur($id, $name, $color) {
-        $sql = 'UPDATE dinosaurs SET name = :name, color = :color WHERE id = :id';
-        $pdostmt = $this->db->prepare($sql);
-        $pdostmt->bindValue(':name', $name, PDO::PARAM_STR);
-        $pdostmt->bindValue(':color', $color, PDO::PARAM_STR);
-        $pdostmt->bindValue(':id', $id, PDO::PARAM_STR);
-        return $pdostmt->execute();
     }
 }

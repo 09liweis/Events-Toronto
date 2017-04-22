@@ -17,6 +17,10 @@
     height: 200px;
 }
 
+.event__thumbImage {
+    width: 100%;
+}
+
 .event_image:hover {
     background-size: 200%;
 }
@@ -32,4 +36,13 @@
 
 .hide {
     display: none;
+}
+
+.modal {
+    width: 90%;
+    max-height: 90%;
+}
+
+#detailMap {
+    height: 300px;
 }

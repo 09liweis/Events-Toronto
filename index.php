@@ -51,73 +51,72 @@ if(isset($_SESSION['access_token']) && $_SESSION['access_token']){
         <title>Events in Toronto</title>
         <link rel="icon" type="image/png" href="favicon.png">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-        <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <link rel="stylesheet" href="style.css" type="text/css" />
     </head>
     <body>
         <div class="">
-            <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-                <header class="mdl-layout__header">
-                    <div class="mdl-layout__header-row">
-                        <!-- Title -->
-                        <span class="mdl-layout-title">Title</span>
-                        <!-- Add spacer, to align navigation to the right -->
-                        <div class="mdl-layout-spacer"></div>
-                        <!-- Navigation. We hide it in small screens. -->
-                        <nav class="mdl-navigation mdl-layout--large-screen-only">
+            <nav>
+                <div class="nav-wrapper">
+                    <a href="#" class="brand-logo">Toronto Events</a>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
                             <?php if(isset($authUrl)) {?>
-                            <a class="mdl-navigation__link" href="<?=$authUrl?>">Login with Google+</a>
+                            <li><a href="<?=$authUrl?>">Login with Google+</a>
                             <?php } else { ?>
-                            <a class="mdl-navigation__link"><?=$_SESSION["username"]?></a>
-                            <a class="mdl-navigation__link" href="?logout">Logout</a>
+                            <li><a><?=$_SESSION["username"]?></a></li>
+                            <li><a href="?logout">Logout</a></li>
                             <?php } ?>
-                        </nav>
-                    </div>
-                </header>
-                <div class="mdl-layout__drawer">
-                    <span class="mdl-layout-title">Title</span>
-                    <nav class="mdl-navigation">
-                        <?php if(isset($authUrl)) {?>
-                        <a class="mdl-navigation__link" href="<?=$authUrl?>">Login with Google+</a>
-                        <?php } else { ?>
-                        <a class="mdl-navigation__link"><?=$_SESSION["username"]?></a>
-                        <a class="mdl-navigation__link" href="?logout">Logout</a>
-                        <?php } ?>
-                    </nav>
+                    </ul>
                 </div>
-                <main class="mdl-layout__content">
-                    <div class="page-content wrapper">
-                        <div>
-                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="free">
-                                <input type="checkbox" id="free" class="mdl-checkbox__input">
-                                <span class="mdl-checkbox__label">Free Events</span>
-                            </label>
-                            <div id="datepicker"></div>
-                            <input id="date" type="hidden" value="<?=date('Y-m-d')?>" />
-                        </div>
-                        <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
-                            <div class="mdl-tabs__tab-bar">
-                                <a href="#list" class="mdl-tabs__tab is-active">List View</a>
-                                <a href="#map" class="mdl-tabs__tab" id="map-tab">Map View</a>
-                            </div>
-                            <div class="mdl-tabs__panel is-active" id="list">
-                                <div class="mdl-grid" id="events">
-                                    
-                                </div>
-                            </div>
-                            <div class="mdl-tabs__panel" id="map">
-                            </div>
-                        </div>
+            </nav>
+            <div>
+                <p>
+                    <input type="checkbox" class="filled-in" id="free" />
+                    <label for="free">Free Event</label>
+                </p>
+                <div id="datepicker"></div>
+                <input id="date" type="hidden" value="<?=date('Y-m-d')?>" />
+            </div>
+            <div class="row">
+                <div class="col s12 m3">
+                    <ul class="tabs">
+                        <li class="tab col s6"><a class="active" href="#events">List</a></li>
+                        <li class="tab col s6"><a id="map-tab" href="#map">Map</a></li>
+                    </ul>
+                </div>
+                <div id="events" class="col s12 row"></div>
+                <div id="map" class="col s12"></div>
+            </div>
+        </div>
+        
+        
+        <div id="detail" class="modal">
+            <div class="modal-content">
+                <div class="row">
+                    <div class="col s12 m4 l4" id="image">
+                        <img src="images/events.jpg" class="responsive-img" />
                     </div>
-                </main>
+                    <div class="col s12 m8 l8">
+                        <h4 id="event_name"></h4>
+                        <p id="event_description"></p>
+                    </div>
+                </div>
+                <div class="row" id="detailMap">
+                    
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
             </div>
         </div>
     </body>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCUfAQlAr-YR9De_ONa1reKPLA2xWuWm8&library=place"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+    <script src="https://npmcdn.com/isotope-layout@3.0/dist/isotope.pkgd.min.js"></script>
     <script type="text/javascript" src="index.js"></script>
 </html>

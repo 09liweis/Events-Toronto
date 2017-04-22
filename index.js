@@ -3,7 +3,11 @@ var activeEvents;
 var map;
 var bounds;
 var markers = [];
+var detailMap;
+var detailMarker;
+
 $(document).ready(function() {
+    $('.modal').modal();
     
     $('#map-tab').on('click', function() {
         renderMap();
@@ -44,6 +48,12 @@ $(document).ready(function() {
         });
     });
     
+    $('#events').on('click', '.detail', function(e) {
+        e.preventDefault();
+        var eventId = $(this).data('event');
+        getEvent(eventId);
+    });
+    
     
     $.ajax({
         url: 'EventController.php?action=getEvents',
@@ -55,10 +65,23 @@ $(document).ready(function() {
     });
 });
 
+function getEvent(eventId) {
+    $.ajax({
+        url: 'EventController.php?action=getEvent',
+        data: {eventId: eventId},
+        method: 'GET',
+        success: function(res) {
+            console.log(res);
+            renderEvent(res);
+            $('#detail').modal('open');
+        }
+    });
+}
+
 function renderAll() {
     activeEvents = filterEvents(events);
     renderEvents(activeEvents);
-    renderMarkers();
+    renderMarkers(activeEvents);
 }
 
 function filterEvents(events) {
@@ -85,15 +108,24 @@ function filterEvents(events) {
 function renderEvents(events) {
     var eventsHTML = '';
     events.map(function(event) {
-        eventsHTML +=   '<div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--12-col-phone">' +
+        var image = (event.thumbImage == '') ? '/images/events.jpg' : event.thumbImage;
+        eventsHTML +=   '<div class="col s12 m4 l3">' +
                             '<div class="">' +
-                                '<img src="' + event.thumbImage + '" />' +
+                                '<img class="event__thumbImage" src="' + image + '" />' +
                                 '<h4 class="">' + event.name + '</h4>' +
-                                '<a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--'+ (event.user_id == null ? 'colored' : 'accent') + ' save" href="#" data-event="' + event.id + '">' + (event.user_id == null ? 'Save' : 'Saved') + '</a>' +
+                                '<a class="waves-effect waves-light btn save" href="#" data-event="' + event.id + '">' + (event.user_id == null ? 'Save' : 'Saved') + '</a>' +
+                                '<a class="waves-effect waves-light btn detail" href="#" data-event="' + event.id + '">Detail</a>' +
                             '</div>' +
                         '</div>';
     });
     $('#events').html(eventsHTML);
+}
+
+function renderEvent(event) {
+    $('#image img').attr('src', event.image);
+    $('#event_name').text(event.name);
+    $('#event_description').text(event.description);
+    renderDetailMap(event);
 }
 
 
@@ -105,27 +137,57 @@ function renderMap() {
                 scrollwheel: false,
             }
         });
-        
-        bounds = new google.maps.LatLngBounds();
-        renderMarkers();
     }
+    bounds = null;
+    bounds = new google.maps.LatLngBounds();
+    renderMarkers(activeEvents);
 }
 
-function renderMarkers() {
+function renderDetailMap(event) {
+    if (detailMarker != null) {
+        detailMarker.setMap(null);
+    }
+    
+    var eventLocation = {lat: parseFloat(event.lat), lng: parseFloat(event.lng)};
+    if (detailMap == null) {
+        detailMap = new google.maps.Map(document.getElementById('detailMap'), {
+            zoom: 17,
+            options: {
+                scrollwheel: false,
+            }
+        });    
+    }
+    
+    detailMap.setCenter(eventLocation);
+    
+    detailMarker = new google.maps.Marker({
+        position: eventLocation,
+        map: detailMap,
+        animation: google.maps.Animation.DROP,
+    });
+}
+
+function renderMarkers(events) {
     
     if (map != null) {
+        
         markers.map(function(m) {
             m.setMap(null);
         });
         
         markers = [];
-        
-        activeEvents.map(function(e) {
+        events.map(function(e) {
             var marker = new google.maps.Marker({
                 position: {lat: parseFloat(e.lat), lng: parseFloat(e.lng)},
                 map: map,
                 animation: google.maps.Animation.DROP,
                 title: e.name,
+                id: e.id
+            });
+            
+            marker.addListener('click', function() {
+                var eventId = this.id;
+                getEvent(eventId);
             });
             
             markers.push(marker);
