@@ -81,14 +81,14 @@ if(isset($_SESSION['access_token']) && $_SESSION['access_token']){
                 <input id="date" type="hidden" value="<?=date('Y-m-d')?>" />
             </div>
             <div class="row">
-                <div class="col s12 m3">
-                    <ul class="tabs">
-                        <li class="tab col s6"><a class="active" href="#events">List</a></li>
-                        <li class="tab col s6"><a id="map-tab" href="#map">Map</a></li>
-                    </ul>
-                </div>
-                <div id="events" class="col s12 row"></div>
-                <div id="map" class="col s12"></div>
+                <!--<div class="col s12 m3">-->
+                <!--    <ul class="tabs">-->
+                <!--        <li class="tab col s6"><a class="active" href="#events">List</a></li>-->
+                <!--        <li class="tab col s6"><a id="map-tab" href="#map">Map</a></li>-->
+                <!--    </ul>-->
+                <!--</div>-->
+                <!--<div id="map" class="col s12"></div>-->
+                <div id="events" class="col row"></div>
             </div>
         </div>
         

@@ -81,7 +81,8 @@ function getEvent(eventId) {
 function renderAll() {
     activeEvents = filterEvents(events);
     renderEvents(activeEvents);
-    renderMarkers(activeEvents);
+    //renderMap();
+    //renderMarkers(activeEvents);
 }
 
 function filterEvents(events) {
