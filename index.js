@@ -83,7 +83,6 @@ function getEvent(eventId) {
         data: {eventId: eventId},
         method: 'GET',
         success: function(res) {
-            console.log(res);
             renderEvent(res);
             $('#detail').modal('open');
         }
