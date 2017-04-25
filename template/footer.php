@@ -6,5 +6,6 @@
         <script type="text/javascript">
             var currentLocation = <?=json_encode($currentLocation)?>;
         </script>
+        <script type="text/javascript" src="../functions.js"></script>
         <script type="text/javascript" src="../index.js"></script>
 </html>

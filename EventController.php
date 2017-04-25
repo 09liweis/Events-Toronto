@@ -13,11 +13,18 @@ $userid = $_SESSION['userid'];
 
 if ($_GET['action'] == 'getEvents') {
     if (isset($userid)) {
-        $events = $event->getUserEvents($userid);
+        $events = $event->getUserWithEvents($userid);
     } else {
         $events = $event->getEvents();
     }
     echo json_encode($events);
+}
+
+if ($_GET['action'] == 'getUserEvents') {
+    if (isset($userid)) {
+        $events = $event->getUserEvents($userid);
+        echo json_encode($events);
+    }
 }
 
 if ($_GET['action'] == 'getEvent') {

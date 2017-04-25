@@ -26,14 +26,15 @@ if(isset($_REQUEST['logout'])) {
     <body>
         <nav>
             <div class="nav-wrapper">
-                <a href="#" class="brand-logo">Toronto Events</a>
+                <a href="/" class="brand-logo">Toronto Events</a>
                 <ul id="nav-mobile" class="right">
-                        <?php if(isset($authUrl)) {?>
-                        <li><a href="<?=$authUrl?>">Login with Google+</a>
-                        <?php } else { ?>
-                        <li><a href="user.php"><?=$_SESSION["username"]?></a></li>
-                        <li><a href="/?logout=true">Logout</a></li>
-                        <?php } ?>
+                    <li><a href="/">All Events</a></li>    
+                    <?php if(isset($authUrl)) {?>
+                    <li><a href="<?=$authUrl?>">Login with Google+</a>
+                    <?php } else { ?>
+                    <li><a href="user.php"><?=$_SESSION["username"]?></a></li>
+                    <li><a href="/?logout=true">Logout</a></li>
+                    <?php } ?>
                 </ul>
             </div>
         </nav>

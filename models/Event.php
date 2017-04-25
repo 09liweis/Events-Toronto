@@ -25,8 +25,17 @@ class Event {
         return $event;
     }
     
-    public function getUserEvents($userid) {
+    public function getUserWithEvents($userid) {
         $sql = 'SELECT e.id, e.name, e.lat, e.lng, e.thumbImage, e.freeEvent, e.startDate, e.endDate, ue.user_id FROM events e LEFT JOIN user_events ue ON e.id = ue.event_id AND ue.user_id = :userid';
+        $pdostmt = $this->db->prepare($sql);
+        $pdostmt->bindValue(':userid', $userid, PDO::PARAM_STR);
+        $pdostmt->execute();
+        $events = $pdostmt->fetchAll(PDO::FETCH_ASSOC);
+        return $events;
+    }
+    
+    public function getUserEvents($userid) {
+        $sql = 'SELECT e.id, e.name, e.lat, e.lng, e.thumbImage, e.freeEvent, e.startDate, e.endDate, ue.user_id FROM events e JOIN user_events ue ON e.id = ue.event_id AND ue.user_id = :userid';
         $pdostmt = $this->db->prepare($sql);
         $pdostmt->bindValue(':userid', $userid, PDO::PARAM_STR);
         $pdostmt->execute();
@@ -70,15 +79,6 @@ class Event {
             return array('code' => 200, 'msg' => 'success', 'status' => 'save');
         }
     }
-    
-    // public function getOfficesByCountry($country) {
-    //     $sql = 'SELECT * FROM offices WHERE country = :country';
-    //     $pdostmt = $this->db->prepare($sql);
-    //     $pdostmt->bindValue(':country', $country, PDO::PARAM_STR);
-    //     $pdostmt->execute();
-    //     $offices = $pdostmt->fetchAll();
-    //     return $offices;
-    // }
     
     public function updateEvents($events) {
         $this->clearEvents();

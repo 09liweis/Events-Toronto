@@ -1,6 +1,7 @@
 <?php
 include 'template/header.php';
 ?>
+    <div id="user">
         <div class="row">
             <div class="col right s12 m4">
                 <p>
@@ -11,8 +12,7 @@ include 'template/header.php';
                     <input type="checkbox" class="filled-in" id="long-run" />
                     <label for="long-run">Hide long-running events</label>
                 </p>
-                <div id="datepicker"></div>
-                <input id="date" type="hidden" value="<?=date('Y-m-d')?>" />
+                <input id="date" type="hidden" value="" />
             </div>
             <div id="events" class="col s12 m8">
             </div>
@@ -34,6 +34,7 @@ include 'template/header.php';
                 </div>
             </div>
         </div>
+    </div>
 <?php
 include 'template/footer.php';
 ?>
