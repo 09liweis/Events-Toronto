@@ -4,6 +4,9 @@ require_once __DIR__ .'/vendor/autoload.php';
 require_once 'models/GooglePlus.php';
 require_once 'models/Database.php';
 require_once 'models/User.php';
+require_once 'models/IPGeolocation.php';
+
+$currentLocation = IPLocation::getLocation();
 
 if ($_SERVER['HTTP_HOST'] == 'xml-finalproject-a09liweis.c9users.io') {
     $redirectURL = 'https://xml-finalproject-a09liweis.c9users.io/';
@@ -72,23 +75,21 @@ if(isset($_SESSION['access_token']) && $_SESSION['access_token']){
                     </ul>
                 </div>
             </nav>
-            <div>
-                <p>
-                    <input type="checkbox" class="filled-in" id="free" />
-                    <label for="free">Free Event</label>
-                </p>
-                <div id="datepicker"></div>
-                <input id="date" type="hidden" value="<?=date('Y-m-d')?>" />
-            </div>
             <div class="row">
-                <!--<div class="col s12 m3">-->
-                <!--    <ul class="tabs">-->
-                <!--        <li class="tab col s6"><a class="active" href="#events">List</a></li>-->
-                <!--        <li class="tab col s6"><a id="map-tab" href="#map">Map</a></li>-->
-                <!--    </ul>-->
-                <!--</div>-->
-                <!--<div id="map" class="col s12"></div>-->
-                <div id="events" class="col row"></div>
+                <div class="col right s12 m4">
+                    <p>
+                        <input type="checkbox" class="filled-in" id="free" />
+                        <label for="free">Free Event</label>
+                    </p>
+                    <p>
+                        <input type="checkbox" class="filled-in" id="long-run" />
+                        <label for="long-run">Hide long-running events</label>
+                    </p>
+                    <div id="datepicker"></div>
+                    <input id="date" type="hidden" value="<?=date('Y-m-d')?>" />
+                </div>
+                <div id="events" class="col s12 m8">
+                </div>
             </div>
         </div>
         
@@ -108,15 +109,14 @@ if(isset($_SESSION['access_token']) && $_SESSION['access_token']){
                     
                 </div>
             </div>
-            <div class="modal-footer">
-                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-            </div>
         </div>
     </body>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCUfAQlAr-YR9De_ONa1reKPLA2xWuWm8&library=place"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
-    <script src="https://npmcdn.com/isotope-layout@3.0/dist/isotope.pkgd.min.js"></script>
+    <script type="text/javascript">
+        var currentLocation = <?=json_encode($currentLocation)?>;
+    </script>
     <script type="text/javascript" src="index.js"></script>
 </html>

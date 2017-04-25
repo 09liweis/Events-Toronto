@@ -5,6 +5,9 @@ var bounds;
 var markers = [];
 var detailMap;
 var detailMarker;
+var directionsDisplay = new google.maps.DirectionsRenderer();
+var directionsService = new google.maps.DirectionsService();
+var $grid;
 
 $(document).ready(function() {
     $('.modal').modal();
@@ -12,6 +15,7 @@ $(document).ready(function() {
     $('#map-tab').on('click', function() {
         renderMap();
     });
+    
     
     $('#datepicker').datepicker({
         dateFormat: 'yy-mm-dd',
@@ -25,6 +29,10 @@ $(document).ready(function() {
         renderAll();
     });
     
+    $('#long-run').on('click', function() {
+        renderAll();
+    });
+    
     
     $('#events').on('click', '.save', function(e) {
         e.preventDefault();
@@ -35,14 +43,18 @@ $(document).ready(function() {
             method: 'POST',
             data: {eventId: eventId},
             success: function(res) {
-                if (res.status == 'delete') {
-                    _this.removeClass('mdl-button--accent');
-                    _this.addClass(('mdl-button--colored'));
-                    _this.text('Save');
+                if (res.code == 200) {
+                    if (res.status == 'delete') {
+                        _this.removeClass('mdl-button--accent');
+                        _this.addClass(('mdl-button--colored'));
+                        _this.text('Save');
+                    } else {
+                        _this.removeClass('mdl-button--colored');
+                        _this.addClass(('mdl-button--accent'));
+                        _this.text('Saved');
+                    }   
                 } else {
-                    _this.removeClass('mdl-button--colored');
-                    _this.addClass(('mdl-button--accent'));
-                    _this.text('Saved');
+                    Materialize.toast(res.msg, 3000);
                 }
             }
         });
@@ -87,7 +99,7 @@ function renderAll() {
 
 function filterEvents(events) {
     activeEvents = events.filter(function(e) {
-        var free = $(this).is(":checked");
+        var free = $('#free').is(':checked');
         if (free == true) {
             return e.freeEvent == 'Yes';
         } else {
@@ -96,7 +108,19 @@ function filterEvents(events) {
     }).filter(function(e) {
         var date = $('#date').val();
         if (date != '') {
-            return e.startDate <= date && e.endDate >= date;
+            //return e.startDate <= date && e.endDate >= date;
+            return e.startDate == date;
+        } else {
+            return true;
+        }
+    }).filter(function(e) {
+        var longRun = $('#long-run').is(':checked');
+        if (longRun == true) {
+            var endDate = new Date(e.endDate);
+            var startDate = new Date(e.startDate);
+            var timeDiff = Math.abs(endDate.getTime() - startDate.getTime());
+            var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+            return diffDays < 30;
         } else {
             return true;
         }
@@ -107,19 +131,38 @@ function filterEvents(events) {
 
 
 function renderEvents(events) {
-    var eventsHTML = '';
+    var eventsHTML = '<div class="events-wrapper">';
     events.map(function(event) {
         var image = (event.thumbImage == '') ? '/images/events.jpg' : event.thumbImage;
-        eventsHTML +=   '<div class="col s12 m4 l3">' +
-                            '<div class="">' +
-                                '<img class="event__thumbImage" src="' + image + '" />' +
-                                '<h4 class="">' + event.name + '</h4>' +
+        eventsHTML +=   '<div class="event row">' +
+                            '<div class="col s12 m4">' +
+                                '<img class="valign-wrapper event__thumbImage" src="' + image + '" />' +
+                            '</div>' +
+                            '<div class="col s12 m8">' +
+                                '<h5 class="">' + event.name + '</h5>' +
+                                '<div>Free Event: ' + event.freeEvent + '</div>' +
+                                '<div>' + event.startDate + ' - ' + event.endDate + '</div>' +
                                 '<a class="waves-effect waves-light btn save" href="#" data-event="' + event.id + '">' + (event.user_id == null ? 'Save' : 'Saved') + '</a>' +
-                                '<a class="waves-effect waves-light btn detail" href="#" data-event="' + event.id + '">Detail</a>' +
+                                '<a class="right waves-effect waves-light btn detail" href="#" data-event="' + event.id + '">Detail</a>' +
                             '</div>' +
                         '</div>';
     });
+    eventsHTML += '</div>';
     $('#events').html(eventsHTML);
+   
+    // var $grid = $('.events-wrapper').imagesLoaded( function() {
+        
+    //     $('.events-wrapper').isotope({
+    //         // set itemSelector so .grid-sizer is not used in layout
+    //         itemSelector: '.event',
+    //         percentPosition: true,
+    //         masonry: {
+    //         // use element for option
+    //         columnWidth: '.event-sizer'
+    //         }
+    //     });
+        
+    // });
 }
 
 function renderEvent(event) {
@@ -145,6 +188,8 @@ function renderMap() {
 }
 
 function renderDetailMap(event) {
+    
+    directionsDisplay.setMap(null);
     if (detailMarker != null) {
         detailMarker.setMap(null);
     }
@@ -165,6 +210,22 @@ function renderDetailMap(event) {
         position: eventLocation,
         map: detailMap,
         animation: google.maps.Animation.DROP,
+        icon: 'http://m.mainstreethub.com/images/map-marker-bw.png',
+    });
+    
+    directionsDisplay.setMap(detailMap);
+    
+    var request = {
+        origin: currentLocation,
+        destination: detailMarker.position,
+        travelMode: 'DRIVING'
+    };
+    
+    directionsService.route(request, function(result, status) {
+        if (status == 'OK') {
+            directionsDisplay.setDirections(result);
+        } else {
+        }
     });
 }
 

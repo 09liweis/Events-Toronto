@@ -4,10 +4,7 @@
 }
 
 .event {
-    float: left;
-    width: 23%;
-    margin: 10px 12px;
-    cursor: pointer;
+    margin-bottom: 20px;
 }
 
 .event__image {

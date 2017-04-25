@@ -37,6 +37,8 @@ if ($_GET['action'] == 'saveEvent') {
         $eventid = $_POST['eventId'];
         $res = $event->userEvent($userid, $eventid);
         echo json_encode($res);
+    } else {
+        echo json_encode(array('code' => 400, 'msg' => 'You need to log in'));
     }
 }
 
