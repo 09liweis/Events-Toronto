@@ -1,46 +1,5 @@
 <?php
-
-require_once __DIR__ . '/vendor/autoload.php';
-require_once 'models/GooglePlus.php';
-require_once 'models/Database.php';
-require_once 'models/User.php';
-
-if ($_SERVER['HTTP_HOST'] == 'xml-finalproject-a09liweis.c9users.io') {
-    $redirectURL = 'https://xml-finalproject-a09liweis.c9users.io/';
-} else {
-    $redirectURL = 'https://xml-finalproject.herokuapp.com/';
-}
-
-session_start();
-
-$user = new User(Database::dbConnect());
-$googlePlus = new GooglePlus($redirectURL);
-
-if(isset($_GET['code'])) {
-    $accessToken = $googlePlus->getAccessToken($_GET['code']);
-    $_SESSION['access_token'] = $accessToken;
-    header('Location:' . $redirectURL);
-}
-
-if(isset($_SESSION['access_token']) && $_SESSION['access_token']){
-    $googleUser = $googlePlus->getProfile($_SESSION['access_token']);
-    $loginUser = $user->checkAuth($googleUser['google_plus_id']);
-
-    if ($loginUser != false) {
-        $_SESSION['username'] = $loginUser['username'];
-        $_SESSION['userid'] = $loginUser['id'];
-    } else {
-        $userid = $user->register($googleUser);
-        $loginUser = $user->getUser($userid);
-        $_SESSION['username'] = $loginUser['username'];
-        $_SESSION['userid'] = $loginUser['id'];
-    }
-} else {
-    $authUrl = $googlePlus->getAuthUrl();
-}
-
 include 'template/header.php';
-
 ?>
         <div class="row">
             <div class="col right s12 m4">
