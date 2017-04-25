@@ -1,13 +1,9 @@
 var events;
 var activeEvents;
-var map;
-var bounds;
-var markers = [];
 var detailMap;
 var detailMarker;
 var directionsDisplay = new google.maps.DirectionsRenderer();
 var directionsService = new google.maps.DirectionsService();
-var $grid;
 
 $(document).ready(function() {
     $('.modal').modal();
@@ -92,8 +88,6 @@ function getEvent(eventId) {
 function renderAll() {
     activeEvents = filterEvents(events);
     renderEvents(activeEvents);
-    //renderMap();
-    //renderMarkers(activeEvents);
 }
 
 function filterEvents(events) {
@@ -148,20 +142,6 @@ function renderEvents(events) {
     });
     eventsHTML += '</div>';
     $('#events').html(eventsHTML);
-   
-    // var $grid = $('.events-wrapper').imagesLoaded( function() {
-        
-    //     $('.events-wrapper').isotope({
-    //         // set itemSelector so .grid-sizer is not used in layout
-    //         itemSelector: '.event',
-    //         percentPosition: true,
-    //         masonry: {
-    //         // use element for option
-    //         columnWidth: '.event-sizer'
-    //         }
-    //     });
-        
-    // });
 }
 
 function renderEvent(event) {
@@ -169,21 +149,6 @@ function renderEvent(event) {
     $('#event_name').text(event.name);
     $('#event_description').text(event.description);
     renderDetailMap(event);
-}
-
-
-function renderMap() {
-    if (map == null) {
-        map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 13,
-            options: {
-                scrollwheel: false,
-            }
-        });
-    }
-    bounds = null;
-    bounds = new google.maps.LatLngBounds();
-    renderMarkers(activeEvents);
 }
 
 function renderDetailMap(event) {
@@ -224,37 +189,7 @@ function renderDetailMap(event) {
         if (status == 'OK') {
             directionsDisplay.setDirections(result);
         } else {
+            alert('No route can be found');
         }
     });
-}
-
-function renderMarkers(events) {
-    
-    if (map != null) {
-        
-        markers.map(function(m) {
-            m.setMap(null);
-        });
-        
-        markers = [];
-        events.map(function(e) {
-            var marker = new google.maps.Marker({
-                position: {lat: parseFloat(e.lat), lng: parseFloat(e.lng)},
-                map: map,
-                animation: google.maps.Animation.DROP,
-                title: e.name,
-                id: e.id
-            });
-            
-            marker.addListener('click', function() {
-                var eventId = this.id;
-                getEvent(eventId);
-            });
-            
-            markers.push(marker);
-            bounds.extend(marker.position);
-        });
-        
-        map.fitBounds(bounds);
-    }
 }
