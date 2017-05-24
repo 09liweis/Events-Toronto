@@ -5,10 +5,10 @@ require_once 'models/GooglePlus.php';
 require_once 'models/Database.php';
 require_once 'models/User.php';
 
-if ($_SERVER['HTTP_HOST'] == 'xml-finalproject-a09liweis.c9users.io') {
-    $redirectURL = 'https://xml-finalproject-a09liweis.c9users.io/';
+if ($_SERVER['HTTP_HOST'] == 'events-toronto-a09liweis.c9users.io') {
+    $redirectURL = 'https://events-toronto-a09liweis.c9users.io/';
 } else {
-    $redirectURL = 'https://xml-finalproject.herokuapp.com/';
+    $redirectURL = 'https://events-toronto.herokuapp.com/';
 }
 
 session_start();
