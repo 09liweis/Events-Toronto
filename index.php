@@ -70,8 +70,9 @@ include 'template/header.php';
                         <p id="event_description"></p>
                     </div>
                 </div>
-                <div class="row" id="detailMap">
-                    
+                <div class="row" id="detailMapContainer">
+                    <div id="detailMap"></div>
+                    <div id="route"></div>
                 </div>
             </div>
         </div>

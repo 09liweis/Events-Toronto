@@ -153,6 +153,7 @@ function renderEvent(event) {
 function renderDetailMap(event) {
     
     directionsDisplay.setMap(null);
+    $('#route').html('');
     if (detailMarker != null) {
         detailMarker.setMap(null);
     }
@@ -177,6 +178,7 @@ function renderDetailMap(event) {
     });
     
     directionsDisplay.setMap(detailMap);
+    directionsDisplay.setPanel(document.getElementById('route'));
     
     var request = {
         origin: currentLocation,
