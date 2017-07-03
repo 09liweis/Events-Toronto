@@ -36,4 +36,11 @@ class GooglePlus {
     public function getAuthUrl() {
         return $this->client->createAuthUrl();
     }
+    
+    // public function getCalendar() {
+    //     $calendar = new Google_Service_Calendar($this->client);
+    //     $calendarId = 'primary';
+    //     $results = $calendar->events->listEvents($calendarId);
+    //     return $results;
+    // }
 }
