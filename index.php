@@ -12,7 +12,8 @@ if ($_SERVER['HTTP_HOST'] == 'events-toronto-a09liweis.c9users.io') {
 }
 
 session_start();
-
+//when there is google auth error, use destroy to reset session
+//session_destroy();
 $user = new User(Database::dbConnect());
 $googlePlus = new GooglePlus($redirectURL);
 
