@@ -2,7 +2,7 @@
 
 class Event {
     private $db;
-    private $apiDomain = 'http://secure.toronto.ca';
+    private $apiDomain = 'https://secure.toronto.ca';
 
     public function __construct($db) {
         $this->db = $db;
