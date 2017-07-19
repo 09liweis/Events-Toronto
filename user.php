@@ -1,40 +1,16 @@
 <?php
 include 'template/header.php';
 ?>
-    <div id="user">
-        <div class="row">
-            <div class="col right s12 m4">
-                <p>
-                    <input type="checkbox" class="filled-in" id="free" />
-                    <label for="free">Free Event</label>
-                </p>
-                <p>
-                    <input type="checkbox" class="filled-in" id="long-run" />
-                    <label for="long-run">Hide long-running events</label>
-                </p>
-                <input id="date" type="hidden" value="" />
-            </div>
-            <div id="events" class="col s12 m8">
-            </div>
-        </div>
-        
-        <div id="detail" class="modal">
-            <div class="modal-content">
-                <div class="row">
-                    <div class="col s12 m4 l4" id="image">
-                        <img src="images/events.jpg" class="responsive-img" />
-                    </div>
-                    <div class="col s12 m8 l8">
-                        <h4 id="event_name"></h4>
-                        <p id="event_description"></p>
-                    </div>
-                </div>
-                <div class="row" id="detailMap">
-                    
-                </div>
-            </div>
-        </div>
+    <div id="calendar">
     </div>
 <?php
+$scripts = array(
+    'https://code.jquery.com/jquery-3.2.1.min.js',
+    'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js',
+    '//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js',
+    '//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.css',
+    '//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.print.css',
+    '../js/calendar.js'
+);
 include 'template/footer.php';
 ?>

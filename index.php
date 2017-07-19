@@ -78,5 +78,13 @@ include 'template/header.php';
             </div>
         </div>
 <?php
+$scripts = array(
+    'https://maps.googleapis.com/maps/api/js?key=AIzaSyCCUfAQlAr-YR9De_ONa1reKPLA2xWuWm8',
+    'https://code.jquery.com/jquery-3.2.1.min.js',
+    'https://code.jquery.com/ui/1.12.1/jquery-ui.js',
+    'https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js',
+    '../js/functions.js',
+    '../js/index.js'
+);
 include 'template/footer.php';
 ?>

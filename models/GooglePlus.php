@@ -1,5 +1,9 @@
 <?php
 
+define('SCOPES', implode(' ', array(
+  Google_Service_Calendar::CALENDAR, 'email')
+));
+
 class GooglePlus {
     const CLIENT_ID = '433300294368-sp6f150psm0akdkomhn80laqqmd5fukh.apps.googleusercontent.com';
     const CLIENT_SECRET = '1QwJraMuCR0FG8mexKoLXhl-';
@@ -11,7 +15,7 @@ class GooglePlus {
         $this->client->setClientId(self::CLIENT_ID);
         $this->client->setClientSecret(self::CLIENT_SECRET);
         $this->client->setRedirectURi($redirectURL);
-        $this->client->setScopes('email');
+        $this->client->setScopes(SCOPES);
     }
     
     public function getProfile($accessToken) {
@@ -37,10 +41,17 @@ class GooglePlus {
         return $this->client->createAuthUrl();
     }
     
-    // public function getCalendar() {
-    //     $calendar = new Google_Service_Calendar($this->client);
-    //     $calendarId = 'primary';
-    //     $results = $calendar->events->listEvents($calendarId);
-    //     return $results;
-    // }
+    public function getCalendar() {
+        $calendar = new Google_Service_Calendar($this->client);
+        $calendarId = 'primary';
+        $optParams = array(
+            'maxResults' => 10,
+            'orderBy' => 'startTime',
+            'singleEvents' => TRUE,
+            'timeMin' => date('c'),
+        );
+        $results = $calendar->events->listEvents($calendarId, $optParams);
+        var_dump($results->getItems());die;
+        return $results;
+    }
 }
