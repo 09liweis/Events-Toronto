@@ -21,6 +21,7 @@ if(isset($_REQUEST['logout'])) {
         <!-- Compiled and minified CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.css" type="text/css" />
         <link rel="stylesheet" href="../style.css" type="text/css" />
     </head>
     <body>

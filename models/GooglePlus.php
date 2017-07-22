@@ -51,7 +51,6 @@ class GooglePlus {
             'timeMin' => date('c'),
         );
         $results = $calendar->events->listEvents($calendarId, $optParams);
-        var_dump($results->getItems());die;
         return $results;
     }
 }

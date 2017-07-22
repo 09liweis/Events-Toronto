@@ -1,8 +1,16 @@
 <?php
 
+require_once __DIR__ . '/vendor/autoload.php';
 require 'models/Database.php';
+require 'models/GooglePlus.php';
 require 'models/API.php';
 require 'models/Event.php';
+
+if ($_SERVER['HTTP_HOST'] == 'events-toronto-a09liweis.c9users.io') {
+    $redirectURL = 'https://events-toronto-a09liweis.c9users.io/';
+} else {
+    $redirectURL = 'https://events-toronto.herokuapp.com/';
+}
 
 $event = new Event(Database::dbConnect());
 
@@ -52,4 +60,10 @@ if ($_GET['action'] == 'saveEvent') {
 if ($_GET['action'] == 'getDates') {
     $dates = $event->getDates();
     echo json_encode($dates);
+}
+
+if ($_GET['action'] == 'getGoogleEvents') {
+    $googlePlus = new GooglePlus($redirectURL);
+    $googleUser = $googlePlus->getProfile($_SESSION['access_token']);
+    $loginUser = $user->checkAuth($googleUser['google_plus_id']);
 }
