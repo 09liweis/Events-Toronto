@@ -1,3 +1,4 @@
+    </div>
     </body>
         <script type="text/javascript">
             var currentLocation = <?=json_encode($currentLocation)?>;
