@@ -13,7 +13,7 @@ if ($_SERVER['HTTP_HOST'] == 'events-toronto-a09liweis.c9users.io') {
 
 session_start();
 //when there is google auth error, use destroy to reset session
-session_destroy();
+//session_destroy();
 $user = new User(Database::dbConnect());
 $googlePlus = new GooglePlus($redirectURL);
 
@@ -43,7 +43,8 @@ if(isset($_SESSION['access_token']) && $_SESSION['access_token']){
 include 'template/header.php';
 
 ?>
-        <div class="row">
+        <div class="row" ng-controller="listController">
+            <h1>{{name}}</h1>
             <div class="col right s12 m4">
                 <p>
                     <input type="checkbox" class="filled-in" id="free" />
@@ -83,6 +84,8 @@ $scripts = array(
     'https://code.jquery.com/jquery-3.2.1.min.js',
     'https://code.jquery.com/ui/1.12.1/jquery-ui.js',
     'https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js',
+    'https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.js',
+    '../js/app.js',
     '../js/functions.js',
     '../js/index.js'
 );

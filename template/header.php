@@ -12,7 +12,7 @@ if(isset($_REQUEST['logout'])) {
 
 ?>
 <!DOCTYPE html>
-<html>
+<html ng-app="eventToronto">
     <head>
         <title>Events in Toronto</title>
         <link rel="icon" type="image/png" href="favicon.png">
