@@ -20,10 +20,11 @@ session_start();
 $userid = $_SESSION['userid'];
 
 if ($_GET['action'] == 'getEvents') {
+    $date = $_GET['date'];
     if (isset($userid)) {
-        $events = $event->getUserWithEvents($userid);
+        $events = $event->getUserWithEvents($date, $userid);
     } else {
-        $events = $event->getEvents();
+        $events = $event->getEvents($date);
     }
     echo json_encode($events);
 }

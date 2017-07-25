@@ -8,9 +8,10 @@ class Event {
         $this->db = $db;
     }
     
-    public function getEvents() {
-        $sql = 'SELECT * FROM events ORDER BY startDate ASC';
+    public function getEvents($date) {
+        $sql = 'SELECT * FROM events WHERE startDate = :date ORDER BY startDate ASC';
         $pdostmt = $this->db->prepare($sql);
+        $pdostmt->bindValue(':date', $date, PDO::PARAM_STR);
         $pdostmt->execute();
         $events = $pdostmt->fetchAll(PDO::FETCH_ASSOC);
         return $events;
@@ -25,10 +26,11 @@ class Event {
         return $event;
     }
     
-    public function getUserWithEvents($userid) {
-        $sql = 'SELECT e.id, e.name, e.lat, e.lng, e.thumbImage, e.freeEvent, e.startDate, e.endDate, ue.user_id FROM events e LEFT JOIN user_events ue ON e.id = ue.event_id AND ue.user_id = :userid';
+    public function getUserWithEvents($date, $userid) {
+        $sql = 'SELECT e.id, e.name, e.lat, e.lng, e.thumbImage, e.freeEvent, e.startDate, e.endDate, ue.user_id FROM events e LEFT JOIN user_events ue ON e.id = ue.event_id AND ue.user_id = :userid WHERE startDate = :date';
         $pdostmt = $this->db->prepare($sql);
         $pdostmt->bindValue(':userid', $userid, PDO::PARAM_STR);
+        $pdostmt->bindValue(':date', $date, PDO::PARAM_STR);
         $pdostmt->execute();
         $events = $pdostmt->fetchAll(PDO::FETCH_ASSOC);
         return $events;

@@ -55,9 +55,21 @@ include 'template/header.php';
                     <label for="long-run">Hide long-running events</label>
                 </p>
                 <div id="datepicker"></div>
-                <input id="date" type="hidden" value="<?=date('Y-m-d')?>" />
+                <input id="date" ng-model="date" date-picker />
             </div>
             <div id="events" class="col s12 m8">
+                <div class="event row" ng-repeat="event in events">
+                    <div class="col s12 m4">
+                        <img class="valign-wrapper event__thumbImage" ng-src="{{event.thumbImage}}" alt="{{event.name}}" />
+                    </div>
+                    <div class="col s12 m8">
+                        <h5>{{event.name}}</h5>
+                        <div>Free Event: {{event.freeEvent}}</div>
+                        <div>{{event.startDate}} to {{event.endDate}}</div>
+                        <a class="waves-effect waves-light btn save">{{(event.user_id == null ? 'Save' : 'Saved')}}</a>
+                        <a class="right waves-effect waves-light btn detail">Detail</a>
+                    </div>
+                </div>
             </div>
         </div>
         
@@ -87,7 +99,6 @@ $scripts = array(
     'https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.js',
     '../js/app.js',
     '../js/functions.js',
-    '../js/index.js'
 );
 include 'template/footer.php';
 ?>
