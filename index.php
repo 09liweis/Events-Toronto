@@ -44,7 +44,7 @@ include 'template/header.php';
 
 ?>
         <div class="row" ng-controller="listController">
-            <h1>{{name}}</h1>
+            <h1 class="text-center">{{name}}</h1>
             <div class="col right s12 m4">
                 <p>
                     <input type="checkbox" class="filled-in" id="free" />
@@ -54,8 +54,7 @@ include 'template/header.php';
                     <input type="checkbox" class="filled-in" id="long-run" />
                     <label for="long-run">Hide long-running events</label>
                 </p>
-                <div id="datepicker"></div>
-                <input id="date" ng-model="date" date-picker />
+                <div id="datepicker" date-picker ng-model="date"></div>
             </div>
             <div id="events" class="col s12 m8">
                 <div class="event row" ng-repeat="event in events">
@@ -66,7 +65,7 @@ include 'template/header.php';
                         <h5>{{event.name}}</h5>
                         <div>Free Event: {{event.freeEvent}}</div>
                         <div>{{event.startDate}} to {{event.endDate}}</div>
-                        <a class="waves-effect waves-light btn save">{{(event.user_id == null ? 'Save' : 'Saved')}}</a>
+                        <a class="waves-effect waves-light btn save" ng-click="saveEvent(event)">{{(event.user_id == null ? 'Save' : 'Saved')}}</a>
                         <a class="right waves-effect waves-light btn detail">Detail</a>
                     </div>
                 </div>

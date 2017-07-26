@@ -17,6 +17,18 @@ eventToronto.service('eventService', function($http) {
         }).then(function(res) {
             callback(res);
         });
+    },
+    this.saveEvent = function(eventId, callback) {
+        $http({
+            method: 'POST',
+            url: 'EventController.php?action=saveEvent',
+            data: $.param({'eventId': eventId}), //Need to find a better way
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }).then(function(res) {
+            callback(res);
+        });
     }
 });
 
@@ -45,14 +57,17 @@ eventToronto.controller('listController', function($scope, eventService) {
     $scope.name = 'Events in Toronto';
     $scope.date = currentDate();
     $scope.events = [];
-    // $http.get('EventController.php?action=getEvents&date=' + currentDate()).then(function(res) {
-    //     if (res.status == 200) {
-    //         $scope.events = res.data;   
-    //     } else {
-    //         //todo
-    //     }
-    // });
     eventService.getEvents(currentDate(), function(res) {
         $scope.events = res.data;
-    })
+    });
+    
+    $scope.saveEvent = function(event) {
+        eventService.saveEvent(event.id, function(res) {
+            if (res.data.status == 'delete') {
+                event.user_id = null;
+            } else {
+                event.user_id = res.data.user_id;
+            }
+        });
+    };
 });

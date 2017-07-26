@@ -78,7 +78,7 @@ class Event {
             $pdostmt->bindValue(':userid', $userid, PDO::PARAM_STR);
             $pdostmt->bindValue(':eventid', $eventid, PDO::PARAM_STR);
             $pdostmt->execute();
-            return array('code' => 200, 'msg' => 'success', 'status' => 'save');
+            return array('code' => 200, 'msg' => 'success', 'status' => 'save', 'user_id' => $userid);
         }
     }
     
