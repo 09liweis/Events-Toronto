@@ -47,7 +47,7 @@ include 'template/header.php';
             <h1 class="text-center">{{name}}</h1>
             <div class="col right s12 m4">
                 <p>
-                    <input type="checkbox" class="filled-in" id="free" />
+                    <input type="checkbox" class="filled-in" id="free" name="free" ng-model="free" />
                     <label for="free">Free Event</label>
                 </p>
                 <p>
@@ -56,8 +56,8 @@ include 'template/header.php';
                 </p>
                 <div id="datepicker" date-picker ng-model="date"></div>
             </div>
-            <div id="events" class="col s12 m8">
-                <div class="event row" ng-repeat="event in events">
+            <div id="events" class="col s12 m8" ng-if="events.length != 0">
+                <div class="event row" ng-repeat="event in events | isFree: free">
                     <div class="col s12 m4">
                         <img class="valign-wrapper event__thumbImage" ng-src="{{event.thumbImage}}" alt="{{event.name}}" />
                     </div>
@@ -69,6 +69,9 @@ include 'template/header.php';
                         <a class="right waves-effect waves-light btn detail">Detail</a>
                     </div>
                 </div>
+            </div>
+            <div class="col s12 m8" ng-if="events.length == 0">
+                No Events
             </div>
         </div>
         

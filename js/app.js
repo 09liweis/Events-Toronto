@@ -53,9 +53,22 @@ eventToronto.directive('datePicker', function(eventService) {
     }
 });
 
+eventToronto.filter('isFree', function() {
+    return function(events, free) {
+        if (free == true) {
+            return events.filter(function(event) {
+                return event.freeEvent === 'Yes';
+            });
+        } else {
+            return events;
+        }
+    };
+});
+
 eventToronto.controller('listController', function($scope, eventService) {
     $scope.name = 'Events in Toronto';
     $scope.date = currentDate();
+    $scope.free = false;
     $scope.events = [];
     eventService.getEvents(currentDate(), function(res) {
         $scope.events = res.data;
