@@ -43,38 +43,8 @@ if(isset($_SESSION['access_token']) && $_SESSION['access_token']){
 include 'template/header.php';
 
 ?>
-        <div class="row" ng-controller="listController">
-            <h1 class="text-center">{{name}}</h1>
-            <div class="col right s12 m4">
-                <p>
-                    <input type="checkbox" class="filled-in" id="free" name="free" ng-model="free" />
-                    <label for="free">Free Event</label>
-                </p>
-                <p>
-                    <input type="checkbox" class="filled-in" id="long-run" />
-                    <label for="long-run">Hide long-running events</label>
-                </p>
-                <div id="datepicker" date-picker ng-model="date"></div>
-            </div>
-            <div id="events" class="col s12 m8" ng-if="events.length != 0">
-                <div class="event row" ng-repeat="event in events | isFree: free">
-                    <div class="col s12 m4">
-                        <img class="valign-wrapper event__thumbImage" ng-src="{{event.thumbImage}}" alt="{{event.name}}" />
-                    </div>
-                    <div class="col s12 m8">
-                        <h5>{{event.name}}</h5>
-                        <div>Free Event: {{event.freeEvent}}</div>
-                        <div>{{event.startDate}} to {{event.endDate}}</div>
-                        <a class="waves-effect waves-light btn save" ng-click="saveEvent(event)">{{(event.user_id == null ? 'Save' : 'Saved')}}</a>
-                        <a class="right waves-effect waves-light btn detail">Detail</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col s12 m8" ng-if="events.length == 0">
-                No Events
-            </div>
-        </div>
-        
+
+        <div ng-view></div>        
         <div id="detail" class="modal">
             <div class="modal-content">
                 <div class="row">
@@ -99,6 +69,7 @@ $scripts = array(
     'https://code.jquery.com/ui/1.12.1/jquery-ui.js',
     'https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js',
     'https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.js',
+    'https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js',
     '../js/app.js',
     '../js/functions.js',
 );

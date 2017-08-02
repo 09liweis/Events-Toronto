@@ -7,13 +7,33 @@ function currentDate() {
     day = (day > 10) ? day : '0' + day;
     return year + '-' + month + '-' + day;
 }
-var eventToronto = angular.module('eventToronto', []);
+var eventToronto = angular.module('eventToronto', ['ngRoute']);
+
+eventToronto.config(function($routeProvider) {
+    $routeProvider
+    .when('/', {
+        templateUrl: '../pages/home.html',
+        controller: 'listController'
+    })
+    .when('/event/:id', {
+        templateUrl: '../pages/detail.html',
+        controller: 'detailController'
+    });
+});
 
 eventToronto.service('eventService', function($http) {
     this.getEvents = function(date, callback) {
         $http({
             method: 'GET',
             url: 'EventController.php?action=getEvents&date=' + date,
+        }).then(function(res) {
+            callback(res);
+        });
+    },
+    this.getEvent = function(id, callback) {
+        $http({
+            method: 'GET',
+            url: 'EventController.php?action=getEvent&eventId=' + id,
         }).then(function(res) {
             callback(res);
         });
@@ -76,10 +96,36 @@ eventToronto.controller('listController', function($scope, eventService) {
     
     $scope.saveEvent = function(event) {
         eventService.saveEvent(event.id, function(res) {
-            if (res.data.status == 'delete') {
-                event.user_id = null;
+            if (res.data.code == 400) {
+                Materialize.toast(res.data.msg, 3000);
             } else {
-                event.user_id = res.data.user_id;
+                if (res.data.status == 'delete') {
+                    event.user_id = null;
+                } else {
+                    event.user_id = res.data.user_id;
+                }
+            }
+        });
+    };
+});
+
+eventToronto.controller('detailController', function($scope, $routeParams, eventService) {
+    $scope.event = null;
+    eventService.getEvent($routeParams.id, function(res) {
+        if (res.status == 200) {
+            $scope.event = res.data;
+        }
+    });
+    $scope.saveEvent = function(event) {
+        eventService.saveEvent(event.id, function(res) {
+            if (res.data.code == 400) {
+                Materialize.toast(res.data.msg, 3000);
+            } else {
+                if (res.data.status == 'delete') {
+                    event.user_id = null;
+                } else {
+                    event.user_id = res.data.user_id;
+                }
             }
         });
     };
