@@ -15,6 +15,10 @@ eventToronto.config(function($routeProvider) {
         templateUrl: '../pages/home.html',
         controller: 'listController'
     })
+    .when('/:date', {
+        templateUrl: '../pages/home.html',
+        controller: 'listController'
+    })
     .when('/event/:id', {
         templateUrl: '../pages/detail.html',
         controller: 'detailController'
@@ -52,7 +56,7 @@ eventToronto.service('eventService', function($http) {
     }
 });
 
-eventToronto.directive('datePicker', function(eventService) {
+eventToronto.directive('datePicker', function($route, eventService) {
     return {
         require: 'ngModel',
         link: function(scope, element, attrs, ngModel) {
@@ -62,6 +66,7 @@ eventToronto.directive('datePicker', function(eventService) {
                     onSelect: function(dateText, inst) {
                         scope.$apply(function() {
                             scope.date = dateText;
+                            console.log($route);
                             eventService.getEvents(dateText, function(res) {
                                 scope.events = res.data;
                             });
@@ -85,7 +90,7 @@ eventToronto.filter('isFree', function() {
     };
 });
 
-eventToronto.controller('listController', function($scope, eventService) {
+eventToronto.controller('listController', function($scope, $routeParams, eventService) {
     $scope.name = 'Events in Toronto';
     $scope.date = currentDate();
     $scope.free = false;
