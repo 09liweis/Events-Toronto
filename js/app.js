@@ -97,7 +97,7 @@ eventToronto.filter('html', function($sce) {
 });
 
 eventToronto.controller('listController', function($scope, $routeParams, eventService) {
-    $scope.name = 'Events in Toronto';
+    $scope.name = 'Events on';
     $scope.date = currentDate();
     $scope.free = false;
     $scope.events = [];
