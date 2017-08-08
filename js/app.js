@@ -90,6 +90,12 @@ eventToronto.filter('isFree', function() {
     };
 });
 
+eventToronto.filter('html', function($sce) {
+    return function(input) {
+        return $sce.trustAsHtml(input);
+    };
+});
+
 eventToronto.controller('listController', function($scope, $routeParams, eventService) {
     $scope.name = 'Events in Toronto';
     $scope.date = currentDate();
