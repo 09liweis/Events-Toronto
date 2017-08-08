@@ -14,7 +14,8 @@
     <div id="events" class="col s12 m8" ng-if="events.length != 0">
         <div class="event row" ng-repeat="event in events | isFree: free">
             <div class="col s12 m4">
-                <img class="valign-wrapper event__thumbImage" ng-src="{{event.thumbImage}}" alt="{{event.name}}" />
+                <img ng-if="event.thumbImage" class="valign-wrapper event__thumbImage" ng-src="{{event.thumbImage}}" alt="{{event.name}}" />
+                <img ng-if="!event.thumbImage" class="valign-wrapper event__thumbImage" src="/images/events.jpg" alt="{{event.name}}" />
             </div>
             <div class="col s12 m8">
                 <h5><a href="#!/event/{{event.id}}">{{event.name}}</a></h5>

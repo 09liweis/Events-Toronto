@@ -22,10 +22,6 @@
     background-size: 200%;
 }
 
-.clear {
-    clear: both;
-}
-
 #map {
     width: 100%;
     height: 400px;
