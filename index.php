@@ -43,28 +43,10 @@ if(isset($_SESSION['access_token']) && $_SESSION['access_token']){
 include 'template/header.php';
 
 ?>
-
-        <div ng-view></div>        
-        <div id="detail" class="modal">
-            <div class="modal-content">
-                <div class="row">
-                    <div class="col s12 m4 l4" id="image">
-                        <img src="images/events.jpg" class="responsive-img" />
-                    </div>
-                    <div class="col s12 m8 l8">
-                        <h4 id="event_name"></h4>
-                        <p id="event_description"></p>
-                    </div>
-                </div>
-                <div class="row" id="detailMapContainer">
-                    <div id="detailMap"></div>
-                    <div id="route"></div>
-                </div>
-            </div>
-        </div>
+<div ng-view></div>
 <?php
 $scripts = array(
-    'https://maps.googleapis.com/maps/api/js?key=AIzaSyCCUfAQlAr-YR9De_ONa1reKPLA2xWuWm8',
+    //'https://maps.googleapis.com/maps/api/js?key=AIzaSyCCUfAQlAr-YR9De_ONa1reKPLA2xWuWm8',
     'https://code.jquery.com/jquery-3.2.1.min.js',
     'https://code.jquery.com/ui/1.12.1/jquery-ui.js',
     'https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js',
