@@ -7,6 +7,21 @@ function currentDate() {
     day = (day > 10) ? day : '0' + day;
     return year + '-' + month + '-' + day;
 }
+
+function convertEventsToCalendar(events) {
+    var calEvents = [];
+    console.log(events);
+    events.map(function(event) {
+        var calEvent = {};
+        calEvent.title = event.name;
+        calEvent.start = event.startDate;
+        calEvent.end = event.endDate;
+        calEvent.id = event.id;
+        calEvents.push(calEvent);
+    });
+    return calEvents;
+}
+
 var eventToronto = angular.module('eventToronto', ['ngRoute']);
 
 eventToronto.config(function($routeProvider) {
@@ -57,7 +72,15 @@ eventToronto.service('eventService', function($http) {
         }).then(function(res) {
             callback(res);
         });
-    }
+    },
+    this.getUserEvents = function(callback) {
+        $http({
+            method: 'POST',
+            url: 'EventController.php?action=getUserEvents',
+        }).then(function(res) {
+            callback(res);
+        });
+    };
 });
 
 eventToronto.directive('datePicker', function($route, eventService) {
@@ -85,14 +108,18 @@ eventToronto.directive('calendar', function(eventService) {
     return {
         link: function(scope, element, attrs, ngModel) {
             $(function() {
-                element.fullCalendar({
-                    header: {
-                        left: 'prev,next today',
-                        center: 'title',
-                        right: 'month,basicWeek,basicDay'
-                    },
-                    navLinks: true,
-                    editable: true,
+                eventService.getUserEvents(function(res) {
+                    const calEvents = convertEventsToCalendar(res.data);
+                    element.fullCalendar({
+                        header: {
+                            left: 'prev,next today',
+                            center: 'title',
+                            right: 'month,basicWeek,basicDay'
+                        },
+                        navLinks: true,
+                        editable: true,
+                        events: calEvents
+                    });
                 });
             });
         }
