@@ -53,7 +53,6 @@ $scripts = array(
     'https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.js',
     'https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js',
     '../js/app.js',
-    '../js/functions.js',
 );
 include 'template/footer.php';
 ?>

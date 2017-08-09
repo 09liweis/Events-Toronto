@@ -33,7 +33,7 @@ if(isset($_REQUEST['logout'])) {
                     <?php if(isset($authUrl)) {?>
                     <li><a href="<?=$authUrl?>">Login with Google+</a>
                     <?php } else { ?>
-                    <li><a href="user.php"><?=$_SESSION["username"]?></a></li>
+                    <li><a href="#!/calendar"><?=$_SESSION["username"]?></a></li>
                     <li><a href="/?logout=true">Logout</a></li>
                     <?php } ?>
                 </ul>
