@@ -15,14 +15,15 @@ eventToronto.config(function($routeProvider) {
         templateUrl: '../pages/home.html',
         controller: 'listController'
     })
-    .when('/:date', {
+    .when('/date/:date', {
         templateUrl: '../pages/home.html',
         controller: 'listController'
     })
     .when('/event/:id', {
         templateUrl: '../pages/detail.html',
         controller: 'detailController'
-    }).when('/calendar', {
+    })
+    .when('/calendar', {
         templateUrl: '../pages/calendar.html',
         controller: 'calendarController'
     });
@@ -69,12 +70,29 @@ eventToronto.directive('datePicker', function($route, eventService) {
                     onSelect: function(dateText, inst) {
                         scope.$apply(function() {
                             scope.date = dateText;
-                            console.log($route);
                             eventService.getEvents(dateText, function(res) {
                                 scope.events = res.data;
                             });
                         });
                     }
+                });
+            });
+        }
+    };
+});
+
+eventToronto.directive('calendar', function(eventService) {
+    return {
+        link: function(scope, element, attrs, ngModel) {
+            $(function() {
+                element.fullCalendar({
+                    header: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'month,basicWeek,basicDay'
+                    },
+                    navLinks: true,
+                    editable: true,
                 });
             });
         }
