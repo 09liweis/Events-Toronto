@@ -26,6 +26,15 @@ class Event {
         return $event;
     }
     
+    public function getEventRecId($id) {
+        $sql = 'SELECT count(*) FROM events WHERE recId = :id';
+        $pdostmt = $this->db->prepare($sql);
+        $pdostmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $pdostmt->execute();
+        $count = $pdostmt->fetch(PDO::FETCH_COLUMN);
+        return $count;
+    }
+    
     public function getUserWithEvents($date, $userid) {
         $sql = 'SELECT e.id, e.name, e.lat, e.lng, e.thumbImage, e.freeEvent, e.startDate, e.endDate, ue.user_id FROM events e LEFT JOIN user_events ue ON e.id = ue.event_id AND ue.user_id = :userid WHERE startDate = :date';
         $pdostmt = $this->db->prepare($sql);
@@ -83,7 +92,6 @@ class Event {
     }
     
     public function updateEvents($events) {
-        $this->clearEvents();
         $this->insertEvents($events);
     }
     
@@ -133,37 +141,59 @@ class Event {
             $image = '';
         }
         
-        $sql = 'INSERT INTO events (name, 
-                                    address, 
-                                    location, 
-                                    lat, 
-                                    lng, 
-                                    description, 
-                                    website, 
-                                    startDate, 
-                                    endDate,
-                                    thumbImage, 
-                                    image,
-                                    recId,
-                                    reservationsRequired,
-                                    freeEvent
-                                    ) 
-                                    VALUES (
-                                        :name, 
-                                        :address, 
-                                        :location, 
-                                        :lat, 
-                                        :lng, 
-                                        :description, 
-                                        :website,
-                                        :startDate, 
-                                        :endDate,
-                                        :thumbImage, 
-                                        :image,
-                                        :recId,
-                                        :reservationsRequired,
-                                        :freeEvent
-                                        )';
+        $eventExist = $this->getEventRecId($recId);
+        if (!$eventExist) {
+            $sql = 'INSERT INTO events (name, 
+                                        address, 
+                                        location, 
+                                        lat, 
+                                        lng, 
+                                        description, 
+                                        website, 
+                                        startDate, 
+                                        endDate,
+                                        thumbImage, 
+                                        image,
+                                        recId,
+                                        reservationsRequired,
+                                        freeEvent
+                                        ) 
+                                        VALUES (
+                                            :name, 
+                                            :address, 
+                                            :location, 
+                                            :lat, 
+                                            :lng, 
+                                            :description, 
+                                            :website,
+                                            :startDate, 
+                                            :endDate,
+                                            :thumbImage, 
+                                            :image,
+                                            :recId,
+                                            :reservationsRequired,
+                                            :freeEvent
+                                            )';
+        } else {
+            $sql = 'UPDATE events SET 
+                                    name = :name, 
+                                    address = :address, 
+                                    location = :location, 
+                                    lat = :lat, 
+                                    lng = :lng, 
+                                    description = :description, 
+                                    website = :website, 
+                                    startDate = :startDate, 
+                                    endDate = :endDate,
+                                    thumbImage = :thumbImage, 
+                                    image = :image,
+                                    reservationsRequired = :reservationsRequired,
+                                    freeEvent = :freeEvent
+                                    WHERE recId = :recId
+                                    ';
+        }
+        
+        
         $pdostmt = $this->db->prepare($sql);
         $pdostmt->bindValue(':name', $name, PDO::PARAM_STR);
         $pdostmt->bindValue(':address', $address, PDO::PARAM_STR);
