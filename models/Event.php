@@ -116,6 +116,10 @@ class Event {
         $recId = $calEvent['recId'];
         $reservationsRequired = $calEvent['reservationsRequired'];
         $freeEvent = $calEvent['freeEvent'];
+        $website = '';
+        if (isset($calEvent['eventWebsite'])) {
+            $website = $calEvent['eventWebsite'];
+        }
         
         if (isset($calEvent['thumbImage']) && isset($calEvent['thumbImage']['url'])) {
             $thumbImage = $this->apiDomain . $calEvent['thumbImage']['url'];
@@ -135,6 +139,7 @@ class Event {
                                     lat, 
                                     lng, 
                                     description, 
+                                    website, 
                                     startDate, 
                                     endDate,
                                     thumbImage, 
@@ -150,6 +155,7 @@ class Event {
                                         :lat, 
                                         :lng, 
                                         :description, 
+                                        :website,
                                         :startDate, 
                                         :endDate,
                                         :thumbImage, 
@@ -165,6 +171,7 @@ class Event {
         $pdostmt->bindValue(':lat', $lat, PDO::PARAM_STR);
         $pdostmt->bindValue(':lng', $lng, PDO::PARAM_STR);
         $pdostmt->bindValue(':description', $description, PDO::PARAM_STR);
+        $pdostmt->bindValue(':website', $website, PDO::PARAM_STR);
         $pdostmt->bindValue(':startDate', $startDate, PDO::PARAM_STR);
         $pdostmt->bindValue(':endDate', $endDate, PDO::PARAM_STR);
         $pdostmt->bindValue(':thumbImage', $thumbImage, PDO::PARAM_STR);
