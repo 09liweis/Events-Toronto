@@ -41,6 +41,10 @@ eventToronto.config(function($routeProvider) {
     .when('/calendar', {
         templateUrl: '../pages/calendar.html',
         controller: 'calendarController'
+    })
+    .when('/admin', {
+        templateUrl: '../pages/admin.html',
+        controller: 'adminController'
     });
 });
 
@@ -192,4 +196,8 @@ eventToronto.controller('detailController', function($scope, $routeParams, event
 
 eventToronto.controller('calendarController', function($scope, eventService) {
     $scope.title = 'Calendar';
+});
+
+eventToronto.controller('adminController', function($scope, eventService) {
+    $scope.title = 'Admin';
 });
