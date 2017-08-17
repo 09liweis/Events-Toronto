@@ -25,7 +25,7 @@
                 <h5><a href="#!/event/{{event.id}}"><span ng-bind-html="event.name | html"></span></a></h5>
                 <div>Free Event: {{event.freeEvent}}</div>
                 <div>{{event.startDate}} to {{event.endDate}}</div>
-                <p><span ng-repeat="c in event.categories" class="chip">{{c.name}}</span></p>
+                <p><span ng-repeat="c in event.categories" class="chip" ng-click="selectCategory(c.name)">{{c.name}}</span></p>
                 <a class="waves-effect waves-light btn save" ng-click="saveEvent(event)">{{(event.user_id == null ? 'Save' : 'Saved')}}</a>
                 <a class="right waves-effect waves-light btn detail">Detail</a>
             </div>
