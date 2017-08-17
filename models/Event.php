@@ -16,7 +16,19 @@ class Event {
         $pdostmt->bindValue(':date', $date, PDO::PARAM_STR);
         $pdostmt->execute();
         $events = $pdostmt->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($events as &$event) {
+            $event['categories'] = $this->getCategoriesByEventId($event[id]);
+        }
         return $events;
+    }
+    
+    public function getCategoriesByEventId($eventId) {
+        $sql = 'SELECT c.id AS id, c.name AS name FROM categories AS c JOIN event_category AS ec ON c.id = ec.category_id WHERE ec.event_id = :eventId';
+        $pdostmt = $this->db->prepare($sql);
+        $pdostmt->bindValue(':eventId', $eventId, PDO::PARAM_STR);
+        $pdostmt->execute();
+        $categories = $pdostmt->fetchAll(PDO::FETCH_ASSOC);
+        return $categories;
     }
     
     public function getEvent($id) {
