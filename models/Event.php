@@ -1,5 +1,7 @@
 <?php
 
+require 'Category.php';
+
 class Event {
     private $db;
     private $apiDomain = 'https://secure.toronto.ca';
@@ -139,6 +141,16 @@ class Event {
             $image = $this->apiDomain . $calEvent['image']['url'];
         } else {
             $image = '';
+        }
+        
+        $categories = $calEvent['category'];
+        foreach ($categories as $c) {
+            $cname = $c['name'];
+            $cmodel = new Category($this->db);
+            $cexist = $cmodel->getByName($cname);
+            if (!$cexist) {
+                $cmodel->insert($cname);
+            }
         }
         
         $eventExist = $this->getEventRecId($recId);
