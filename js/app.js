@@ -155,6 +155,24 @@ eventToronto.filter('isFree', function() {
     };
 });
 
+eventToronto.filter('filerCategory', function() {
+    return function(events, selectedCategory) {
+        if (selectedCategory == null) {
+            return events;
+        } else {
+            var results = [];
+            events.map(function(event) {
+                event.categories.map(function(c) {
+                    if (c.name === selectedCategory) {
+                        results.push(event);
+                    }
+                });
+            });
+            return results;
+        }
+    };
+});
+
 eventToronto.filter('html', function($sce) {
     return function(input) {
         return $sce.trustAsHtml(input);
@@ -167,10 +185,19 @@ eventToronto.controller('listController', function($scope, $routeParams, eventSe
     $scope.free = false;
     $scope.events = [];
     $scope.categories = [];
+    $scope.selectedCategory = null;
     eventService.getEvents(currentDate(), function(res) {
         $scope.events = res.data;
         $scope.categories = getCategoriesFromEvents(res.data);
     });
+    
+    $scope.selectCategory = function(c) {
+        if ($scope.selectedCategory == c) {
+            $scope.selectedCategory = null;
+        } else {
+            $scope.selectedCategory = c;
+        }
+    };
     
     $scope.saveEvent = function(event) {
         eventService.saveEvent(event.id, function(res) {

@@ -12,11 +12,11 @@
         <div id="datepicker" date-picker ng-model="date"></div>
         <div>
             <h4>Categories</h4>
-            <div class="chip" ng-repeat="c in categories">{{c}}</div>
+            <div class="chip" ng-repeat="c in categories" ng-click="selectCategory(c)">{{c}}</div>
         </div>
     </div>
     <div id="events" class="col s12 m8" ng-if="events.length != 0">
-        <div class="event row" ng-repeat="event in events | isFree: free">
+        <div class="event row" ng-repeat="event in events | isFree: free | filerCategory: selectedCategory">
             <div class="col s12 m4">
                 <img ng-if="event.thumbImage" class="valign-wrapper event__thumbImage" ng-src="{{event.thumbImage}}" alt="{{event.name}}" />
                 <img ng-if="!event.thumbImage" class="valign-wrapper event__thumbImage" src="/images/events.jpg" alt="{{event.name}}" />
