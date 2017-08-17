@@ -11,6 +11,7 @@ class Category {
         $pdostmt = $this->db->prepare($sql);
         $pdostmt->bindValue(':name', $name, PDO::PARAM_STR);
         $pdostmt->execute();
+        return $pdostmt->fetch(PDO::FETCH_ASSOC);
     }
     
     public function getByName($name) {

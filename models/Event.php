@@ -29,12 +29,12 @@ class Event {
     }
     
     public function getEventRecId($id) {
-        $sql = 'SELECT count(*) FROM events WHERE recId = :id';
+        $sql = 'SELECT id FROM events WHERE recId = :id';
         $pdostmt = $this->db->prepare($sql);
         $pdostmt->bindValue(':id', $id, PDO::PARAM_INT);
         $pdostmt->execute();
-        $count = $pdostmt->fetch(PDO::FETCH_COLUMN);
-        return $count;
+        $eventId = $pdostmt->fetch(PDO::FETCH_COLUMN);
+        return $eventId;
     }
     
     public function getUserWithEvents($date, $userid) {
@@ -74,6 +74,16 @@ class Event {
         return $result;
     }
     
+    public function checkEventCategory($eventId, $categoryId) {
+        $sql = 'SELECT COUNT(*) FROM event_category WHERE category_id = :categoryId AND event_id = :eventId';
+        $pdostmt = $this->db->prepare($sql);
+        $pdostmt->bindValue(':categoryId', $categoryId, PDO::PARAM_STR);
+        $pdostmt->bindValue(':eventId', $eventId, PDO::PARAM_STR);
+        $pdostmt->execute();
+        $result = $pdostmt->fetch(PDO::FETCH_COLUMN);
+        return $result;
+    }
+    
     public function userEvent($userid, $eventid) {
         $count = $this->checkEvent($userid, $eventid);
         if ($count >= 1) {
@@ -91,6 +101,21 @@ class Event {
             $pdostmt->execute();
             return array('code' => 200, 'msg' => 'success', 'status' => 'save', 'user_id' => $userid);
         }
+    }
+    
+    public function updateEventCategory($eventId, $categoryId) {
+        $count = $this->checkEventCategory($eventId, $categoryId);
+        if ($count == 0) {
+            $this->insertEventCategory($eventId, $categoryId);
+        }
+    }
+    
+    public function insertEventCategory($eventId, $categoryId) {
+        $sql = 'INSERT INTO event_category (category_id, event_id) VALUES (:categoryId, :eventId)';
+        $pdostmt = $this->db->prepare($sql);
+        $pdostmt->bindValue(':categoryId', $categoryId, PDO::PARAM_STR);
+        $pdostmt->bindValue(':eventId', $eventId, PDO::PARAM_STR);
+        $pdostmt->execute();
     }
     
     public function updateEvents($events) {
@@ -144,17 +169,9 @@ class Event {
         }
         
         $categories = $calEvent['category'];
-        foreach ($categories as $c) {
-            $cname = $c['name'];
-            $cmodel = new Category($this->db);
-            $cexist = $cmodel->getByName($cname);
-            if (!$cexist) {
-                $cmodel->insert($cname);
-            }
-        }
         
-        $eventExist = $this->getEventRecId($recId);
-        if (!$eventExist) {
+        $eventId = $this->getEventRecId($recId);
+        if (!$eventId) {
             $sql = 'INSERT INTO events (name, 
                                         address, 
                                         location, 
@@ -222,5 +239,23 @@ class Event {
         $pdostmt->bindValue(':reservationsRequired', $reservationsRequired, PDO::PARAM_STR);
         $pdostmt->bindValue(':freeEvent', $freeEvent, PDO::PARAM_STR);
         $pdostmt->execute();
+        
+        if (!$eventId) {
+            $eventId = $this->getEventRecId($recId);
+        }
+        
+        foreach ($categories as $c) {
+            $cname = $c['name'];
+            $cmodel = new Category($this->db);
+            $cexist = $cmodel->getByName($cname);
+            $cId = $cexist['id'];
+            
+            if (!$cexist) {
+                $category = $cmodel->insert($cname);
+                $cId = $category['id'];
+            }
+            
+            $this->updateEventCategory($eventId, $cId);
+        }
     }
 }
