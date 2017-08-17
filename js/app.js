@@ -22,6 +22,18 @@ function convertEventsToCalendar(events) {
     return calEvents;
 }
 
+function getCategoriesFromEvents(events) {
+    var categories = [];
+    events.map(function(event) {
+        event.categories.map(function(c) {
+            if (categories.indexOf(c.name) == -1) {
+                categories.push(c.name);
+            }
+        });
+    });
+    return categories;
+}
+
 var eventToronto = angular.module('eventToronto', ['ngRoute']);
 
 eventToronto.config(function($routeProvider) {
@@ -99,6 +111,7 @@ eventToronto.directive('datePicker', function($route, eventService) {
                             scope.date = dateText;
                             eventService.getEvents(dateText, function(res) {
                                 scope.events = res.data;
+                                scope.categories = getCategoriesFromEvents(res.data);
                             });
                         });
                     }
@@ -153,8 +166,10 @@ eventToronto.controller('listController', function($scope, $routeParams, eventSe
     $scope.date = currentDate();
     $scope.free = false;
     $scope.events = [];
+    $scope.categories = [];
     eventService.getEvents(currentDate(), function(res) {
         $scope.events = res.data;
+        $scope.categories = getCategoriesFromEvents(res.data);
     });
     
     $scope.saveEvent = function(event) {

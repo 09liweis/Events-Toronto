@@ -10,6 +10,10 @@
             <label for="long-run">Hide long-running events</label>
         </p>
         <div id="datepicker" date-picker ng-model="date"></div>
+        <div>
+            <h4>Categories</h4>
+            <div class="chip" ng-repeat="c in categories">{{c}}</div>
+        </div>
     </div>
     <div id="events" class="col s12 m8" ng-if="events.length != 0">
         <div class="event row" ng-repeat="event in events | isFree: free">
