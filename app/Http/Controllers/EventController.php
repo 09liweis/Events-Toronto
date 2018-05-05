@@ -22,11 +22,15 @@ class EventController extends Controller
             $event->name = $e['eventName'];
             $event->description = $e['description'];
             $event->location = $e['locations'][0]['locationName'];
-            if (isset($e['locations'][0]['address'])) {
-                $event->address = $e['locations'][0]['address'];
-                $event->lat = $e['locations'][0]['coords']['lat'];
-                $event->lng = $e['locations'][0]['coords']['lng'];
-            }
+            // if (isset($e['locations'][0])) {
+            //     $event->address = $e['locations'][0]['address'];
+            //     $event->lat = $e['locations'][0]['coords']['lat'];
+            //     $event->lng = $e['locations'][0]['coords']['lng'];
+            // } else {
+            //     $event->address = null;
+            //     $event->lat = null;
+            //     $event->lng = null;
+            // }
             
             $event->start_date = $e['startDate'];
             $event->end_date = $e['endDate'];
@@ -54,5 +58,9 @@ class EventController extends Controller
             $event->save();
         }
         return 'done';
+    }
+    
+    public function list() {
+        return Event::all();
     }
 }
