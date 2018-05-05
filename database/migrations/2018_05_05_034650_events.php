@@ -20,6 +20,14 @@ class Events extends Migration
             $table->string('location');
             $table->string('lat');
             $table->string('lng');
+            $table->string('description');
+            $table->string('start_date');
+            $table->string('end_date');
+            $table->string('thumbnail');
+            $table->string('image');
+            $table->string('rec_id')->unique();
+            $table->string('reservations_required');
+            $table->string('free');
             $table->timestamps();
         });
     }
