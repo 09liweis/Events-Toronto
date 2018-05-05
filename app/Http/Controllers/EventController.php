@@ -14,13 +14,19 @@ class EventController extends Controller
         
         foreach($importEvents as $rawEvent) {
             $e = $rawEvent['calEvent'];
-            $event = new Event;
+            $recId = $e['recId'];
+            $event = Event::where('rec_id', $recId)->first();
+            if (!$event) {
+                $event = new Event;    
+            }
             $event->name = $e['eventName'];
             $event->description = $e['description'];
             $event->location = $e['locations'][0]['locationName'];
-            $event->address = $e['locations'][0]['address'];
-            $event->lat = $e['locations'][0]['coords']['lat'];
-            $event->lng = $e['locations'][0]['coords']['lng'];
+            if (isset($e['locations'][0]['address'])) {
+                $event->address = $e['locations'][0]['address'];
+                $event->lat = $e['locations'][0]['coords']['lat'];
+                $event->lng = $e['locations'][0]['coords']['lng'];
+            }
             
             $event->start_date = $e['startDate'];
             $event->end_date = $e['endDate'];
@@ -44,6 +50,9 @@ class EventController extends Controller
             } else {
                 $event->image = '';
             }
+            
+            $event->save();
         }
+        return 'done';
     }
 }

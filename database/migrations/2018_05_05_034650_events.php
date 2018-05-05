@@ -16,11 +16,11 @@ class Events extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('address');
+            $table->string('address')->default(null);
             $table->string('location');
-            $table->string('lat');
-            $table->string('lng');
-            $table->string('description');
+            $table->string('lat')->default(null);
+            $table->string('lng')->default(null);
+            $table->text('description');
             $table->string('start_date');
             $table->string('end_date');
             $table->string('thumbnail');
