@@ -28,6 +28,7 @@ class Events extends Migration
             $table->string('rec_id')->unique();
             $table->string('reservations_required');
             $table->string('free');
+            $table->string('website');
             $table->timestamps();
         });
     }
