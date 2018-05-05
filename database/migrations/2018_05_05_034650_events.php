@@ -18,6 +18,8 @@ class Events extends Migration
             $table->string('name');
             $table->string('address');
             $table->string('location');
+            $table->string('lat');
+            $table->string('lng');
             $table->timestamps();
         });
     }
