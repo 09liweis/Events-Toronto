@@ -47,6 +47,7 @@ include 'template/header.php';
 <?php
 $scripts = array(
     //'https://maps.googleapis.com/maps/api/js?key=AIzaSyCCUfAQlAr-YR9De_ONa1reKPLA2xWuWm8',
+    'https://apis.google.com/js/platform.js',
     'https://code.jquery.com/jquery-3.2.1.min.js',
     'https://code.jquery.com/ui/1.12.1/jquery-ui.js',
     'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js',

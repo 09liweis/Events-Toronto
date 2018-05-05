@@ -17,6 +17,7 @@ if(isset($_REQUEST['logout'])) {
         <title>Events in Toronto</title>
         <link rel="icon" type="image/png" href="favicon.png">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="google-signin-client_id" content="433300294368-sp6f150psm0akdkomhn80laqqmd5fukh.apps.googleusercontent.com">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <!-- Compiled and minified CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
@@ -25,17 +26,14 @@ if(isset($_REQUEST['logout'])) {
         <link rel="stylesheet" href="../style.css" type="text/css" />
     </head>
     <body>
-        <nav>
+        <nav ng-controller="userController">
             <div class="nav-wrapper">
                 <a href="/" class="brand-logo">Toronto Events</a>
                 <ul id="nav-mobile" class="right">
-                    <li><a href="/">All Events</a></li>    
-                    <?php if(isset($authUrl)) {?>
-                    <li><a href="<?=$authUrl?>">Login with Google+</a>
-                    <?php } else { ?>
-                    <li><a href="#!/calendar"><?=$_SESSION["username"]?></a></li>
-                    <li><a href="/?logout=true">Logout</a></li>
-                    <?php } ?>
+                    <li><a href="/">All Events</a></li>
+                    <li><a class="g-signin2" data-onsuccess="onSignIn"></a>
+                    <!--<li><a href="#!/calendar"></a></li>-->
+                    <li><a href="#" onclick="signOut();">Sign out</a></li>
                 </ul>
             </div>
         </nav>

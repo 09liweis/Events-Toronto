@@ -1,10 +1,10 @@
 <?php
 
 class Database {
-    private static $host = 'sql9.freemysqlhosting.net';
-    private static $dbname = 'sql9166232';
-    private static $username = 'sql9166232';
-    private static $password = 'M8YWGiFl6f';
+    private static $host = 'localhost';
+    private static $dbname = 'id5634043_events_toronto';
+    private static $username = 'id5634043_events_toronto';
+    private static $password = 'kanamemadoka2018';
     private static $db;
     
     public function __construct() {

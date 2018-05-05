@@ -6,7 +6,7 @@
             <label for="free">Free Event</label>
         </p>
         <p>
-            <input type="checkbox" class="filled-in" id="long-run" />
+            <input type="checkbox" class="filled-in" id="long-run" name="longRun" ng-model="longRun" />
             <label for="long-run">Hide long-running events</label>
         </p>
         <div id="datepicker" date-picker ng-model="date"></div>
@@ -16,7 +16,7 @@
         </div>
     </div>
     <div id="events" class="col s12 m8" ng-if="events.length != 0">
-        <div class="event row" ng-repeat="event in events | isFree: free | filerCategory: selectedCategory">
+        <div class="event row" ng-repeat="event in events | isFree: free | isLongRun: longRun | filerCategory: selectedCategory">
             <div class="col s12 m4">
                 <img ng-if="event.thumbImage" class="valign-wrapper event__thumbImage" ng-src="{{event.thumbImage}}" alt="{{event.name}}" />
                 <img ng-if="!event.thumbImage" class="valign-wrapper event__thumbImage" src="/images/events.jpg" alt="{{event.name}}" />

@@ -11,6 +11,7 @@ class Event {
     }
     
     public function getEvents($date) {
+        //$sql = 'SELECT * FROM events WHERE startDate <= :date AND endDate >= :date ORDER BY startDate ASC';
         $sql = 'SELECT * FROM events WHERE startDate = :date ORDER BY startDate ASC';
         $pdostmt = $this->db->prepare($sql);
         $pdostmt->bindValue(':date', $date, PDO::PARAM_STR);

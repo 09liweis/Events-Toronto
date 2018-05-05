@@ -1,3 +1,17 @@
+function onSignIn(googleUser) {
+    var profile = googleUser.getBasicProfile();
+    console.log(profile.getId());
+    console.log(profile.getName());
+}
+
+function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+        console.log('User signed out.');
+    });
+}
+
+
 function currentDate() {
     const date = new Date();
     const year = date.getFullYear();
@@ -35,6 +49,10 @@ function getCategoriesFromEvents(events) {
 }
 
 var eventToronto = angular.module('eventToronto', ['ngRoute']);
+
+eventToronto.run(function($rootScope) {
+    $rootScope.user = null;
+});
 
 eventToronto.config(function($routeProvider) {
     $routeProvider
@@ -155,6 +173,19 @@ eventToronto.filter('isFree', function() {
     };
 });
 
+eventToronto.filter('isLongRun', function() {
+    return function(events, longRun, date) {
+        console.log(longRun, date);
+        if (longRun == false) {
+            return events.filter(function(event) {
+                return events.startDate == date;
+            });   
+        } else {
+            return events;
+        }
+    };
+});
+
 eventToronto.filter('filerCategory', function() {
     return function(events, selectedCategory) {
         if (selectedCategory == null) {
@@ -179,10 +210,16 @@ eventToronto.filter('html', function($sce) {
     };
 });
 
+eventToronto.controller('userController', function($scope, $rootScope) {
+    $scope.signIn = function() {
+    };
+});
+
 eventToronto.controller('listController', function($scope, $routeParams, eventService) {
     $scope.name = 'Events on';
     $scope.date = currentDate();
     $scope.free = false;
+    $scope.longRun = false;
     $scope.events = [];
     $scope.categories = [];
     $scope.selectedCategory = null;
