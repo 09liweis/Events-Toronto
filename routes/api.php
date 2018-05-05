@@ -18,4 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/import', 'EventController@import');
-Route::get('/list', 'EventController@list');
+Route::get('/events', 'EventController@list');
