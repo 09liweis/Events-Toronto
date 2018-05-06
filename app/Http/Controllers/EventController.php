@@ -60,7 +60,11 @@ class EventController extends Controller
         return 'done';
     }
     
-    public function list() {
-        return Event::all();
+    public function list(Request $request) {
+        $date = $request->input('date');
+        if (!$date) {
+            $date = date("Y-m-d");
+            return Event::where('start_date', $date)->orderBy('start_date', 'asc')->get();
+        }
     }
 }

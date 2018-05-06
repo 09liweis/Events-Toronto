@@ -29,6 +29,7 @@ export default {
     },
     methods: {
         getList() {
+            const date = new Date();
             axios.get('/api/events').then(res => {
                 this.list = res.data;
             });
