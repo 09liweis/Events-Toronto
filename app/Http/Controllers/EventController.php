@@ -22,14 +22,14 @@ class EventController extends Controller
             $event->name = $e['eventName'];
             $event->description = $e['description'];
             $event->location = $e['locations'][0]['locationName'];
-            if (isset($e['locations'][0])) {
-                $event->address = $e['locations'][0]['address'];
-                $event->lat = $e['locations'][0]['coords']['lat'];
-                $event->lng = $e['locations'][0]['coords']['lng'];
-            } else {
-                $event->address = null;
-                $event->lat = null;
-                $event->lng = null;
+            if (isset($e['locations'][0]['address'])) {
+                try {
+                    $event->address = $e['locations'][0]['address'];
+                    $event->lat = $e['locations'][0]['coords']['lat'];
+                    $event->lng = $e['locations'][0]['coords']['lng'];   
+                } catch (Exception $ex) {
+                    echo $e['eventName'] . '<br/>';
+                }
             }
             
             $event->start_date = substr($e['startDate'], 0, 10);
