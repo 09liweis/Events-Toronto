@@ -6,7 +6,7 @@
                 <div class="card card-default event">
                     <img class="card-img-top" :src="event.thumbnail" :alt="event.name">
                     <div class="card-body">
-                        <h5 class="card-title">{{event.name}}</h5>
+                        <h5 class="card-title" v-html="event.name"></h5>
                         <div>{{event.start_date}}</div>
                         <div>{{event.address}}</div>
                     </div>
@@ -29,7 +29,6 @@ export default {
     },
     methods: {
         getList() {
-            const date = new Date();
             axios.get('/api/events').then(res => {
                 this.list = res.data;
             });
