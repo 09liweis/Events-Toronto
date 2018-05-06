@@ -22,18 +22,18 @@ class EventController extends Controller
             $event->name = $e['eventName'];
             $event->description = $e['description'];
             $event->location = $e['locations'][0]['locationName'];
-            // if (isset($e['locations'][0])) {
-            //     $event->address = $e['locations'][0]['address'];
-            //     $event->lat = $e['locations'][0]['coords']['lat'];
-            //     $event->lng = $e['locations'][0]['coords']['lng'];
-            // } else {
-            //     $event->address = null;
-            //     $event->lat = null;
-            //     $event->lng = null;
-            // }
+            if (isset($e['locations'][0])) {
+                $event->address = $e['locations'][0]['address'];
+                $event->lat = $e['locations'][0]['coords']['lat'];
+                $event->lng = $e['locations'][0]['coords']['lng'];
+            } else {
+                $event->address = null;
+                $event->lat = null;
+                $event->lng = null;
+            }
             
-            $event->start_date = $e['startDate'];
-            $event->end_date = $e['endDate'];
+            $event->start_date = substr($e['startDate'], 0, 10);
+            $event->end_date = substr($e['endDate'], 0, 10);
             
             $event->rec_id = $e['recId'];
             $event->reservations_required = $e['reservationsRequired'];

@@ -1,9 +1,10 @@
 <template>
     <div class="container">
+        <h1>Total: {{list.length}} Events in Toronto</h1>
         <div class="row justify-content-center">
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" v-for="event in list">
                 <div class="card card-default event">
-                    <img class="card-img-top" :src="event.thumbnail" alt="Card image cap">
+                    <img class="card-img-top" :src="event.thumbnail" :alt="event.name">
                     <div class="card-body">
                         <h5 class="card-title">{{event.name}}</h5>
                         <div>{{event.start_date}}</div>
