@@ -2,11 +2,12 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" v-for="event in list">
-                <div class="card card-default">
-                    <div class="card-header">{{event.name}}</div>
-
+                <div class="card card-default event">
+                    <img class="card-img-top" :src="event.thumbnail" alt="Card image cap">
                     <div class="card-body">
-                        I'm an example component.
+                        <h5 class="card-title">{{event.name}}</h5>
+                        <div>{{event.start_date}}</div>
+                        <div>{{event.address}}</div>
                     </div>
                 </div>
             </div>
@@ -34,3 +35,8 @@ export default {
     }
 };
 </script>
+<style>
+.event {
+    margin-bottom: 20px;
+}
+</style>
