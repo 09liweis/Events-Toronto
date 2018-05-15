@@ -13915,7 +13915,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
  */
 
 var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
-    mode: 'history',
+    // mode: 'history',
     routes: [{
         path: '/',
         name: 'home',
@@ -47800,16 +47800,31 @@ var render = function() {
                 attrs: { src: event.thumbnail, alt: event.name }
               }),
               _vm._v(" "),
-              _c("div", { staticClass: "card-body" }, [
-                _c("h5", {
-                  staticClass: "card-title",
-                  domProps: { innerHTML: _vm._s(event.name) }
-                }),
-                _vm._v(" "),
-                _c("div", [_vm._v(_vm._s(event.start_date))]),
-                _vm._v(" "),
-                _c("div", [_vm._v(_vm._s(event.address))])
-              ])
+              _c(
+                "div",
+                { staticClass: "card-body" },
+                [
+                  _c(
+                    "router-link",
+                    {
+                      attrs: {
+                        to: { name: "detail", params: { id: event.id } }
+                      }
+                    },
+                    [
+                      _c("h5", {
+                        staticClass: "card-title",
+                        domProps: { innerHTML: _vm._s(event.name) }
+                      })
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("div", [_vm._v(_vm._s(event.start_date))]),
+                  _vm._v(" "),
+                  _c("div", [_vm._v(_vm._s(event.address))])
+                ],
+                1
+              )
             ])
           ]
         )
@@ -50524,9 +50539,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
@@ -50538,25 +50550,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "container" },
-    [
-      _c(
-        "p",
-        [
-          _c("router-link", { attrs: { to: { name: "home" } } }, [
-            _vm._v("Home")
-          ]),
-          _vm._v(" |\n    ")
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c("router-view")
-    ],
-    1
-  )
+  return _c("div", { staticClass: "container" }, [_c("router-view")], 1)
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -50572,11 +50566,12 @@ if (false) {
 /* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
+var disposed = false
 var normalizeComponent = __webpack_require__(45)
 /* script */
-var __vue_script__ = null
+var __vue_script__ = __webpack_require__(57)
 /* template */
-var __vue_template__ = null
+var __vue_template__ = __webpack_require__(58)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -50595,8 +50590,67 @@ var Component = normalizeComponent(
 )
 Component.options.__file = "resources/assets/js/components/EventDetail.vue"
 
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-350451a4", Component.options)
+  } else {
+    hotAPI.reload("data-v-350451a4", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
 module.exports = Component.exports
 
+
+/***/ }),
+/* 57 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({});
+
+/***/ }),
+/* 58 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { attrs: { id: "detail" } }, [
+      _c("h1", [_vm._v("Detail")])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-350451a4", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

@@ -6,7 +6,7 @@
                 <div class="card card-default event">
                     <img class="card-img-top" :src="event.thumbnail" :alt="event.name">
                     <div class="card-body">
-                        <h5 class="card-title" v-html="event.name"></h5>
+                        <router-link :to="{ name: 'detail', params: { id: event.id }}"><h5 class="card-title" v-html="event.name"></h5></router-link>
                         <div>{{event.start_date}}</div>
                         <div>{{event.address}}</div>
                     </div>
