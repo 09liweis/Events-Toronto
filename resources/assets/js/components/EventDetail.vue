@@ -1,11 +1,20 @@
 <template>
     <div id="detail">
-        <h1>Detail</h1>
+        <h1>{{event.name}}</h1>
+        <p>{{event.description}}</p>
+        <a target="_blank" :href="event.website">{{event.website}}</a>
     </div>
 </template>
 <script>
 import axios from 'axios';
 export default {
+    data() {
+        return {
+            event: {
+                
+            }
+        };
+    },
     mounted() {
         const id = this.$route.params.id;
         this.getDetail(id);
@@ -13,7 +22,7 @@ export default {
     methods: {
         getDetail(id) {
             axios.get('/api/event/' + id).then(res => {
-                console.log(res.data);
+                this.event = res.data;
             });
         }
     }

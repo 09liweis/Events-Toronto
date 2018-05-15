@@ -50622,9 +50622,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            event: {}
+        };
+    },
     mounted: function mounted() {
         var id = this.$route.params.id;
         this.getDetail(id);
@@ -50632,8 +50639,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         getDetail: function getDetail(id) {
+            var _this = this;
+
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('/api/event/' + id).then(function (res) {
-                console.log(res.data);
+                _this.event = res.data;
             });
         }
     }
@@ -50647,18 +50656,17 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { attrs: { id: "detail" } }, [
-      _c("h1", [_vm._v("Detail")])
+  return _c("div", { attrs: { id: "detail" } }, [
+    _c("h1", [_vm._v(_vm._s(_vm.event.name))]),
+    _vm._v(" "),
+    _c("p", [_vm._v(_vm._s(_vm.event.description))]),
+    _vm._v(" "),
+    _c("a", { attrs: { target: "_blank", href: _vm.event.website } }, [
+      _vm._v(_vm._s(_vm.event.website))
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
