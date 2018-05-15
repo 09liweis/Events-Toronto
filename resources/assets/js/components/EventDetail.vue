@@ -4,5 +4,18 @@
     </div>
 </template>
 <script>
-export default {};
+import axios from 'axios';
+export default {
+    mounted() {
+        const id = this.$route.params.id;
+        this.getDetail(id);
+    },
+    methods: {
+        getDetail(id) {
+            axios.get('/api/event/' + id).then(res => {
+                console.log(res.data);
+            });
+        }
+    }
+};
 </script>
