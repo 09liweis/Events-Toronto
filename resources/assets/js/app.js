@@ -12,6 +12,7 @@ import VueRouter from 'vue-router';
 
 import App from './App';
 import EventList from './components/EventList';
+import EventDetail from './components/EventDetail';
 
 Vue.use(VueRouter);
 /**
@@ -28,6 +29,11 @@ const router = new VueRouter({
             name: 'home',
             component: EventList
         },
+        {
+            path: '/event/:id',
+            name: 'detail',
+            component: EventDetail
+        }
     ],
 });
 

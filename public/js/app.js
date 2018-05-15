@@ -13889,6 +13889,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__App___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__App__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_EventList__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_EventList___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_EventList__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_EventDetail__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_EventDetail___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_EventDetail__);
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -13897,6 +13899,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
  */
 
 __webpack_require__(14);
+
 
 
 
@@ -13917,6 +13920,10 @@ var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
         path: '/',
         name: 'home',
         component: __WEBPACK_IMPORTED_MODULE_3__components_EventList___default.a
+    }, {
+        path: '/event/:id',
+        name: 'detail',
+        component: __WEBPACK_IMPORTED_MODULE_4__components_EventDetail___default.a
     }]
 });
 
@@ -50560,6 +50567,36 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-66ab2f82", module.exports)
   }
 }
+
+/***/ }),
+/* 56 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var normalizeComponent = __webpack_require__(45)
+/* script */
+var __vue_script__ = null
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/EventDetail.vue"
+
+module.exports = Component.exports
+
 
 /***/ })
 /******/ ]);
