@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div id="events">
         <h1>Total: {{list.length}} Events in Toronto</h1>
         <div class="row justify-content-center">
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" v-for="event in list">
