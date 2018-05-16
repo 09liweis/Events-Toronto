@@ -1,11 +1,15 @@
 <template>
     <div id="events">
         <h1>Total: {{list.length}} Events in Toronto</h1>
+        
         <div class="row justify-content-center">
-            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" v-for="event in list">
-                <div class="card card-default event">
-                    <img class="card-img-top" :src="event.thumbnail" :alt="event.name">
-                    <div class="card-body">
+            <datepicker :inline="true" class="col-md-4"></datepicker>
+            <div class="col-md-8">
+                <div class="event row" v-for="event in list">
+                    <figure class="col-md-4">
+                        <img class="event__thumbnail" :src="event.thumbnail" :alt="event.name">
+                    </figure>
+                    <div class="col-md-8">
                         <router-link :to="{ name: 'detail', params: { id: event.id }}"><h5 class="card-title" v-html="event.name"></h5></router-link>
                         <div>{{event.start_date}}</div>
                         <div>{{event.address}}</div>
@@ -18,7 +22,11 @@
 
 <script>
 import axios from 'axios';
+import Datepicker from 'vuejs-datepicker';
 export default {
+    components: {
+        Datepicker
+    },
     data() {
         return {
             list: []
@@ -36,8 +44,11 @@ export default {
     }
 };
 </script>
-<style>
+<style scope>
 .event {
     margin-bottom: 20px;
+}
+.event__thumbnail {
+    width: 100%;
 }
 </style>
