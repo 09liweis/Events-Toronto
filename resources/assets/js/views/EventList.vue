@@ -44,14 +44,15 @@ export default {
     },
     methods: {
         getList() {
-            axios.get('/api/events').then(res => {
+            axios.get('/api/events?date=' + this.date).then(res => {
                 this.list = res.data;
             });
         },
         updateEvent(date) {
             const startDate = date[0];
             const formatDate = this.formatDate(startDate);
-            console.log(formatDate);
+            this.date = formatDate;
+            this.getList();
             
         },
         formatDate(date) {

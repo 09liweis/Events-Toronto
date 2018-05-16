@@ -64,8 +64,8 @@ class EventController extends Controller
         $date = $request->input('date');
         if (!$date) {
             $date = date("Y-m-d");
-            return Event::where('start_date', $date)->orderBy('start_date', 'asc')->get();
         }
+        return Event::where('start_date', $date)->orderBy('start_date', 'asc')->get();
     }
     
     public function detail($id) {
