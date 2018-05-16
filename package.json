@@ -20,7 +20,7 @@
         "vue": "^2.5.7"
     },
     "dependencies": {
-        "vue-router": "^3.0.1",
-        "vuejs-datepicker": "^1.2.0"
+        "vue-flatpickr-component": "^7.0.2",
+        "vue-router": "^3.0.1"
     }
 }

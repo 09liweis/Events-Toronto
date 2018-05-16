@@ -3,7 +3,9 @@
         <h1>Total: {{list.length}} Events in Toronto</h1>
         
         <div class="row justify-content-center">
-            <datepicker :inline="true" class="col-md-4"></datepicker>
+            <div class="col-md-4">
+                <flatPickr v-model="date" @on-change="updateEvent" :config="config"></flatPickr>
+            </div>
             <div class="col-md-8">
                 <div class="event row" v-for="event in list">
                     <figure class="col-md-4">
@@ -22,14 +24,19 @@
 
 <script>
 import axios from 'axios';
-import Datepicker from 'vuejs-datepicker';
+import flatPickr from 'vue-flatpickr-component';
+import 'flatpickr/dist/flatpickr.css';
 export default {
     components: {
-        Datepicker
+        flatPickr
     },
     data() {
         return {
-            list: []
+            list: [],
+            date: '2018-05-16',
+            config: {
+                inline: true
+            }
         };
     },
     mounted() {
@@ -40,11 +47,27 @@ export default {
             axios.get('/api/events').then(res => {
                 this.list = res.data;
             });
+        },
+        updateEvent(date) {
+            const startDate = date[0];
+            const formatDate = this.formatDate(startDate);
+            console.log(formatDate);
+            
+        },
+        formatDate(date) {
+            const year = date.getFullYear();
+            const month = date.getMonth() > 9 ? date.getMonth() + 1 : '0' + (date.getMonth() + 1);
+            const day = date.getDate() > 9 ? date.getDate() : '0' + date.getDate();
+            return year + '-' + month + '-' + day;
         }
+        
     }
 };
 </script>
 <style scope>
+.flatpickr-input {
+    display: none;
+}
 .event {
     margin-bottom: 20px;
 }
