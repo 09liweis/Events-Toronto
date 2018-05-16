@@ -11,8 +11,8 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 import App from './App';
-import EventList from './components/EventList';
-import EventDetail from './components/EventDetail';
+import EventList from './views/EventList';
+import EventDetail from './views/EventDetail';
 
 Vue.use(VueRouter);
 /**
