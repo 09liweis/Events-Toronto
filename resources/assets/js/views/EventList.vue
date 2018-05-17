@@ -41,6 +41,11 @@ export default {
     },
     mounted() {
         this.date = this.formatDate(new Date());
+        if (typeof this.$route.query.date == 'undefined') {
+            this.$router.push({ path: '/?date=' + this.date });
+        } else {
+            this.date = this.$route.query.date;
+        }
         this.getList();
     },
     methods: {
@@ -53,6 +58,7 @@ export default {
             const startDate = date[0];
             const formatDate = this.formatDate(startDate);
             this.date = formatDate;
+            this.$router.push({ path: '/?date=' + this.date });
             this.getList();
             
         },
