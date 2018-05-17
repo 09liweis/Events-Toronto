@@ -33,13 +33,14 @@ export default {
     data() {
         return {
             list: [],
-            date: '2018-05-16',
+            date: '',
             config: {
                 inline: true
             }
         };
     },
     mounted() {
+        this.date = this.formatDate(new Date());
         this.getList();
     },
     methods: {
