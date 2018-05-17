@@ -11,7 +11,7 @@
     <title>{{ config('app.name', 'Events Toronto') }}</title>
 
     <!-- Scripts -->
-    <script src="/js/app.js?v=1.0.0" defer></script>
+    <script src="/js/app.js?v=1.0.1" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
