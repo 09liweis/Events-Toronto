@@ -1,11 +1,15 @@
 <template>
     <div id="detail" class="row">
         <div class="col-md-4">
-            <img :src="event.image" :alt="event.name" />
+            <img :src="event.image" :alt="event.name" class="img-fluid" />
         </div>
         <div class="col-md-8">
             <h1 v-html="event.name"></h1>
             <p v-html="event.description"></p>
+            <div>{{event.start_date}} - {{event.end_date}}</div>
+            <div>Free: {{event.free}}</div>
+            <div>Location: {{event.location}}</div>
+            <div>Address: {{event.address}}</div>
             <a target="_blank" :href="event.website">{{event.website}}</a>
         </div>
     </div>
