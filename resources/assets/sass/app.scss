@@ -22,11 +22,13 @@
 }
 .event__figure {
   margin-bottom: 0;
-  padding: 0;
+  padding: 15px;
 }
 .event__info {
   padding: 15px;
 }
 .event__thumbnail {
-  width: 100%;
+  width: 80px;
+  height: 80px;
+  border-radius: 80px;
 }
