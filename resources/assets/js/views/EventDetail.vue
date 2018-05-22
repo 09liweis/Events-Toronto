@@ -1,6 +1,6 @@
 <template>
     <div id="detail">
-        <h1>{{event.name}}</h1>
+        <h1 v-html="event.name"></h1>
         <p v-html="event.description"></p>
         <a target="_blank" :href="event.website">{{event.website}}</a>
     </div>
