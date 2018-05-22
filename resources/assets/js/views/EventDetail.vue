@@ -1,8 +1,13 @@
 <template>
-    <div id="detail">
-        <h1 v-html="event.name"></h1>
-        <p v-html="event.description"></p>
-        <a target="_blank" :href="event.website">{{event.website}}</a>
+    <div id="detail" class="row">
+        <div class="col-md-4">
+            <img :src="event.image" :alt="event.name" />
+        </div>
+        <div class="col-md-8">
+            <h1 v-html="event.name"></h1>
+            <p v-html="event.description"></p>
+            <a target="_blank" :href="event.website">{{event.website}}</a>
+        </div>
     </div>
 </template>
 <script>
