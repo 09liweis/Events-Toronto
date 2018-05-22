@@ -8,10 +8,10 @@
             </div>
             <div class="col-md-8">
                 <div class="event row" v-for="event in list">
-                    <figure class="col-md-4">
+                    <figure class="col-md-4 event__figure">
                         <img class="event__thumbnail" :src="event.thumbnail" :alt="event.name">
                     </figure>
-                    <div class="col-md-8">
+                    <div class="col-md-8 event__info">
                         <router-link :to="{ name: 'detail', params: { id: event.id }}"><h5 class="card-title" v-html="event.name"></h5></router-link>
                         <div>{{event.start_date}}</div>
                         <div>{{event.address}}</div>
@@ -72,14 +72,3 @@ export default {
     }
 };
 </script>
-<style scope>
-.flatpickr-input {
-    display: none;
-}
-.event {
-    margin-bottom: 20px;
-}
-.event__thumbnail {
-    width: 100%;
-}
-</style>
