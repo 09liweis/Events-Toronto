@@ -57,6 +57,19 @@ class EventController extends Controller
             }
             
             $event->save();
+            
+            $categories = $e['category'];
+            foreach ($categories as $c) {
+                $name = $c['name'];
+                $category = Category::where('name', $name)->first();
+                if (!$category) {
+                    $category = new Category;
+                    $category->name = $name;
+                    $category->save();
+                }
+                
+                $event->categories()->save($category);
+            }
         }
         return 'done';
     }
