@@ -7,6 +7,7 @@
             <h1 v-html="event.name"></h1>
             <p v-html="event.description"></p>
             <div>{{event.start_date}} - {{event.end_date}}</div>
+            <div><span class="event__category" v-for="c in event.categories">{{c.name}}</span></div>
             <div>Free: {{event.free}}</div>
             <div>Location: {{event.location}}</div>
             <div>Address: {{event.address}}</div>
