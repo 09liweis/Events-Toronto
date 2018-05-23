@@ -91,6 +91,6 @@ class EventController extends Controller
     }
     
     public function detail($id) {
-        return Event::where('id', $id)->first();
+        return Event::where('id', $id)->with('categories')->first();
     }
 }
