@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Event;
 use App\Category;
 
@@ -57,6 +58,7 @@ class EventController extends Controller
             }
             
             $event->save();
+            $eventId = $event->id;
             
             $categories = $e['category'];
             foreach ($categories as $c) {
@@ -67,8 +69,14 @@ class EventController extends Controller
                     $category->name = $name;
                     $category->save();
                 }
-                
-                $event->categories()->save($category);
+                $categoryId = $category->id;
+                $exists = DB::table('category_event')
+                            ->whereEventId($eventId)
+                            ->whereCategoryId($categoryId)
+                            ->count() > 0;
+                if (!$exists) {
+                    $event->categories()->save($category);
+                }
             }
         }
         return 'done';
