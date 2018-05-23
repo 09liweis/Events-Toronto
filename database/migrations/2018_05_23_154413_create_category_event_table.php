@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEventCategoryTable extends Migration
+class CreateCategoryEventTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateEventCategoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('event_category', function (Blueprint $table) {
+        Schema::create('category_event', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('event_id')->unsigned()->nullable();
             $table->foreign('event_id')->references('id')
