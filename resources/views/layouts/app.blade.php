@@ -9,6 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Events Toronto') }}</title>
+    <meta name="description" content="Events in Toronto from latest data">
 
     <!-- Scripts -->
     <script src="/js/app.js?v=1.0.4" defer></script>
