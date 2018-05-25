@@ -7,6 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     public function events() {
-        return $this->belongsToMany('App\Event');
+        return $this->belongsToMany('App\Event')->select(array(
+            'events.id',
+            'events.name',
+            'events.address',
+            'events.thumbnail',
+            'events.image',
+            'events.start_date',
+            'rec_id'));
     }
 }
