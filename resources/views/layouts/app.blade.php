@@ -10,6 +10,7 @@
 
     <title>{{ config('app.name', 'Events Toronto') }}</title>
     <meta name="description" content="Events in Toronto from latest data">
+    <meta name="keywords" content="events, event, toronto">
     <meta name="robots" content="index, follow" />
 
     <!-- Scripts -->
