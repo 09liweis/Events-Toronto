@@ -12,7 +12,6 @@ class Category extends Model
             'events.name',
             'events.address',
             'events.thumbnail',
-            'events.image',
             'events.start_date',
             'rec_id'));
     }
