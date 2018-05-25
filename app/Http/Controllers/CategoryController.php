@@ -12,6 +12,21 @@ class CategoryController extends Controller
     }
     
     public function events($id) {
-        
+        $category = Category::where('id', $id)->first();
+        if ($category) {
+            $events = $category->events()->get();
+            return array(
+                'category' => array(
+                    'id' => $category->id,
+                    'name' => $category->name
+                ),
+                'events' => $events
+            );
+        }
+        else {
+            return array(
+                'msg' => 'No Category Found'
+            );
+        }
     }
 }
