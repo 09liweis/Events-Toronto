@@ -20,3 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/import', 'EventController@import');
 Route::get('/events', 'EventController@list');
 Route::get('/event/{id}', 'EventController@detail');
+
+Route::get('/categories', 'CategoryController@list');
