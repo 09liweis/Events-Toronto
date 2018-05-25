@@ -10,4 +10,8 @@ class CategoryController extends Controller
     public function list() {
         return Category::select('id', 'name')->get();
     }
+    
+    public function events($id) {
+        
+    }
 }
