@@ -5,6 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-4">
                 <flatPickr v-model="date" @on-change="changeDate" :config="config"></flatPickr>
+                <gmap-map class="map" :center="center"></gmap-map>
             </div>
             <div class="col-md-8">
                 <div class="event row" v-for="event in list">
@@ -34,6 +35,7 @@ export default {
     },
     data() {
         return {
+            center: { lat: 45.508, lng: -73.587 },
             list: [],
             date: '',
             config: {
@@ -42,6 +44,8 @@ export default {
         };
     },
     mounted() {
+        this.geolocate();
+        
         this.date = this.formatDate(new Date());
         if (typeof this.$route.query.date == 'undefined') {
             this.$router.push({ path: '/?date=' + this.date });
@@ -51,6 +55,14 @@ export default {
         this.getEvents();
     },
     methods: {
+        geolocate: function() {
+            window.navigator.geolocation.getCurrentPosition(position => {
+                this.center = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+            });
+        },
         getEvents() {
             axios.get('/api/events?date=' + this.date).then(res => {
                 this.list = res.data;
@@ -74,3 +86,9 @@ export default {
     }
 };
 </script>
+<style scoped>
+.map {
+    width: 100%;
+    height: 100px;
+}
+</style>
