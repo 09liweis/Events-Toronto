@@ -19,6 +19,7 @@
     },
     "dependencies": {
         "vue-flatpickr-component": "^7.0.2",
-        "vue-router": "^3.0.1"
+        "vue-router": "^3.0.1",
+        "vue2-google-maps": "^0.9.7"
     }
 }
