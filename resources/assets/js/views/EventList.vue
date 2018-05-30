@@ -8,10 +8,10 @@
             </div>
             <div class="col-md-8">
                 <div class="event row" v-for="event in list">
-                    <figure class="col-md-2 event__figure">
+                    <figure class="col-md-3 event__figure">
                         <img class="event__thumbnail" :src="event.thumbnail" :alt="event.name">
                     </figure>
-                    <div class="col-md-10 event__info">
+                    <div class="col-md-9 event__info">
                         <router-link :to="{ name: 'detail', params: { id: event.id }}"><h5 class="card-title" v-html="event.name"></h5></router-link>
                         <div>{{event.start_date}}</div>
                         <div>{{event.address}}</div>
