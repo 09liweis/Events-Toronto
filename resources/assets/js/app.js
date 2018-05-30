@@ -13,8 +13,15 @@ import VueRouter from 'vue-router';
 import App from './App';
 import EventList from './views/EventList';
 import EventDetail from './views/EventDetail';
+import * as VueGoogleMaps from 'vue2-google-maps';
 
 Vue.use(VueRouter);
+Vue.use(VueGoogleMaps, {
+    load: {
+        key: 'AIzaSyCCUfAQlAr-YR9De_ONa1reKPLA2xWuWm8'
+    }
+});
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
