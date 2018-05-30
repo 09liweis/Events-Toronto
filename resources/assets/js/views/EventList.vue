@@ -48,10 +48,10 @@ export default {
         } else {
             this.date = this.$route.query.date;
         }
-        this.getList();
+        this.getEvents();
     },
     methods: {
-        getList() {
+        getEvents() {
             axios.get('/api/events?date=' + this.date).then(res => {
                 this.list = res.data;
             });
@@ -61,7 +61,7 @@ export default {
             const formatDate = this.formatDate(startDate);
             this.date = formatDate;
             this.$router.push({ path: '/?date=' + this.date });
-            this.getList();
+            this.getEvents();
             
         },
         formatDate(date) {
