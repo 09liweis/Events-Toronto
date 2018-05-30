@@ -37,7 +37,7 @@ export default {
             list: [],
             date: '',
             config: {
-                inline: true
+                disableMobile: true
             }
         };
     },
