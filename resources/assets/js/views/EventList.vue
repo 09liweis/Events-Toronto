@@ -4,7 +4,7 @@
         
         <div class="row justify-content-center">
             <div class="col-md-4">
-                <flatPickr v-model="date" @on-change="updateEvent" :config="config"></flatPickr>
+                <flatPickr v-model="date" @on-change="changeDate" :config="config"></flatPickr>
             </div>
             <div class="col-md-8">
                 <div class="event row" v-for="event in list">
@@ -56,7 +56,7 @@ export default {
                 this.list = res.data;
             });
         },
-        updateEvent(date) {
+        changeDate(date) {
             const startDate = date[0];
             const formatDate = this.formatDate(startDate);
             this.date = formatDate;
