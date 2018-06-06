@@ -13,6 +13,16 @@
             <div>Address: {{event.address}}</div>
             <a target="_blank" :href="event.website">{{event.website}}</a>
         </div>
+        <div class="col-md-12">
+            <gmap-map class="map" :center="position" :zoom="15">
+                <GmapMarker
+                    :position="position"
+                    :clickable="true"
+                    :draggable="true"
+                    @click="center = position"
+                />
+            </gmap-map>
+        </div>
     </div>
 </template>
 <script>
@@ -21,7 +31,8 @@ export default {
     props: ['id'],
     data() {
         return {
-            event: null
+            event: null,
+            position: null
         };
     },
     mounted() {
@@ -32,6 +43,7 @@ export default {
         getDetail(id) {
             axios.get('/api/event/' + id).then(res => {
                 this.event = res.data;
+                this.position = { lat: parseFloat(this.event.lat), lng: parseFloat(this.event.lng) };
             });
         }
     }
@@ -40,5 +52,9 @@ export default {
 <style type="sass">
 #detail {
     padding: 30px;
+}
+.map {
+    width: 100%;
+    height: 400px;
 }
 </style>
