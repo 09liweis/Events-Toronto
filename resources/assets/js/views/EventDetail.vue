@@ -1,5 +1,5 @@
 <template>
-    <div id="detail" class="row">
+    <div id="detail" class="row" v-if="event">
         <div class="col-md-4">
             <img :src="event.image" :alt="event.name" class="img-fluid" />
         </div>
@@ -21,9 +21,7 @@ export default {
     props: ['id'],
     data() {
         return {
-            event: {
-                
-            }
+            event: null
         };
     },
     mounted() {
@@ -40,5 +38,7 @@ export default {
 };
 </script>
 <style type="sass">
-
+#detail {
+    padding: 20px;
+}
 </style>
