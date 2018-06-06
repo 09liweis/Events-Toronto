@@ -25,7 +25,7 @@
         <div class="modal__container" v-if="view == 'detail'">
             <div class="modal-bg" v-on:click="hideModal()"></div>
             <div class="modal-content">
-                Hello World
+                <EventDetail v-bind:id="eventId" />
             </div>
         </div>
         
@@ -36,13 +36,18 @@
 import axios from 'axios';
 import flatPickr from 'vue-flatpickr-component';
 import 'flatpickr/dist/flatpickr.css';
+
+import EventDetail from './EventDetail.vue';
+
 export default {
     components: {
-        flatPickr
+        flatPickr,
+        EventDetail
     },
     data() {
         return {
             view: 'list',
+            eventId: '',
             center: { lat: 45.508, lng: -73.587 },
             list: [],
             date: '',
@@ -98,6 +103,7 @@ export default {
         },
         viewEvent(id) {
             this.view = 'detail';
+            this.eventId = id;
         },
         hideModal() {
             this.view = 'list';
