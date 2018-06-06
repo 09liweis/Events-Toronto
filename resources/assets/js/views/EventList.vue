@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-4">
                 <flatPickr v-model="date" @on-change="changeDate" :config="config"></flatPickr>
-                <gmap-map class="map" :center="center"></gmap-map>
+                <gmap-map class="map" :center="center" :zoom="6"></gmap-map>
             </div>
             <div class="col-md-8">
                 <div class="event row" v-for="event in list" v-on:click="viewEvent(event.id)">
@@ -118,7 +118,7 @@ export default {
 <style scoped>
 .map {
     width: 100%;
-    height: 100px;
+    height: 500px;
 }
 .modal__container {
     position: fixed;
