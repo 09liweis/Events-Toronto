@@ -67,7 +67,7 @@ export default {
         
         this.getEvents();
         
-        const eventId = this.$route.query.event_id;
+        const eventId = this.$route.query.eventId;
         if (typeof eventId != 'undefined') {
             this.viewEvent(eventId);
         }
@@ -110,6 +110,7 @@ export default {
         },
         hideModal() {
             this.view = 'list';
+            this.$router.push({path: '/?date=' + this.date});
         }
     }
 };
