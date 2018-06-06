@@ -23,7 +23,7 @@
         </div>
         
         <div class="modal__container" v-if="view == 'detail'">
-            <div class="modal-bg"></div>
+            <div class="modal-bg" v-on:click="hideModal()"></div>
             <div class="modal-content">
                 Hello World
             </div>
@@ -97,7 +97,10 @@ export default {
             return year + '-' + month + '-' + day;
         },
         viewEvent(id) {
-            
+            this.view = 'detail';
+        },
+        hideModal() {
+            this.view = 'list';
         }
     }
 };
