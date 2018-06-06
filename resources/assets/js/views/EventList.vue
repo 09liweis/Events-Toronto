@@ -61,17 +61,17 @@ export default {
         
         this.date = this.formatDate(new Date());
         if (typeof this.$route.query.date == 'undefined') {
-            // this.$router.push({ path: '/?date=' + this.date });
         } else {
             this.date = this.$route.query.date;
         }
         
+        this.getEvents();
+        
         const eventId = this.$route.query.event_id;
         if (typeof eventId != 'undefined') {
-            this.view = 'detail';   
+            this.viewEvent(eventId);
         }
         
-        this.getEvents();
     },
     methods: {
         geolocate: function() {
@@ -90,9 +90,11 @@ export default {
         changeDate(date) {
             const startDate = date[0];
             const formatDate = this.formatDate(startDate);
-            this.date = formatDate;
-            this.$router.push({ path: '/?date=' + this.date });
-            this.getEvents();
+            if (this.date != formatDate) {
+                this.date = formatDate;
+                this.$router.push({ path: '/?date=' + this.date });
+                this.getEvents();
+            }
             
         },
         formatDate(date) {
@@ -102,8 +104,9 @@ export default {
             return year + '-' + month + '-' + day;
         },
         viewEvent(id) {
-            this.view = 'detail';
             this.eventId = id;
+            this.$router.push({ path: '/?date=' + this.date + '&eventId=' + this.eventId });
+            this.view = 'detail';
         },
         hideModal() {
             this.view = 'list';
