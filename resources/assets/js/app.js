@@ -36,11 +36,11 @@ const router = new VueRouter({
             name: 'home',
             component: EventList
         },
-        {
-            path: '/event/:id',
-            name: 'detail',
-            component: EventDetail
-        }
+        // {
+        //     path: '/event/:id',
+        //     name: 'detail',
+        //     component: EventList
+        // }
     ],
 });
 
