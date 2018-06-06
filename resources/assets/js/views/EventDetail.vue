@@ -39,6 +39,6 @@ export default {
 </script>
 <style type="sass">
 #detail {
-    padding: 20px;
+    padding: 30px;
 }
 </style>
