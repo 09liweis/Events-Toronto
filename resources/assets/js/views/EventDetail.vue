@@ -18,6 +18,7 @@
 <script>
 import axios from 'axios';
 export default {
+    props: ['id'],
     data() {
         return {
             event: {
@@ -26,8 +27,8 @@ export default {
         };
     },
     mounted() {
-        const id = this.$route.params.id;
-        this.getDetail(id);
+        // const id = this.$route.params.id;
+        this.getDetail(this.id);
     },
     methods: {
         getDetail(id) {
