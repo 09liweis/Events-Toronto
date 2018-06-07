@@ -14,7 +14,7 @@
     <meta name="robots" content="index, follow" />
 
     <!-- Scripts -->
-    <script src="/js/app.js?v=1.0.8" defer></script>
+    <script src="/js/app.js?v=1.0.9" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
