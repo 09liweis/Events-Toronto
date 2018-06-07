@@ -5,7 +5,13 @@
         <div class="row justify-content-center">
             <div class="col-md-4">
                 <flatPickr v-model="date" @on-change="changeDate" :config="config"></flatPickr>
-                <gmap-map class="map" :center="center" :zoom="6"></gmap-map>
+                <gmap-map class="map" :center="center" :zoom="6" v-if="list.length != 0">
+                    <GmapMarker
+                        v-for="(e, index) in list"
+                        :position="{lat: parseFloat(e.lat), lng: parseFloat(e.lng)}"
+                        :clickable="true"
+                    />
+                </gmap-map>
             </div>
             <div class="col-md-8">
                 <div class="event row" v-for="event in list" v-on:click="viewEvent(event.id)">
