@@ -1,6 +1,6 @@
 <template>
     <div id="events">
-        <h1>Total: {{this.$store.state.events.length}} Events in Toronto</h1>
+        <h1>Total {{this.$store.state.events.length}} Events on {{date}}</h1>
         
         <div class="row justify-content-center">
             <div class="col-md-4">
