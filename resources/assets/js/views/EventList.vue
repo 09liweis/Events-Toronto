@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-4">
                 <flatPickr v-model="date" @on-change="changeDate" :config="config"></flatPickr>
-                <gmap-map ref="listMap" class="map" :center="center" :zoom="10" v-if="list.length != 0">
+                <gmap-map ref="listMap" class="map" :center="center" :zoom="10">
                     <GmapMarker
                         v-for="(e, index) in list"
                         :position="{lat: parseFloat(e.lat), lng: parseFloat(e.lng)}"
@@ -91,10 +91,15 @@ export default {
         getEvents() {
             axios.get('/api/events?date=' + this.date).then(res => {
                 this.list = res.data;
+                this.fitBounds(this.list);
             });
         },
-        fitBounds() {
-            
+        fitBounds(events) {
+            const bounds = new google.maps.LatLngBounds();
+            for (let event of events) {
+                bounds.extend({lat: parseFloat(event.lat), lng: parseFloat(event.lng)});
+            }
+            this.$refs.listMap.fitBounds(bounds);
         },
         changeDate(date) {
             const startDate = date[0];
