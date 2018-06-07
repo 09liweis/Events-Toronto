@@ -7,6 +7,7 @@
                 <flatPickr v-model="date" @on-change="changeDate" :config="config"></flatPickr>
                 <gmap-map ref="listMap" class="map" :center="center" :zoom="10">
                     <GmapMarker
+                        :key="e.id"
                         v-for="(e, index) in list"
                         :position="{lat: parseFloat(e.lat), lng: parseFloat(e.lng)}"
                         :clickable="true"
