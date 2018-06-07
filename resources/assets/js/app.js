@@ -9,6 +9,7 @@
 
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import store from './store.js';
 
 import App from './App';
 import EventList from './views/EventList';
@@ -49,5 +50,6 @@ const router = new VueRouter({
 const app = new Vue({
     el: '#app',
     components: { App },
-    router
+    router,
+    store
 });
