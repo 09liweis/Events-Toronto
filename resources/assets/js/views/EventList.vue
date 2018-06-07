@@ -54,7 +54,7 @@ export default {
         return {
             view: 'list',
             eventId: '',
-            center: { lat: 45.508, lng: -73.587 },
+            center: { lat: 0, lng: 0 },
             list: [],
             date: '',
             config: {
