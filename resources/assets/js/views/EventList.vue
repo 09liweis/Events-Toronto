@@ -1,6 +1,6 @@
 <template>
     <div id="events">
-        <h1>Total: {{list.length}} Events in Toronto</h1>
+        <h1>Total: {{this.$store.state.events.length}} Events in Toronto</h1>
         
         <div class="row justify-content-center">
             <div class="col-md-4">
@@ -8,14 +8,14 @@
                 <gmap-map ref="listMap" class="map" :center="center" :zoom="10">
                     <GmapMarker
                         :key="e.id"
-                        v-for="(e, index) in list"
+                        v-for="(e, index) in this.$store.state.events"
                         :position="{lat: parseFloat(e.lat), lng: parseFloat(e.lng)}"
                         :clickable="true"
                     />
                 </gmap-map>
             </div>
             <div class="col-md-8">
-                <div class="event row" v-for="event in list" v-on:click="viewEvent(event.id)">
+                <div class="event row" v-for="event in this.$store.state.events" v-on:click="viewEvent(event.id)">
                     <figure class="col-md-3 event__figure">
                         <img class="event__thumbnail" :src="event.thumbnail" :alt="event.name">
                     </figure>
@@ -56,7 +56,6 @@ export default {
             view: 'list',
             eventId: '',
             center: { lat: 0, lng: 0 },
-            list: [],
             date: '',
             config: {
                 disableMobile: true
@@ -91,8 +90,8 @@ export default {
         },
         getEvents() {
             axios.get('/api/events?date=' + this.date).then(res => {
-                this.list = res.data;
-                this.fitBounds(this.list);
+                this.$store.commit('getEvents', res.data);
+                this.fitBounds(res.data);
             });
         },
         fitBounds(events) {
