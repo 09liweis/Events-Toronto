@@ -7,6 +7,13 @@ const state = {
     events: []
 };
 
+const mutations = {
+    getEvents(state, events) {
+        state.events = events;
+    }
+};
+
 export default new Vuex.Store({
-    state
+    state,
+    mutations
 });
