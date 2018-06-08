@@ -78,8 +78,16 @@ export default {
             this.viewEvent(eventId);
         }
         
+        window.addEventListener('scroll', this.handleScroll);
+        
     },
     methods: {
+        handleScroll() {
+            const scrollPositoin = window.scrollY;
+            if (scrollPositoin > 200) {
+                //Not sure if this will be use later
+            }
+        },
         geolocate: function() {
             window.navigator.geolocation.getCurrentPosition(position => {
                 this.center = {
