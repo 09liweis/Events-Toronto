@@ -57,4 +57,7 @@ export default {
     width: 100%;
     height: 400px;
 }
+.event__categories {
+    margin-top: 20px;
+}
 </style>
