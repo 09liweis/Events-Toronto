@@ -11,11 +11,12 @@
                         v-for="(e, index) in this.$store.state.events"
                         :position="getPostion(e)"
                         :clickable="true"
+                        @click="selected = e.id"
                     />
                 </gmap-map>
             </div>
             <div class="col-md-8">
-                <div class="event row" v-for="event in this.$store.state.events" v-on:click="viewEvent(event.id)">
+                <div class="event row" v-for="event in this.$store.state.events" v-on:click="viewEvent(event.id)" v-bind:class="{ selected: selected == event.id}">
                     <figure class="col-md-3 event__figure">
                         <img class="event__thumbnail" :src="event.thumbnail" :alt="event.name">
                     </figure>
@@ -53,6 +54,7 @@ export default {
     },
     data() {
         return {
+            selected: null,
             view: 'list',
             eventId: '',
             center: { lat: 0, lng: 0 },
