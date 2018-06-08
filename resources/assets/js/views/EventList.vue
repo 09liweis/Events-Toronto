@@ -9,7 +9,7 @@
                     <GmapMarker
                         :key="e.id"
                         v-for="(e, index) in this.$store.state.events"
-                        :position="{lat: parseFloat(e.lat), lng: parseFloat(e.lng)}"
+                        :position="getPostion(e)"
                         :clickable="true"
                     />
                 </gmap-map>
@@ -102,10 +102,13 @@ export default {
                 this.fitBounds(res.data);
             });
         },
+        getPostion(event) {
+            return {lat: parseFloat(event.lat), lng: parseFloat(event.lng)};
+        },
         fitBounds(events) {
             const bounds = new google.maps.LatLngBounds();
             for (let event of events) {
-                bounds.extend({lat: parseFloat(event.lat), lng: parseFloat(event.lng)});
+                bounds.extend(this.getPostion(event));
             }
             this.$refs.listMap.fitBounds(bounds);
         },
