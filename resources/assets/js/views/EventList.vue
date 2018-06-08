@@ -154,6 +154,9 @@ export default {
     width: 100%;
     height: 500px;
 }
+.vue-map {
+    border-radius: 10px;
+}
 .modal__container {
     position: fixed;
     width: 100%;
