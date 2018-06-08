@@ -54,6 +54,7 @@ export default {
     padding: 30px;
 }
 .map {
+    margin-top: 20px;
     width: 100%;
     height: 400px;
 }
