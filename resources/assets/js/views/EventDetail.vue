@@ -61,4 +61,12 @@ export default {
 .event__categories {
     margin-top: 20px;
 }
+.event__category {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 10px;
+  background-color: #007bff;
+  color: #ffffff;
+  margin-right: 10px;
+}
 </style>
