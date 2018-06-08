@@ -3,7 +3,7 @@
         <h1>Total {{this.$store.state.events.length}} Events on {{date}}</h1>
         
         <div class="row justify-content-center">
-            <div class="col-md-4">
+            <div class="events__left col-md-4">
                 <flatPickr v-model="date" @on-change="changeDate" :config="config"></flatPickr>
                 <gmap-map ref="listMap" class="map" :center="center" :zoom="10">
                     <GmapMarker
@@ -138,7 +138,12 @@ export default {
 };
 </script>
 <style scoped>
+.events__left {
+    position: relative;
+}
 .map {
+    position: sticky;
+    top: 20px;
     width: 100%;
     height: 500px;
 }
