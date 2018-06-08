@@ -56,7 +56,7 @@ export default {
 .map {
     margin-top: 20px;
     width: 100%;
-    height: 400px;
+    height: 300px;
 }
 .event__categories {
     margin-top: 20px;
