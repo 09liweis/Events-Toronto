@@ -4,7 +4,9 @@
         
         <div class="row justify-content-center">
             <div class="events__left col-md-4">
-                <flatPickr v-model="date" @on-change="changeDate" :config="config"></flatPickr>
+                <div class="form-group">
+                    <flatPickr class="form-control" v-model="date" @on-change="changeDate" :config="config"></flatPickr>
+                </div>
                 <gmap-map ref="listMap" class="map" :center="center" :zoom="10">
                     <GmapMarker
                         :key="e.id"
