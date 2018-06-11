@@ -13,9 +13,6 @@
     <meta name="keywords" content="events, event, toronto">
     <meta name="robots" content="index, follow" />
 
-    <!-- Scripts -->
-    <script src="/js/app.js?v=1.0.9" defer></script>
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
@@ -75,5 +72,7 @@
             @yield('content')
         </main>
     </div>
+    <!-- Scripts -->
+    <script src="/js/app.js?v=1.0.9" defer></script>
 </body>
 </html>
