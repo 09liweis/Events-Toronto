@@ -10,8 +10,7 @@
                 <p v-html="event.description"></p>
                 <div>{{event.start_date}} - {{event.end_date}}</div>
                 <div>Free: {{event.free}}</div>
-                <div><i class="fas fa-map-marker"></i>Location: {{event.location}}</div>
-                <div>Address: {{event.address}}</div>
+                <div class="event__address"><i class="fas fa-map-marker"></i> {{event.location}} {{event.address}}</div>
                 <a target="_blank" :href="event.website">{{event.website}}</a>
             </div>
         </div>
