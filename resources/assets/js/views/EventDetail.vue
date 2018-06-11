@@ -10,7 +10,7 @@
                 <p v-html="event.description"></p>
                 <div>{{event.start_date}} - {{event.end_date}}</div>
                 <div>Free: {{event.free}}</div>
-                <div class="event__address"><i class="fas fa-map-marker"></i> {{event.location}} {{event.address}}</div>
+                <div class="event__address" v-on:click="changeView()"><i class="fas fa-map-marker"></i> {{event.location}} {{event.address}}</div>
                 <a target="_blank" :href="event.website">{{event.website}}</a>
             </div>
         </div>
@@ -49,6 +49,9 @@ export default {
                 this.event = res.data;
                 this.position = { lat: parseFloat(this.event.lat), lng: parseFloat(this.event.lng) };
             });
+        },
+        changeView() {
+            this.view = (this.view == 'detail') ? 'map' : 'detail';
         }
     }
 };
