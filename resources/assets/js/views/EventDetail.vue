@@ -54,10 +54,13 @@ export default {
     }
 };
 </script>
-<style type="sass" scoped>
+<style scoped>
 #detail {
     padding: 30px;
     position: relative;
+}
+.event__address {
+    cursor: pointer;
 }
 .event__map {
     width: 100%;
