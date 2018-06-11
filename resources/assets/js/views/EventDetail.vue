@@ -1,6 +1,6 @@
 <template>
     <div id="detail" v-if="event">
-        <div class="row">
+        <div class="row event__info" v-if="view == 'detail'">
             <div class="col-md-4">
                 <img :src="event.image" :alt="event.name" class="img-fluid" />
                 <div class="event__categories"><span class="event__category" v-for="c in event.categories">{{c.name}}</span></div>
@@ -15,7 +15,7 @@
                 <a target="_blank" :href="event.website">{{event.website}}</a>
             </div>
         </div>
-        <div class="row">
+        <div class="row event__map" v-if="view == 'map'">
             <div class="col-md-12">
                 <gmap-map class="map" :center="position" :zoom="15">
                     <GmapMarker
@@ -35,6 +35,7 @@ export default {
     props: ['id'],
     data() {
         return {
+            view: 'detail',
             event: null,
             position: null
         };
@@ -61,7 +62,7 @@ export default {
 .map {
     margin-top: 20px;
     width: 100%;
-    height: 300px;
+    height: 100%;
 }
 .event__categories {
     margin-top: 20px;
