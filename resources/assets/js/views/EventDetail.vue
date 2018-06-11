@@ -14,17 +14,15 @@
                 <a target="_blank" :href="event.website">{{event.website}}</a>
             </div>
         </div>
-        <div class="row event__map" v-if="view == 'map'">
-            <div class="col-md-12">
-                <gmap-map class="map" :center="position" :zoom="15">
-                    <GmapMarker
-                        :position="position"
-                        :clickable="true"
-                        :draggable="true"
-                        @click="center = position"
-                    />
-                </gmap-map>
-            </div>
+        <div class="event__map" v-if="view == 'map'">
+            <gmap-map class="map" :center="position" :zoom="15">
+                <GmapMarker
+                    :position="position"
+                    :clickable="true"
+                    :draggable="true"
+                    @click="center = position"
+                />
+            </gmap-map>
         </div>
     </div>
 </template>
@@ -61,8 +59,11 @@ export default {
     padding: 30px;
     position: relative;
 }
+.event__map {
+    width: 100%;
+    height: 60vh;
+}
 .map {
-    margin-top: 20px;
     width: 100%;
     height: 100%;
 }
