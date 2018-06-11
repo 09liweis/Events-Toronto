@@ -1,16 +1,16 @@
 <template>
     <div id="detail" v-if="event">
         <div class="row event__info" v-if="view == 'detail'">
+            <div class="col-md-12"><h1 v-html="event.name"></h1></div>
             <div class="col-md-4">
                 <img :src="event.image" :alt="event.name" class="img-fluid" />
                 <div class="event__categories"><span class="event__category" v-for="c in event.categories">{{c.name}}</span></div>
             </div>
             <div class="col-md-8">
-                <h1 v-html="event.name"></h1>
                 <p v-html="event.description"></p>
                 <div>{{event.start_date}} - {{event.end_date}}</div>
                 <div>Free: {{event.free}}</div>
-                <div>Location: {{event.location}}</div>
+                <div><i class="fas fa-map-marker"></i>Location: {{event.location}}</div>
                 <div>Address: {{event.address}}</div>
                 <a target="_blank" :href="event.website">{{event.website}}</a>
             </div>
