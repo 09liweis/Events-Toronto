@@ -15,7 +15,7 @@
                 <a target="_blank" :href="event.website">{{event.website}}</a>
             </div>
         </div>
-        <div class="rowm">
+        <div class="row">
             <div class="col-md-12">
                 <gmap-map class="map" :center="position" :zoom="15">
                     <GmapMarker
@@ -56,6 +56,7 @@ export default {
 <style type="sass" scoped>
 #detail {
     padding: 30px;
+    position: relative;
 }
 .map {
     margin-top: 20px;
