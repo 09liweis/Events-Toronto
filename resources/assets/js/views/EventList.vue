@@ -70,8 +70,7 @@ export default {
         this.geolocate();
         
         this.date = this.formatDate(new Date());
-        if (typeof this.$route.query.date == 'undefined') {
-        } else {
+        if (typeof this.$route.query.date != 'undefined') {
             this.date = this.$route.query.date;
         }
         
