@@ -3,6 +3,7 @@ API Webiset: https://www.toronto.ca/explore-enjoy/festivals-events/festivals-eve
 Design Reference: http://events.seetorontonow.com/
 
 ## Todo
+* Search Events
 * MyClearDB does not work on production, swtich to postgreql?
 * Style event detail component
 * Put flip animation effect on event detail switch between info and map
