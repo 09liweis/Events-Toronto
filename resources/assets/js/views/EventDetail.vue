@@ -10,7 +10,7 @@
                 <p v-html="event.description"></p>
                 <div>{{event.start_date}} - {{event.end_date}}</div>
                 <div class="event__categories"><span class="event__category" v-for="c in event.categories">{{c.name}}</span></div>
-                <div class="event__address" v-on:click="changeView()"><i class="fas fa-map-marker"></i> {{event.location}} {{event.address}}</div>
+                <div class="event__address" v-on:click="changeView()"><i class="fas fa-map-marker"></i><span v-html="event.location"></span> {{event.address}}</div>
                 <a v-if="event.website" target="_blank" :href="event.website"><i class="fas fa-link"></i>{{event.website}}</a>
             </div>
         </div>
