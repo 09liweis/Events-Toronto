@@ -15,6 +15,7 @@
             </div>
         </div>
         <div class="event__map" v-if="view == 'map'">
+            <i class="fas fa-times map__close"></i>
             <gmap-map class="map" :center="position" :zoom="15">
                 <GmapMarker
                     :position="position"
@@ -66,11 +67,16 @@ export default {
     cursor: pointer;
 }
 .event__map {
-    width: 100%;
     height: 60vh;
+    position: relative;
+}
+.map__close {
+    position: absolute;
+    top: -22px;
+    right: -24px;
+    cursor: pointer;
 }
 .map {
-    width: 100%;
     height: 100%;
 }
 .event__categories {
