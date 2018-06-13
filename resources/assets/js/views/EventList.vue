@@ -13,7 +13,7 @@
                         v-for="(e, index) in this.$store.state.events"
                         :position="getPostion(e)"
                         :clickable="true"
-                        @click="selected = e.id"
+                        @click="viewEvent(e.id)"
                     />
                 </gmap-map>
             </div>
