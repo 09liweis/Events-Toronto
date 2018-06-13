@@ -1,11 +1,19 @@
 <template>
     <div id="events">
         <h1>Total {{this.$store.state.events.length}} Events on <flatPickr class="form-control" v-model="date" @on-change="changeDate" :config="config"></flatPickr></h1>
-        
-        <div class="row justify-content-center">
+        <gmap-map ref="listMap" class="map" :center="center" :zoom="10" :options="mapOptions" v-if="fullmap">
+            <GmapMarker
+                :key="e.id"
+                v-for="(e, index) in events"
+                :position="getPostion(e)"
+                :clickable="true"
+                @click="viewEvent(e.id)"
+            />
+        </gmap-map>
+        <div class="row justify-content-center" v-if="!fullmap">
             <div class="events__left col-md-4">
                 <div class="fullmap" v-on:click="toggleMap()">Full Map</div>
-                <gmap-map ref="listMap" class="map" v-bind:class="{full: fullmap}" :center="center" :zoom="10" :options="mapOptions">
+                <gmap-map ref="listMap" class="map" :center="center" :zoom="10" :options="mapOptions">
                     <GmapMarker
                         :key="e.id"
                         v-for="(e, index) in events"
