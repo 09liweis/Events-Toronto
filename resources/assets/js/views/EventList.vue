@@ -7,7 +7,7 @@
                 <div class="form-group">
                     <flatPickr class="form-control" v-model="date" @on-change="changeDate" :config="config"></flatPickr>
                 </div>
-                <gmap-map ref="listMap" class="map" :center="center" :zoom="10">
+                <gmap-map ref="listMap" class="map" :center="center" :zoom="10" :options="mapOptions">
                     <GmapMarker
                         :key="e.id"
                         v-for="(e, index) in this.$store.state.events"
@@ -62,6 +62,9 @@ export default {
             date: '',
             config: {
                 disableMobile: true
+            },
+            mapOptions: {
+                disableDefaultUI : true
             }
         };
     },
