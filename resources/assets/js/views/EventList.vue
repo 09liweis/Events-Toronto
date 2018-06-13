@@ -1,12 +1,9 @@
 <template>
     <div id="events">
-        <h1>Total {{this.$store.state.events.length}} Events on {{date}}</h1>
+        <h1>Total {{this.$store.state.events.length}} Events on <flatPickr class="form-control" v-model="date" @on-change="changeDate" :config="config"></flatPickr></h1>
         
         <div class="row justify-content-center">
             <div class="events__left col-md-4">
-                <div class="form-group">
-                    <flatPickr class="form-control" v-model="date" @on-change="changeDate" :config="config"></flatPickr>
-                </div>
                 <div class="fullmap" v-on:click="toggleMap()">Full Map</div>
                 <gmap-map ref="listMap" class="map" v-bind:class="{full: fullmap}" :center="center" :zoom="10" :options="mapOptions">
                     <GmapMarker
@@ -164,7 +161,7 @@ export default {
     background-color: #007bff;
     padding: 10px;
     color: #ffffff;
-    top: 64px;
+    top: 10px;
     right: 20px;
     z-index: 1;
     cursor: pointer;
@@ -174,6 +171,15 @@ export default {
     top: 20px;
     width: 100%;
     height: 500px;
+}
+.map.full {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    margin-top: 141px;
+    z-index: 2;
+    left: 0;
+    right: 0;
 }
 .vue-map {
     border-radius: 10px;
