@@ -10,7 +10,7 @@
                 <gmap-map ref="listMap" class="map" :center="center" :zoom="10" :options="mapOptions">
                     <GmapMarker
                         :key="e.id"
-                        v-for="(e, index) in this.$store.state.events"
+                        v-for="(e, index) in events"
                         :position="getPostion(e)"
                         :clickable="true"
                         @click="viewEvent(e.id)"
@@ -18,7 +18,7 @@
                 </gmap-map>
             </div>
             <div class="col-md-8">
-                <div class="event row" v-for="event in this.$store.state.events" v-on:click="viewEvent(event.id)" v-bind:class="{ selected: eventId == event.id}">
+                <div class="event row" v-for="event in events" v-on:click="viewEvent(event.id)" v-bind:class="{ selected: eventId == event.id}">
                     <figure class="col-md-3 event__figure">
                         <img class="event__thumbnail" :src="event.thumbnail" :alt="event.name">
                     </figure>
