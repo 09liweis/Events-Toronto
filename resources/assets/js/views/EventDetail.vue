@@ -79,9 +79,6 @@ export default {
 .map {
     height: 100%;
 }
-.event__categories {
-    margin-top: 20px;
-}
 .event__category {
   display: inline-block;
   padding: 3px 10px;
