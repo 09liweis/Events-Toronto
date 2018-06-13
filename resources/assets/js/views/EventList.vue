@@ -56,7 +56,6 @@ export default {
     },
     data() {
         return {
-            selected: null,
             view: 'list',
             eventId: '',
             center: { lat: 0, lng: 0 },
