@@ -108,13 +108,14 @@ export default {
         getEvents() {
             axios.get('/api/events?date=' + this.date).then(res => {
                 this.$store.commit('getEvents', res.data);
-                this.fitBounds(res.data);
+                this.fitBounds();
             });
         },
         getPostion(event) {
             return {lat: parseFloat(event.lat), lng: parseFloat(event.lng)};
         },
-        fitBounds(events) {
+        fitBounds() {
+            const events = this.events;
             const bounds = new google.maps.LatLngBounds();
             for (let event of events) {
                 bounds.extend(this.getPostion(event));
@@ -190,6 +191,7 @@ export default {
     height: 100%;
     top: 0;
     left: 0;
+    z-index: 2;
 }
 .modal-bg {
     position: fixed;
