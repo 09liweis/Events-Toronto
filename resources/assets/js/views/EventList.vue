@@ -7,6 +7,7 @@
                 <div class="form-group">
                     <flatPickr class="form-control" v-model="date" @on-change="changeDate" :config="config"></flatPickr>
                 </div>
+                <div class="fullmap">Full Map</div>
                 <gmap-map ref="listMap" class="map" :center="center" :zoom="10" :options="mapOptions">
                     <GmapMarker
                         :key="e.id"
@@ -153,6 +154,15 @@ export default {
 <style scoped>
 .events__left {
     position: relative;
+}
+.fullmap {
+    position: absolute;
+    background-color: #007bff;
+    padding: 10px;
+    color: #ffffff;
+    top: 64px;
+    right: 20px;
+    z-index: 1;
 }
 .map {
     position: sticky;
