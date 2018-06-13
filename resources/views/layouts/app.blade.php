@@ -73,6 +73,6 @@
         </main>
     </div>
     <!-- Scripts -->
-    <script src="/js/app.js?v=1.1.1" defer></script>
+    <script src="/js/app.js?v=1.1.3" defer></script>
 </body>
 </html>
