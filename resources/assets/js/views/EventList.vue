@@ -7,8 +7,8 @@
                 <div class="form-group">
                     <flatPickr class="form-control" v-model="date" @on-change="changeDate" :config="config"></flatPickr>
                 </div>
-                <div class="fullmap">Full Map</div>
-                <gmap-map ref="listMap" class="map" :center="center" :zoom="10" :options="mapOptions">
+                <div class="fullmap" v-on:click="toggleMap()">Full Map</div>
+                <gmap-map ref="listMap" class="map" v-bind:class="{full: fullmap}" :center="center" :zoom="10" :options="mapOptions">
                     <GmapMarker
                         :key="e.id"
                         v-for="(e, index) in events"
@@ -57,6 +57,7 @@ export default {
     },
     data() {
         return {
+            fullmap: false,
             view: 'list',
             eventId: '',
             center: { lat: 0, lng: 0 },
@@ -144,6 +145,9 @@ export default {
             this.$router.push({ path: '/?date=' + this.date + '&eventId=' + this.eventId });
             this.view = 'detail';
         },
+        toggleMap() {
+            this.fullmap = !this.fullmap;
+        },
         hideModal() {
             this.view = 'list';
             this.$router.push({path: '/?date=' + this.date});
@@ -163,6 +167,7 @@ export default {
     top: 64px;
     right: 20px;
     z-index: 1;
+    cursor: pointer;
 }
 .map {
     position: sticky;
