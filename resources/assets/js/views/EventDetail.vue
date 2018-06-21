@@ -69,6 +69,13 @@ export default {
 .event__address {
     cursor: pointer;
     margin-bottom: 20px;
+    transition: all 0.3 ease;
+}
+.event__address:hover {
+    opacity: 0.8;
+}
+.fa-map-marker {
+    color: #007bff;
 }
 .event__map {
     height: 60vh;
