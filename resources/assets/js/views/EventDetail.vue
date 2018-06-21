@@ -1,7 +1,9 @@
 <template>
     <div id="detail" v-if="event">
         <div class="row" v-if="view == 'detail'">
-            <div class="col-md-12"><h1 class="event__title" v-html="event.name"></h1></div>
+            <div class="col-md-12">
+                <h1 class="event__title" v-html="event.name"></h1>
+            </div>
             <div class="col-md-4">
                 <img :src="event.image" :alt="event.name" class="img-fluid" />
                 <div>{{event.start_date}} {{event.start_date == event.end_date ? '' : ' - ' + event.end_date}}</div>
