@@ -63,12 +63,12 @@ export default {
     position: relative;
 }
 .event__title {
-    margin-bottom: 20px;
     border-left: 5px solid #007bff;
     padding-left: 10px;
 }
 .event__address {
     cursor: pointer;
+    margin-bottom: 20px;
 }
 .event__map {
     height: 60vh;
