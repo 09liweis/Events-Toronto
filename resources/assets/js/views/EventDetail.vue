@@ -61,7 +61,9 @@ export default {
     position: relative;
 }
 .event__title {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+    border-left: 5px solid #007bff;
+    padding-left: 10px;
 }
 .event__address {
     cursor: pointer;
