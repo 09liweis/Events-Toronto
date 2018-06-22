@@ -22,7 +22,6 @@
                 <GmapMarker
                     :position="position"
                     :clickable="true"
-                    :draggable="true"
                     @click="center = position"
                 />
             </gmap-map>
