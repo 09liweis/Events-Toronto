@@ -7,7 +7,7 @@
             </div>
             <div class="col-md-4">
                 <img :src="event.image" :alt="event.name" class="img-fluid" />
-                <div class="event__date">{{event.start_date}} {{event.start_date == event.end_date ? '' : ' - ' + event.end_date}}</div>
+                <div class="event__date"><i class="fas fa-calendar-alt"></i>{{event.start_date}} {{event.start_date == event.end_date ? '' : ' - ' + event.end_date}}</div>
                 <div>{{event.free == 'Yes' ? 'Free' : 'Paid'}}</div>
             </div>
             <div class="col-md-8">
@@ -72,9 +72,6 @@ export default {
 }
 .event__address:hover {
     opacity: 0.8;
-}
-.fa-map-marker {
-    color: #007bff;
 }
 .event__date {
     margin-top: 10px;
