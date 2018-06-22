@@ -3,13 +3,13 @@
         <div class="row" v-if="view == 'detail'">
             <div class="col-md-12">
                 <h1 class="event__title" v-html="event.name"></h1>
+                <div><i class="fas fa-money-bill-alt"></i>{{event.free == 'Yes' ? 'Free' : 'Paid'}}</div>
                 <div class="event__date"><i class="fas fa-calendar-alt"></i>{{event.start_date}} {{event.start_date == event.end_date ? '' : ' - ' + event.end_date}}</div>
                 <a v-if="event.website" target="_blank" :href="event.website"><i class="fas fa-link"></i>{{event.website}}</a>
                 <div class="event__address" v-on:click="changeView()"><i class="fas fa-map-marker-alt"></i><b class="event__location" v-html="event.location"></b> {{event.address}}</div>
             </div>
             <div class="col-md-4">
                 <img :src="event.image" :alt="event.name" class="img-fluid" />
-                <div>{{event.free == 'Yes' ? 'Free' : 'Paid'}}</div>
             </div>
             <div class="col-md-8">
                 <p v-html="event.description"></p>
@@ -72,9 +72,6 @@ export default {
 }
 .event__address:hover {
     opacity: 0.8;
-}
-.event__date {
-    margin-top: 10px;
 }
 .event__map {
     height: 60vh;
