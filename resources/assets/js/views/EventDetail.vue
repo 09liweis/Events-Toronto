@@ -7,7 +7,7 @@
             </div>
             <div class="col-md-4">
                 <img :src="event.image" :alt="event.name" class="img-fluid" />
-                <div>{{event.start_date}} {{event.start_date == event.end_date ? '' : ' - ' + event.end_date}}</div>
+                <div class="event__date">{{event.start_date}} {{event.start_date == event.end_date ? '' : ' - ' + event.end_date}}</div>
                 <div>{{event.free == 'Yes' ? 'Free' : 'Paid'}}</div>
             </div>
             <div class="col-md-8">
@@ -75,6 +75,9 @@ export default {
 }
 .fa-map-marker {
     color: #007bff;
+}
+.event__date {
+    margin-top: 10px;
 }
 .event__map {
     height: 60vh;
