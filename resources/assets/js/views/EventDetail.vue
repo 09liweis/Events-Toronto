@@ -4,6 +4,7 @@
             <div class="col-md-12">
                 <h1 class="event__title" v-html="event.name"></h1>
                 <div class="event__address" v-on:click="changeView()"><i class="fas fa-map-marker-alt"></i><b class="event__location" v-html="event.location"></b> {{event.address}}</div>
+                <a v-if="event.website" target="_blank" :href="event.website"><i class="fas fa-link"></i>{{event.website}}</a>
             </div>
             <div class="col-md-4">
                 <img :src="event.image" :alt="event.name" class="img-fluid" />
@@ -13,7 +14,6 @@
             <div class="col-md-8">
                 <p v-html="event.description"></p>
                 <div class="event__categories"><span class="event__category" v-for="c in event.categories">{{c.name}}</span></div>
-                <a v-if="event.website" target="_blank" :href="event.website"><i class="fas fa-link"></i>{{event.website}}</a>
             </div>
         </div>
         <div class="event__map" v-if="view == 'map'">
