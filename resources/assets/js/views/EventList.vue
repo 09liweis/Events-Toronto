@@ -24,7 +24,8 @@
                 </gmap-map>
             </div>
             <div class="col-md-8">
-                <div class="event row" v-for="event in events" v-on:click="viewEvent(event.id)" v-bind:class="{ selected: eventId == event.id}">
+                <transition-group name="slide">
+                <div class="event row" v-for="event in events" :key="event.id" v-on:click="viewEvent(event.id)" v-bind:class="{ selected: eventId == event.id}">
                     <figure class="col-md-3 event__figure">
                         <img class="event__thumbnail" :src="event.image" :alt="event.name">
                     </figure>
@@ -35,6 +36,7 @@
                         <div>{{event.address}}</div>
                     </div>
                 </div>
+                </transition-group>
             </div>
         </div>
         
@@ -228,5 +230,13 @@ export default {
 
 .modal-enter, .modal-leave-to {
   opacity: 0;
+}
+.slide-enter-active, .slide-leave-active {
+  transition: all 0.25s ease-out;
+}
+
+.slide-enter, .slide-leave-to {
+  opacity: 0;
+  transform: translateX(-10px);
 }
 </style>
