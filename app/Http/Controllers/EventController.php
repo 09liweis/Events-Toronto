@@ -83,7 +83,7 @@ class EventController extends Controller
     }
     
     public function dooropen() {
-        $api = 'http://app.toronto.ca/cc_sr_v1_app/data/DoorsOpenBuildingToursJsonPROD/';
+        $api = 'http://app.toronto.ca/cc_sr_v1_app/data/DoorsOpenBuildingToursJsonPROD?limit=1000';
         $dooropen = json_decode(file_get_contents($api), true);
         return $dooropen;
     }
