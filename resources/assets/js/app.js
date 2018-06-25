@@ -13,7 +13,7 @@ import store from './store.js';
 
 import App from './App';
 import EventList from './views/EventList';
-import EventDetail from './views/EventDetail';
+import DoorOpen from './views/DoorOpen';
 import * as VueGoogleMaps from 'vue2-google-maps';
 
 Vue.use(VueRouter);
@@ -37,6 +37,11 @@ const router = new VueRouter({
             name: 'home',
             component: EventList
         },
+        {
+            path: '/dooropen',
+            name: 'dooropen',
+            component: DoorOpen
+        }
         // {
         //     path: '/event/:id',
         //     name: 'detail',
