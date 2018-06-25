@@ -82,6 +82,12 @@ class EventController extends Controller
         return 'done';
     }
     
+    public function dooropen() {
+        $api = 'http://app.toronto.ca/cc_sr_v1_app/data/DoorsOpenBuildingToursJsonPROD/';
+        $dooropen = json_decode(file_get_contents($api), true);
+        return $dooropen;
+    }
+    
     public function list(Request $request) {
         $date = $request->input('date');
         if (!$date) {
