@@ -4,6 +4,7 @@ Design Reference: http://events.seetorontonow.com/
 
 ## Todo
 * Search Events
+* Implement Door Open 2018
 * MyClearDB does not work on production, swtich to postgreql?
 * Style event detail component
 * Put flip animation effect on event detail switch between info and map
