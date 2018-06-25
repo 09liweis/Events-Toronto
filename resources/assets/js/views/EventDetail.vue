@@ -1,4 +1,5 @@
 <template>
+    <transition name="fade">
     <div id="detail" v-if="event">
         <div class="row" v-if="view == 'detail'">
             <div class="col-md-12">
@@ -27,6 +28,7 @@
             </gmap-map>
         </div>
     </div>
+    </transition>
 </template>
 <script>
 import axios from 'axios';
@@ -93,5 +95,12 @@ export default {
   background-color: #007bff;
   color: #ffffff;
   margin: 0 10px 10px 0;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.25s ease-out;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 </style>
