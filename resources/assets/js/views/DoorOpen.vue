@@ -1,6 +1,9 @@
 <template>
     <div>
         <h1>Door Open 2018</h1>
+        <div class="" v-for="door in doors">
+            <h2>{{door.dot_buildingName}}</h2>
+        </div>
     </div>
 </template>
 <script>
