@@ -23,3 +23,5 @@ Route::get('/event/{id}', 'EventController@detail');
 
 Route::get('/categories', 'CategoryController@list');
 Route::get('/category/{id}/events', 'CategoryController@events');
+
+Route::get('/dooropen', 'EventController@dooropen');
