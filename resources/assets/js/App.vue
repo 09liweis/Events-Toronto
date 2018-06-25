@@ -1,6 +1,6 @@
 <template>
     <main>
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+        <nav id="nav" class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <router-link to="/" class="navbar-brand">Events Toronto</router-link>
                 <router-link to="/dooropen" class="navbar-brand">Door Open Toronto</router-link>
@@ -51,3 +51,8 @@
 <script>
 export default {};
 </script>
+<style scoped>
+#nav {
+    margin-bottom: 20px;
+}
+</style>
