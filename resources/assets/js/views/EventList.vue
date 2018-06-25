@@ -38,12 +38,14 @@
             </div>
         </div>
         
+        <transition name="modal">
         <div class="modal__container" v-if="view == 'detail'">
             <div class="modal-bg" v-on:click="hideModal()"></div>
             <div class="modal-content">
                 <EventDetail v-bind:id="eventId" />
             </div>
         </div>
+        </transition>
         
     </div>
 </template>
@@ -219,5 +221,12 @@ export default {
     max-width: 768px;
     transform: translateY(-50%);
     margin: 0 auto;
+}
+.modal-enter-active, .modal-leave-active {
+  transition: opacity 0.25s ease-out;
+}
+
+.modal-enter, .modal-leave-to {
+  opacity: 0;
 }
 </style>
