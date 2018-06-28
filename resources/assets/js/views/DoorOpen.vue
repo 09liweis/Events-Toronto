@@ -7,6 +7,7 @@
                 v-for="(d, index) in doors"
                 :position="getPostion(d)"
                 :clickable="true"
+                @click="viewDoor(d)"
             />
         </gmap-map>
     </div>
@@ -47,6 +48,9 @@ export default {
             }
             this.$refs.listMap.fitBounds(bounds);
         },
+        viewDoor(d) {
+            
+        }
     }
 };
 </script>
