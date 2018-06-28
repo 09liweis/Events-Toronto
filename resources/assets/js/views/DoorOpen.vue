@@ -20,7 +20,14 @@ export default {
         });
     },
     methods: {
-        
+        geolocate: function() {
+            window.navigator.geolocation.getCurrentPosition(position => {
+                this.center = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+            });
+        },
     }
 };
 </script>
