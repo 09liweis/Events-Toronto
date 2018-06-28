@@ -1,9 +1,14 @@
 <template>
     <div>
         <h1>Door Open 2018</h1>
-        <div class="" v-for="door in doors">
-            <h2>{{door.dot_buildingName}}</h2>
-        </div>
+        <gmap-map ref="listMap" class="map" :center="center" :zoom="10" >
+            <GmapMarker
+                :key="d.dot_documentID"
+                v-for="(d, index) in doors"
+                :position="getPostion(d)"
+                :clickable="true"
+            />
+        </gmap-map>
     </div>
 </template>
 <script>
@@ -30,6 +35,15 @@ export default {
                 };
             });
         },
+        getPostion(door) {
+            return {lat: parseFloat(door.dot_Address.dot_Latitude), lng: parseFloat(door.dot_Address.dot_Longitude)};
+        },
     }
 };
 </script>
+<style type="text/css" scoped>
+.map {
+    width: 100%;
+    height: 50vh;
+}
+</style>
