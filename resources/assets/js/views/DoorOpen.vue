@@ -15,6 +15,7 @@ export default {
         };
     },
     mounted() {
+        this.geolocate();
         axios.get('api/dooropen').then(res => {
             this.doors = res.data;
         });
