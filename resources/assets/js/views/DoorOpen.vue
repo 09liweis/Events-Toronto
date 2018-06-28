@@ -11,7 +11,8 @@ import axios from 'axios';
 export default {
     data() {
         return {
-            doors: []
+            doors: [],
+            center: { lat: 0, lng: 0 },
         };
     },
     mounted() {
