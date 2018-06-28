@@ -24,6 +24,7 @@ export default {
         this.geolocate();
         axios.get('api/dooropen').then(res => {
             this.doors = res.data;
+            this.fitBounds();
         });
     },
     methods: {
@@ -37,6 +38,14 @@ export default {
         },
         getPostion(door) {
             return {lat: parseFloat(door.dot_Address.dot_Latitude), lng: parseFloat(door.dot_Address.dot_Longitude)};
+        },
+        fitBounds() {
+            const doors = this.doors;
+            const bounds = new google.maps.LatLngBounds();
+            for (let door of doors) {
+                bounds.extend(this.getPostion(door));
+            }
+            this.$refs.listMap.fitBounds(bounds);
         },
     }
 };
