@@ -93,7 +93,7 @@ class EventController extends Controller
         if (!$date) {
             $date = date("Y-m-d");
         }
-        return Event::select('id', 'name', 'image', 'start_date', 'address', 'lat', 'lng')->where('start_date', $date)->orderBy('start_date', 'asc')->get();
+        return Event::select('id', 'name', 'image', 'start_date', 'location', 'address', 'lat', 'lng')->where('start_date', $date)->orderBy('start_date', 'asc')->get();
     }
     
     public function detail($id) {
