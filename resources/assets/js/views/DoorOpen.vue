@@ -1,9 +1,11 @@
 <template>
     <div>
         <h1>Door Open 2018</h1>
-        <div class="" v-for="d in doors" v-if="view == 'list'">
-            <h2>{{d.dot_buildingName}}</h2>
-            <p>{{d.dot_ProgramGuideDescription[0]}}</p>
+        <div class="row" v-if="view == 'list'">
+            <div class="col-lg-3" v-for="d in doors">
+                <h2>{{d.dot_buildingName}}</h2>
+                <p>{{d.dot_ProgramGuideDescription[0]}}</p>
+            </div>
         </div>
         <gmap-map ref="listMap" class="map" :center="center" :zoom="10" v-if="view == 'map'" >
             <GmapMarker
