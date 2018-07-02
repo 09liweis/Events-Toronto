@@ -1,7 +1,10 @@
 <template>
     <div>
         <h1>Door Open 2018</h1>
-        <gmap-map ref="listMap" class="map" :center="center" :zoom="10" >
+        <div class="row" v-for="d in doors" v-if="view == 'list'">
+            <h1>{{d.dot_buildingName}}</h1>
+        </div>
+        <gmap-map ref="listMap" class="map" :center="center" :zoom="10" v-if="view == 'map'" >
             <GmapMarker
                 :key="d.dot_documentID"
                 v-for="(d, index) in doors"
@@ -18,6 +21,7 @@ import axios from 'axios';
 export default {
     data() {
         return {
+            view: 'list',
             doors: [],
             center: { lat: 0, lng: 0 },
         };
