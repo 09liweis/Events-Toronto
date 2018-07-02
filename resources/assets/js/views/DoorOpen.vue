@@ -73,6 +73,6 @@ export default {
 }
 .door__title {
     border-left: 2px solid #007bff;
-    padding: 10px;
+    padding-left: 10px;
 }
 </style>
