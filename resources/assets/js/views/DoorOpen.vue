@@ -5,6 +5,7 @@
             <div class="door col-hd-2 col-md-3 col-sm-4" v-for="d in doors">
                 <h2>{{d.dot_buildingName}}</h2>
                 <p>{{d.dot_ProgramGuideDescription[0]}}</p>
+                <div class="address"><i class="fas fa-map-marker-alt"></i>{{d.dot_Address.dot_buildingAddress}}</div>
             </div>
         </div>
         <gmap-map ref="listMap" class="map" :center="center" :zoom="10" v-if="view == 'map'" >
@@ -33,7 +34,7 @@ export default {
         this.geolocate();
         axios.get('api/dooropen').then(res => {
             this.doors = res.data;
-            this.fitBounds();
+            // this.fitBounds();
         });
     },
     methods: {
@@ -48,14 +49,14 @@ export default {
         getPostion(door) {
             return {lat: parseFloat(door.dot_Address.dot_Latitude), lng: parseFloat(door.dot_Address.dot_Longitude)};
         },
-        fitBounds() {
-            const doors = this.doors;
-            const bounds = new google.maps.LatLngBounds();
-            for (let door of doors) {
-                bounds.extend(this.getPostion(door));
-            }
-            this.$refs.listMap.fitBounds(bounds);
-        },
+        // fitBounds() {
+        //     const doors = this.doors;
+        //     const bounds = new google.maps.LatLngBounds();
+        //     for (let door of doors) {
+        //         bounds.extend(this.getPostion(door));
+        //     }
+        //     this.$refs.listMap.fitBounds(bounds);
+        // },
         viewDoor(d) {
             console.log(d.dot_buildingName);
         }
