@@ -2,7 +2,7 @@
     <div>
         <h1>Door Open 2018</h1>
         <div class="row" v-for="d in doors" v-if="view == 'list'">
-            <h1>{{d.dot_buildingName}}</h1>
+            <h2>{{d.dot_buildingName}}</h2>
         </div>
         <gmap-map ref="listMap" class="map" :center="center" :zoom="10" v-if="view == 'map'" >
             <GmapMarker
