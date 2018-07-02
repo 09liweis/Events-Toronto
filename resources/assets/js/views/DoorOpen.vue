@@ -2,7 +2,7 @@
     <div>
         <h1>Door Open 2018</h1>
         <div class="row" v-if="view == 'list'">
-            <div class="col-hd-2 col-md-3 col-sm-4" v-for="d in doors">
+            <div class="door col-hd-2 col-md-3 col-sm-4" v-for="d in doors">
                 <h2>{{d.dot_buildingName}}</h2>
                 <p>{{d.dot_ProgramGuideDescription[0]}}</p>
             </div>
