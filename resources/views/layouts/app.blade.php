@@ -26,6 +26,6 @@
         @yield('content')
     </div>
     <!-- Scripts -->
-    <script src="/js/app.js?v=1.1.3" defer></script>
+    <script src="/js/app.js?v=1.1.4" defer></script>
 </body>
 </html>
