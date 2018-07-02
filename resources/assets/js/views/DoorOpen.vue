@@ -3,9 +3,9 @@
         <h1>Door Open 2018</h1>
         <div class="row" v-if="view == 'list'">
             <div class="door col-hd-2 col-md-3 col-sm-4" v-for="d in doors">
-                <h2>{{d.dot_buildingName}}</h2>
-                <p>{{d.dot_ProgramGuideDescription[0]}}</p>
+                <h3 class="door__title">{{d.dot_buildingName}}</h3>
                 <div class="address"><i class="fas fa-map-marker-alt"></i>{{d.dot_Address.dot_buildingAddress}}</div>
+                <p>{{d.dot_ProgramGuideDescription[0]}}</p>
             </div>
         </div>
         <gmap-map ref="listMap" class="map" :center="center" :zoom="10" v-if="view == 'map'" >
@@ -67,5 +67,12 @@ export default {
 .map {
     width: 100%;
     height: 80vh;
+}
+.door {
+    margin-bottom: 20px;
+}
+.door__title {
+    border-left: 2px solid #007bff;
+    padding: 10px;
 }
 </style>
