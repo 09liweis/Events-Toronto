@@ -101,6 +101,11 @@ export default {
         }
         
         window.addEventListener('scroll', this.handleScroll);
+        window.addEventListener('keyup', (event) => {
+            if (event.key == 'Escape') {
+                this.view = 'list';
+            }
+        });
         
     },
     methods: {
