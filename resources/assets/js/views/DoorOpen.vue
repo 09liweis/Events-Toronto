@@ -72,7 +72,7 @@ export default {
     margin-bottom: 20px;
 }
 .door__title {
-    border-left: 2px solid #007bff;
-    padding-left: 10px;
+    border-top: 2px solid #007bff;
+    padding-top: 10px;
 }
 </style>
