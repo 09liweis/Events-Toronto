@@ -70,6 +70,7 @@ export default {
         // },
         viewDoor(d) {
             this.modal = true;
+            console.log(d);
         },
         hideModal() {
             this.modal = false;
