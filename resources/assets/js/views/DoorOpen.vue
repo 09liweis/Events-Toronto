@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Door Open 2018 - {{doors.length}} Door Open</h1>
+        <h1 class="doors__title">Door Open 2018 - {{doors.length}} Door Open</h1>
         <div class="lds-ellipsis" v-if="doors.length == 0"><div></div><div></div><div></div><div></div></div>
         <transition-group name="slide" class="row" v-if="view == 'list'">
             <div class="door col-hd-2 col-md-3 col-sm-4" v-for="d in doors" :key="d.dot_documentID" v-on:click="viewDoor(d)">
@@ -68,7 +68,6 @@ export default {
         // },
         viewDoor(d) {
             this.modal = true;
-            console.log(d.dot_buildingName);
         },
         hideModal() {
             this.modal = false;
@@ -178,7 +177,9 @@ export default {
     margin: 0 auto;
 }
 
-
+.doors__title {
+    margin-bottom: 30px;
+}
 .map {
     width: 100%;
     height: 80vh;
