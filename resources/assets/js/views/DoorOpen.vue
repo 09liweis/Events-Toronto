@@ -4,9 +4,11 @@
         <div class="lds-ellipsis" v-if="doors.length == 0"><div></div><div></div><div></div><div></div></div>
         <transition-group name="slide" class="row" v-if="view == 'list'">
             <div class="door col-hd-2 col-md-3 col-sm-4" v-for="d in doors" :key="d.dot_documentID" v-on:click="viewDoor(d)">
-                <h3 class="door__title">{{d.dot_buildingName}}</h3>
-                <div class="address"><i class="fas fa-map-marker-alt"></i>{{d.dot_Address.dot_buildingAddress}}</div>
-                <p>{{d.dot_ProgramGuideDescription[0]}}</p>
+                <div class="card">
+                    <h3 class="door__title">{{d.dot_buildingName}}</h3>
+                    <div class="address"><i class="fas fa-map-marker-alt"></i>{{d.dot_Address.dot_buildingAddress}}</div>
+                    <p>{{d.dot_ProgramGuideDescription[0]}}</p>
+                </div>
             </div>
         </transition-group>
         <gmap-map ref="listMap" class="map" :center="center" :zoom="10" v-if="view == 'map'" >
@@ -188,8 +190,10 @@ export default {
     margin-bottom: 20px;
     cursor: pointer;
 }
-.door__title {
+.card {
     border-top: 2px solid #007bff;
     padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 </style>
