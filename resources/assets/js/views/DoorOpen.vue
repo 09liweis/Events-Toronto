@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Door Open 2018</h1>
+        <h1>Door Open 2018 - {{doors.length}} Door Open</h1>
         <div class="lds-ellipsis" v-if="doors.length == 0"><div></div><div></div><div></div><div></div></div>
         <transition-group name="slide" class="row" v-if="view == 'list'">
             <div class="door col-hd-2 col-md-3 col-sm-4" v-for="d in doors" :key="d.dot_documentID">
