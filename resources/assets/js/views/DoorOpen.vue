@@ -3,7 +3,7 @@
         <h1>Door Open 2018 - {{doors.length}} Door Open</h1>
         <div class="lds-ellipsis" v-if="doors.length == 0"><div></div><div></div><div></div><div></div></div>
         <transition-group name="slide" class="row" v-if="view == 'list'">
-            <div class="door col-hd-2 col-md-3 col-sm-4" v-for="d in doors" :key="d.dot_documentID">
+            <div class="door col-hd-2 col-md-3 col-sm-4" v-for="d in doors" :key="d.dot_documentID" v-on:click="viewDoor(d)">
                 <h3 class="door__title">{{d.dot_buildingName}}</h3>
                 <div class="address"><i class="fas fa-map-marker-alt"></i>{{d.dot_Address.dot_buildingAddress}}</div>
                 <p>{{d.dot_ProgramGuideDescription[0]}}</p>
@@ -20,7 +20,7 @@
             />
         </gmap-map>
         <transition name="modal">
-            <div class="modal__container" v-if="view == 'detail'">
+            <div class="modal__container" v-if="modal">
                 <div class="modal-bg" v-on:click="hideModal()"></div>
                 <div class="modal-content">
                 </div>
@@ -34,6 +34,7 @@ export default {
     data() {
         return {
             view: 'list',
+            modal: false,
             doors: [],
             center: { lat: 0, lng: 0 },
         };
@@ -66,7 +67,11 @@ export default {
         //     this.$refs.listMap.fitBounds(bounds);
         // },
         viewDoor(d) {
+            this.modal = true;
             console.log(d.dot_buildingName);
+        },
+        hideModal() {
+            this.modal = false;
         }
     }
 };
@@ -145,6 +150,34 @@ export default {
   opacity: 0;
 }
 
+.modal__container {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+.modal-bg {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    max-width: 768px;
+    transform: translateY(-50%);
+    margin: 0 auto;
+}
+
 
 .map {
     width: 100%;
@@ -152,6 +185,7 @@ export default {
 }
 .door {
     margin-bottom: 20px;
+    cursor: pointer;
 }
 .door__title {
     border-top: 2px solid #007bff;
