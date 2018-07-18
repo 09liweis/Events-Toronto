@@ -19,6 +19,13 @@
                 @click="viewDoor(d)"
             />
         </gmap-map>
+        <transition name="modal">
+            <div class="modal__container" v-if="view == 'detail'">
+                <div class="modal-bg" v-on:click="hideModal()"></div>
+                <div class="modal-content">
+                </div>
+            </div>
+        </transition>
     </div>
 </template>
 <script>
