@@ -7,7 +7,7 @@
                 <div class="card">
                     <h3 class="door__title">{{d.dot_buildingName}}</h3>
                     <div class="address"><i class="fas fa-map-marker-alt"></i>{{d.dot_Address.dot_buildingAddress}}</div>
-                    <p>{{d.dot_ProgramGuideDescription[0]}}</p>
+                    <p class="door__description">{{d.dot_ProgramGuideDescription[0]}}</p>
                 </div>
             </div>
         </transition-group>
@@ -182,6 +182,9 @@ export default {
 .doors__title {
     margin-bottom: 30px;
 }
+.door__description {
+    margin: 0;
+}
 .map {
     width: 100%;
     height: 80vh;
@@ -192,8 +195,6 @@ export default {
 }
 .card {
     border-top: 2px solid #007bff;
-    padding-top: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 10px;
 }
 </style>
