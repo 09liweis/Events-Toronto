@@ -3,11 +3,13 @@
         <h1>Door Open 2018</h1>
         <div class="lds-ellipsis" v-if="doors.length == 0"><div></div><div></div><div></div><div></div></div>
         <div class="row" v-if="view == 'list'">
+            <transition-group name="slide">
             <div class="door col-hd-2 col-md-3 col-sm-4" v-for="d in doors">
                 <h3 class="door__title">{{d.dot_buildingName}}</h3>
                 <div class="address"><i class="fas fa-map-marker-alt"></i>{{d.dot_Address.dot_buildingAddress}}</div>
                 <p>{{d.dot_ProgramGuideDescription[0]}}</p>
             </div>
+            </transition-group>
         </div>
         <gmap-map ref="listMap" class="map" :center="center" :zoom="10" v-if="view == 'map'" >
             <GmapMarker
