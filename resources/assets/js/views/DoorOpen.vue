@@ -191,10 +191,10 @@ export default {
 }
 .door {
     margin-bottom: 20px;
-    cursor: pointer;
 }
 .card {
     border-top: 2px solid #007bff;
     padding: 10px;
+    cursor: pointer;
 }
 </style>
