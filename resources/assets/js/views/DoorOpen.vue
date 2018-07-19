@@ -135,23 +135,6 @@ export default {
   }
 }
 
-.slide-enter-active, .slide-leave-active {
-  transition: all 0.3s ease-out;
-}
-
-.slide-enter, .slide-leave-to {
-  opacity: 0;
-  transform: translateX(-10px);
-}
-
-.modal-enter-active, .modal-leave-active {
-  transition: opacity 0.25s ease-out;
-}
-
-.modal-enter, .modal-leave-to {
-  opacity: 0;
-}
-
 .modal__container {
     position: fixed;
     width: 100%;
