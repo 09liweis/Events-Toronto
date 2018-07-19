@@ -230,19 +230,4 @@ export default {
     transform: translateY(-50%);
     margin: 0 auto;
 }
-.modal-enter-active, .modal-leave-active {
-  transition: opacity 0.25s ease-out;
-}
-
-.modal-enter, .modal-leave-to {
-  opacity: 0;
-}
-.slide-enter-active, .slide-leave-active {
-  transition: all 0.25s ease-out;
-}
-
-.slide-enter, .slide-leave-to {
-  opacity: 0;
-  transform: translateX(-10px);
-}
 </style>
