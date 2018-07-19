@@ -19,13 +19,13 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-    <link href="/css/app.css?v=1.0.8" rel="stylesheet">
+    <link href="/css/app.css?v=1.0.9" rel="stylesheet">
 </head>
 <body>
     <div id="app">
         @yield('content')
     </div>
     <!-- Scripts -->
-    <script src="/js/app.js?v=1.1.7" defer></script>
+    <script src="/js/app.js?v=1.1.8" defer></script>
 </body>
 </html>
