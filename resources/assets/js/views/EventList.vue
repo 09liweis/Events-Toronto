@@ -203,31 +203,4 @@ export default {
 .vue-map {
     border-radius: 10px;
 }
-.modal__container {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: 2;
-}
-.modal-bg {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background-color: rgba(0, 0, 0, 0.7);
-}
-.modal-content {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    max-width: 768px;
-    transform: translateY(-50%);
-    margin: 0 auto;
-}
 </style>
