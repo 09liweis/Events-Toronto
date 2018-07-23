@@ -31,7 +31,7 @@
                     </figure>
                     <div class="col-md-9 event__info">
                         <!--<router-link :to="{ name: 'detail', params: { id: event.id }}"><h5 class="card-title" v-html="event.name"></h5></router-link>-->
-                        <h4 class="card-title" v-html="event.name"></h4>
+                        <h4 v-html="event.name"></h4>
                         <div><i class="fas fa-calendar-alt"></i>{{event.start_date}}</div>
                         <div><i class="fas fa-map-marker-alt"></i>{{event.location}}</div>
                         <div>{{event.address}}</div>
