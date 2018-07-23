@@ -172,6 +172,9 @@ export default {
 };
 </script>
 <style scoped>
+.events__title {
+    margin-bottom: 30px;
+}
 .events__left {
     position: relative;
 }
