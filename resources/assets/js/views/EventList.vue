@@ -1,5 +1,5 @@
 <template>
-    <div id="events">
+    <section id="events">
         <h1 class="events__title">Total {{this.$store.state.events.length}} Events on <flatPickr class="form-control" v-model="date" @on-change="changeDate" :config="config"></flatPickr></h1>
         <gmap-map ref="listMap" class="map" :center="center" :zoom="10" :options="mapOptions" v-if="fullmap">
             <GmapMarker
@@ -50,7 +50,7 @@
         </div>
         </transition>
         
-    </div>
+    </section>
 </template>
 
 <script>
