@@ -126,7 +126,9 @@ export default {
         getEvents() {
             axios.get('/api/events?date=' + this.date).then(res => {
                 this.$store.commit('getEvents', res.data);
-                this.fitBounds();
+                if (typeof google != 'undefined') {
+                    this.fitBounds();
+                }
             });
         },
         getPostion(event) {
