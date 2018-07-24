@@ -81,10 +81,11 @@ export default {
 }
 .map__close {
     position: absolute;
-    top: -22px;
-    right: -24px;
+    top: -25px;
+    right: 0;
     cursor: pointer;
     color: #007bff;
+    font-size: 14px;
 }
 .map {
     height: 100%;
