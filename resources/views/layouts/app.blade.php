@@ -26,6 +26,6 @@
         @yield('content')
     </div>
     <!-- Scripts -->
-    <script src="/js/app.js?v=1.2.0" defer></script>
+    <script src="{{ mix('/js/app.js') }}" defer></script>
 </body>
 </html>
