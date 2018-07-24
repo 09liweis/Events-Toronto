@@ -84,6 +84,7 @@ export default {
     top: -22px;
     right: -24px;
     cursor: pointer;
+    color: #007bff;
 }
 .map {
     height: 100%;
