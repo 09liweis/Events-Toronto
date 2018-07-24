@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="event__map" v-if="view == 'map'">
-            <i class="fas fa-times map__close" v-on:click="changeView()"></i>
+            <span class="map__close" v-on:click="changeView()">Back to Detail</span>
             <gmap-map class="map" :center="position" :zoom="15">
                 <GmapMarker
                     :position="position"
