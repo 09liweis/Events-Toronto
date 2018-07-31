@@ -10,9 +10,9 @@ use App\Category;
 class EventController extends Controller
 {
     private $api = 'http://app.toronto.ca/cc_sr_v1_app/data/edc_eventcal_APR?limit=1000';
+    private $apiDomain = 'https://secure.toronto.ca';
 
     public function import() {
-        $apiDomain = 'https://secure.toronto.ca';
         $importEvents = json_decode(file_get_contents($this->api), true);
         
         foreach($importEvents as $rawEvent) {
@@ -47,13 +47,13 @@ class EventController extends Controller
             }
             
             if (isset($e['thumbImage']) && isset($e['thumbImage']['url'])) {
-                $event->thumbnail = $apiDomain . $e['thumbImage']['url'];
+                $event->thumbnail = $this->apiDomain . $e['thumbImage']['url'];
             } else {
                 $event->thumbnail = '';
             }
             
             if (isset($e['image'])) {
-                $event->image = $apiDomain . $e['image']['url'];
+                $event->image = $this->apiDomain . $e['image']['url'];
             } else {
                 $event->image = '';
             }
