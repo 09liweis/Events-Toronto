@@ -41,10 +41,7 @@ class EventController extends Controller
             $event->rec_id = $e['recId'];
             $event->reservations_required = $e['reservationsRequired'];
             $event->free = $e['freeEvent'];
-            $event->website = '';
-            if (isset($e['eventWebsite'])) {
-                $event->website = $e['eventWebsite'];
-            }
+            $event->website = isset($e['eventWebsite']) ? $e['eventWebsite'] : '';
             
             if (isset($e['thumbImage']) && isset($e['thumbImage']['url'])) {
                 $event->thumbnail = $this->apiDomain . $e['thumbImage']['url'];
