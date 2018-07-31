@@ -9,10 +9,11 @@ use App\Category;
 
 class EventController extends Controller
 {
+    private $api = 'http://app.toronto.ca/cc_sr_v1_app/data/edc_eventcal_APR?limit=1000';
+
     public function import() {
-        $api = 'http://app.toronto.ca/cc_sr_v1_app/data/edc_eventcal_APR?limit=1000';
         $apiDomain = 'https://secure.toronto.ca';
-        $importEvents = json_decode(file_get_contents($api), true);
+        $importEvents = json_decode(file_get_contents($this->api), true);
         
         foreach($importEvents as $rawEvent) {
             $e = $rawEvent['calEvent'];
