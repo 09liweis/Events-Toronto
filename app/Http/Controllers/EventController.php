@@ -94,7 +94,7 @@ class EventController extends Controller
         return Event::select('id', 'name', 'image', 'start_date', 'location', 'address', 'lat', 'lng')->where('start_date', $date)->orderBy('start_date', 'asc')->get();
     }
     
-    public function detail($id) {
+    public function detail(int $id) {
         return Event::where('id', $id)->with('categories')->first();
     }
 }
