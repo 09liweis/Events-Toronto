@@ -12,6 +12,12 @@ class EventController extends Controller
     private $api = 'http://app.toronto.ca/cc_sr_v1_app/data/edc_eventcal_APR?limit=1000';
     private $apiDomain = 'https://secure.toronto.ca';
 
+    /**
+     * Retrieve data from Toronto open source event api,
+     * insert or update event data
+     *
+     * @return string
+     */
     public function import() {
         $importEvents = json_decode(file_get_contents($this->api), true);
         
