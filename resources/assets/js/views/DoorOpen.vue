@@ -25,6 +25,10 @@
             <div class="modal__container" v-if="modal">
                 <div class="modal-bg" v-on:click="hideModal()"></div>
                 <div class="modal-content">
+                    <div class="activedoor">
+                        <h2>{{door.dot_buildingName}}</h2>
+                        <p>{{door.dot_FullDescription[0]}}</p>
+                    </div>
                 </div>
             </div>
         </transition>
@@ -39,6 +43,7 @@ export default {
             modal: false,
             doors: [],
             center: { lat: 0, lng: 0 },
+            door: null
         };
     },
     mounted() {
@@ -70,6 +75,7 @@ export default {
         // },
         viewDoor(d) {
             this.modal = true;
+            this.door = d;
             console.log(d);
         },
         hideModal() {
@@ -96,5 +102,8 @@ export default {
     border-top: 2px solid #007bff;
     padding: 10px;
     cursor: pointer;
+}
+.activedoor {
+    padding: 20px;
 }
 </style>
