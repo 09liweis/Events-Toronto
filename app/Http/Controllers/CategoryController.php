@@ -12,6 +12,7 @@ class CategoryController extends Controller
         return Category::select('id', 'name')->get();
     }
     
+    // return list of events from category
     public function events($id) {
         $category = Category::where('id', $id)->first();
         if ($category) {
