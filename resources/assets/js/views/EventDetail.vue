@@ -98,11 +98,4 @@ export default {
   color: #ffffff;
   margin: 0 10px 10px 0;
 }
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 0.25s ease-out;
-}
-
-.fade-enter, .fade-leave-to {
-  opacity: 0;
-}
 </style>
