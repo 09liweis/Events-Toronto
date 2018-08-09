@@ -12,16 +12,18 @@
         </gmap-map>
         <div class="row justify-content-center" v-if="!fullmap">
             <div class="events__left col-md-4">
-                <div class="fullmap" v-on:click="toggleMap()">Full Map</div>
-                <gmap-map ref="listMap" class="map" :center="center" :zoom="10" :options="mapOptions">
-                    <GmapMarker
-                        :key="e.id"
-                        v-for="(e, index) in events"
-                        :position="getPostion(e)"
-                        :clickable="true"
-                        @click="viewEvent(e.id)"
-                    />
-                </gmap-map>
+                <transition-group name="slide">
+                    <div key="toggle" class="fullmap" v-on:click="toggleMap()">Full Map</div>
+                    <gmap-map key="map" ref="listMap" class="map" :center="center" :zoom="10" :options="mapOptions">
+                        <GmapMarker
+                            :key="e.id"
+                            v-for="(e, index) in events"
+                            :position="getPostion(e)"
+                            :clickable="true"
+                            @click="viewEvent(e.id)"
+                        />
+                    </gmap-map>
+                </transition-group>
             </div>
             <div class="col-md-8">
                 <transition-group name="slide">
