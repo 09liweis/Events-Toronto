@@ -1,6 +1,8 @@
 <template>
     <section id="events">
-        <h1 class="events__title">Total {{events.length}} Events on <flatPickr class="form-control" v-model="date" @on-change="changeDate" :config="config"></flatPickr></h1>
+        <transition name="slide">
+            <h1 class="events__title">Total {{events.length}} Events on <flatPickr class="form-control" v-model="date" @on-change="changeDate" :config="config"></flatPickr></h1>
+        </transition>
         <gmap-map ref="listMap" class="map" :center="center" :zoom="10" :options="mapOptions" v-if="fullmap">
             <GmapMarker
                 :key="e.id"
