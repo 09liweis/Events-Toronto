@@ -63,18 +63,6 @@ export default {
     padding: 30px;
     position: relative;
 }
-.event__title {
-    border-left: 5px solid #007bff;
-    padding-left: 10px;
-}
-.event__address {
-    cursor: pointer;
-    margin-bottom: 20px;
-    transition: all 0.3 ease;
-}
-.event__address:hover {
-    opacity: 0.8;
-}
 .event__map {
     height: 60vh;
     position: relative;
