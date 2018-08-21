@@ -90,12 +90,4 @@ export default {
 .map {
     height: 100%;
 }
-.event__category {
-  display: inline-block;
-  padding: 3px 10px;
-  border-radius: 10px;
-  background-color: #007bff;
-  color: #ffffff;
-  margin: 0 10px 10px 0;
-}
 </style>
