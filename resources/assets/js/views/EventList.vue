@@ -39,7 +39,7 @@
                         <div><i class="fas fa-calendar-alt"></i>{{event.start_date}}</div>
                         <div><i class="fas fa-map-marker-alt"></i>{{event.location}}</div>
                         <div>{{event.address}}</div>
-                        <div class="event__categories"><span class="event__category" v-for="c in event.categories">{{c.name}}</span></div>
+                        <Categories v-bind:categories="event.categories" />
                     </div>
                 </div>
                 </transition-group>
@@ -64,11 +64,13 @@ import flatPickr from 'vue-flatpickr-component';
 import 'flatpickr/dist/flatpickr.css';
 
 import EventDetail from './EventDetail.vue';
+import Categories from '../components/Categories.vue';
 
 export default {
     components: {
         flatPickr,
-        EventDetail
+        EventDetail,
+        Categories
     },
     data() {
         return {
