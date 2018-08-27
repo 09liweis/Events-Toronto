@@ -14,7 +14,7 @@
             </div>
             <div class="col-md-8">
                 <p v-html="event.description"></p>
-                <div class="event__categories"><span class="event__category" v-for="c in event.categories">{{c.name}}</span></div>
+                <Categories v-bind:categories="event.categories" />
             </div>
         </div>
         <div class="event__map" v-if="view == 'map'">
@@ -32,8 +32,12 @@
 </template>
 <script>
 import axios from 'axios';
+import Categories from '../components/Categories.vue';
 export default {
     props: ['id'],
+    components: {
+        Categories
+    },
     data() {
         return {
             view: 'detail',
