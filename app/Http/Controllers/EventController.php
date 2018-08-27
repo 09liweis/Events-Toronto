@@ -97,7 +97,7 @@ class EventController extends Controller
         return $dooropen;
     }
     
-    public function list(Request $request) {
+    public function index(Request $request) {
         $date = $request->input('date');
         if (!$date) {
             $date = date("Y-m-d");
