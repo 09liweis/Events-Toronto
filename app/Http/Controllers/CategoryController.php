@@ -8,7 +8,7 @@ use App\Category;
 class CategoryController extends Controller
 {
     // return list of categories
-    public function list() {
+    public function index() {
         return Category::select('id', 'name')->get();
     }
     
