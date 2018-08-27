@@ -39,6 +39,7 @@
                         <div><i class="fas fa-calendar-alt"></i>{{event.start_date}}</div>
                         <div><i class="fas fa-map-marker-alt"></i>{{event.location}}</div>
                         <div>{{event.address}}</div>
+                        <div class="event__categories"><span class="event__category" v-for="c in event.categories">{{c.name}}</span></div>
                     </div>
                 </div>
                 </transition-group>
