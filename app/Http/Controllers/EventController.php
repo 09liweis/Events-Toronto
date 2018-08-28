@@ -110,6 +110,6 @@ class EventController extends Controller
     }
     
     public function test(Request $request) {
-        
+        return $request->server();
     }
 }
