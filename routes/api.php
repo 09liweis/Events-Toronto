@@ -25,3 +25,5 @@ Route::get('/categories', 'CategoryController@index');
 Route::get('/category/{id}/events', 'CategoryController@events');
 
 Route::get('/dooropen', 'EventController@dooropen');
+
+Route::get('/test', 'EventController@test');
