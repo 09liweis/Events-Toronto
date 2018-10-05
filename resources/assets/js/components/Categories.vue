@@ -6,3 +6,8 @@ export default {
     props: ['categories']
 };
 </script>
+<style scoped>
+.event__categories {
+    margin-top: 20px;
+}
+</style>
