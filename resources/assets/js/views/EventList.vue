@@ -29,18 +29,7 @@
             </div>
             <div class="col-md-8">
                 <transition-group name="slide">
-                    <div class="event row" v-for="event in events" :key="event.id" v-on:click="viewEvent(event.id)" v-bind:class="{ selected: eventId == event.id}">
-                        <figure class="col-md-3 event__figure">
-                            <img class="event__thumbnail" :src="event.image" :alt="event.name">
-                        </figure>
-                        <div class="col-md-9 event__info">
-                            <h3 v-html="event.name"></h3>
-                            <div><i class="fas fa-calendar-alt"></i>{{event.start_date}}</div>
-                            <div><i class="fas fa-map-marker-alt"></i>{{event.location}}</div>
-                            <div>{{event.address}}</div>
-                            <Categories v-bind:categories="event.categories" />
-                        </div>
-                    </div>
+                    <Event v-for="event in events" v-bind:event="event" :key="event.id" v-bind:viewEvent="viewEvent" v-bind:class="{ selected: eventId == event.id}" />
                 </transition-group>
             </div>
         </div>
@@ -64,12 +53,14 @@ import 'flatpickr/dist/flatpickr.css';
 
 import EventDetail from './EventDetail.vue';
 import Categories from '../components/Categories.vue';
+import Event from '../components/Event.vue';
 
 export default {
     components: {
         flatPickr,
         EventDetail,
         Categories,
+        Event,
     },
     data() {
         return {
@@ -165,6 +156,7 @@ export default {
             return year + '-' + month + '-' + day;
         },
         viewEvent(id) {
+            console.log(id);
             this.eventId = id;
             this.$router.push({ path: '/?date=' + this.date + '&eventId=' + this.eventId });
             this.view = 'detail';
