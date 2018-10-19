@@ -1,5 +1,5 @@
 <template>
-    <div class="event row">
+    <div class="event row" v-on:click="viewEvent(event.id)">
         <figure class="col-md-3 event__figure">
             <img class="event__thumbnail" :src="event.image" :alt="event.name">
         </figure>
@@ -18,6 +18,6 @@ export default {
     components: {
         Categories,
     },
-    props: ['event']
+    props: ['event', 'viewEvent']
 };
 </script>
