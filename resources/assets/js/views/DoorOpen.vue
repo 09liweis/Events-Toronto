@@ -28,6 +28,7 @@
                     <div class="activedoor">
                         <h2>{{door.dot_buildingName}}</h2>
                         <p>{{door.dot_FullDescription[0]}}</p>
+                        <p>{{door.dot_ProgramGuideDescription[0]}}</p>
                     </div>
                 </div>
             </div>
