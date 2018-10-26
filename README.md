@@ -3,6 +3,7 @@ API Webiset: https://www.toronto.ca/explore-enjoy/festivals-events/festivals-eve
 Design Reference: http://events.seetorontonow.com/
 
 ## Todo
+* Server Side Render: https://vuejsdevelopers.com/2017/11/06/vue-js-laravel-server-side-rendering/
 * Search Events
 * Implement Door Open 2018 - working
 * MyClearDB does not work on production, swtich to postgreql?
