@@ -106,7 +106,7 @@ class EventController extends Controller
     }
     
     public function detail(int $id): Event {
-        return Event::select('id', 'name', 'image', 'description', 'start_date', 'end_date', 'location', 'address', 'lat', 'lng')->where('id', $id)->with('categories')->first();
+        return Event::select('id', 'name', 'image', 'description', 'start_date', 'end_date', 'location', 'address', 'lat', 'lng', 'website')->where('id', $id)->with('categories')->first();
     }
     
     public function test(Request $request) {
