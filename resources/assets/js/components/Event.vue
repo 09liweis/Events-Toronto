@@ -7,6 +7,7 @@
             <h3 v-html="event.name"></h3>
             <div><i class="fas fa-calendar-alt"></i>{{event.start_date}}</div>
             <div><i class="fas fa-map-marker-alt"></i>{{event.location}}</div>
+            <a v-if="event.website" target="_blank" :href="event.website"><i class="fas fa-link"></i>{{event.website}}</a>
             <div>{{event.address}}</div>
             <Categories v-bind:categories="event.categories" />
         </div>
