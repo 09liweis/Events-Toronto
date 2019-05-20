@@ -40,9 +40,12 @@ class EventController extends Controller
                     echo $e['eventName'] . '<br/>';
                 }
             }
-            
-            $event->start_date = substr($e['startDate'], 0, 10);
-            $event->end_date = substr($e['endDate'], 0, 10);
+            if (isset($e['startDate'])) {
+                $event->start_date = substr($e['startDate'], 0, 10);
+            }
+            if (isset($e['endDate'])) {
+                $event->end_date = substr($e['endDate'], 0, 10);    
+            }
             
             $event->rec_id = $e['recId'];
             $event->reservations_required = $e['reservationsRequired'];
