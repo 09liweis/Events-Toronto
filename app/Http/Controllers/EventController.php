@@ -20,6 +20,13 @@ class EventController extends Controller
      */
     public function import() {
         $importEvents = json_decode(file_get_contents($this->api), true);
+        if (count($importEvents) > 0) {
+            DB::statement("SET foreign_key_checks=0");
+            DB::statement("TRUNCATE TABLE category_event");
+            Category::truncate();
+            Event::truncate();
+            DB::statement("SET foreign_key_checks=1");
+        }
         
         foreach($importEvents as $rawEvent) {
             $e = $rawEvent['calEvent'];
