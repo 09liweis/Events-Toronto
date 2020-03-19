@@ -2,6 +2,9 @@ API Webiset: https://www.toronto.ca/explore-enjoy/festivals-events/festivals-eve
 
 Design Reference: http://events.seetorontonow.com/
 
+# Run on AWS Cloud9
+php artisan serve --port=8080
+
 ## Todo
 * Server Side Render: https://vuejsdevelopers.com/2017/11/06/vue-js-laravel-server-side-rendering/
 * Search Events
