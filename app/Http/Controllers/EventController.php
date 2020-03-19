@@ -9,7 +9,7 @@ use App\Category;
 
 class EventController extends Controller
 {
-    private $api = 'http://app.toronto.ca/cc_sr_v1_app/data/edc_eventcal_APR?limit=1000';
+    private $api = 'https://secure.toronto.ca/cc_sr_v1/data/edc_eventcal_APR?limit=500';
     private $apiDomain = 'https://secure.toronto.ca';
 
     /**
