@@ -18,9 +18,9 @@ import * as VueGoogleMaps from 'vue2-google-maps';
 
 Vue.use(VueRouter);
 Vue.use(VueGoogleMaps, {
-    load: {
-        key: 'AIzaSyCCUfAQlAr-YR9De_ONa1reKPLA2xWuWm8'
-    }
+	load: {
+		key: 'AIzaSyCCUfAQlAr-YR9De_ONa1reKPLA2xWuWm8'
+	}
 });
 
 /**
@@ -30,31 +30,31 @@ Vue.use(VueGoogleMaps, {
  */
  
 const router = new VueRouter({
-    // mode: 'history',
-    routes: [
-        {
-            path: '/',
-            name: 'home',
-            component: EventList
-        },
-        {
-            path: '/dooropen',
-            name: 'dooropen',
-            component: DoorOpen
-        }
-        // {
-        //     path: '/event/:id',
-        //     name: 'detail',
-        //     component: EventList
-        // }
-    ],
+	// mode: 'history',
+	routes: [
+		{
+			path: '/',
+			name: 'home',
+			component: EventList
+		},
+		{
+			path: '/dooropen',
+			name: 'dooropen',
+			component: DoorOpen
+		}
+		// {
+		//     path: '/event/:id',
+		//     name: 'detail',
+		//     component: EventList
+		// }
+	],
 });
 
 //Vue.component('event-list', require('./components/EventList.vue'));
 
 const app = new Vue({
-    el: '#app',
-    components: { App },
-    router,
-    store
+	el: '#app',
+	components: { App },
+	router,
+	store
 });
