@@ -1,22 +1,19 @@
 .modal-enter-active, .modal-leave-active {
-    transition: opacity 0.25s ease-out;
+  transition: opacity 0.25s ease-out;
 }
-
 .modal-enter, .modal-leave-to {
-    opacity: 0;
+  opacity: 0;
 }
 .slide-enter-active, .slide-leave-active {
-    transition: all 1s ease-out;
+  transition: all 1s ease-out;
 }
-
 .slide-enter, .slide-leave-to {
-    opacity: 0;
-    transform: translateX(-20px);
+  opacity: 0;
+  transform: translateX(-20px);
 }
 .fade-enter-active, .fade-leave-active {
   transition: opacity 0.25s ease-out;
 }
-
 .fade-enter, .fade-leave-to {
   opacity: 0;
 }
