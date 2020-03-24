@@ -11,7 +11,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import store from './store.js';
 
-import App from './App';
+import App from './App.vue';
 import EventList from './views/EventList';
 import DoorOpen from './views/DoorOpen';
 import * as VueGoogleMaps from 'vue2-google-maps';
