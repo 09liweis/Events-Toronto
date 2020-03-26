@@ -154,6 +154,8 @@ export default {
 			return year + '-' + month + '-' + day;
 		},
 		viewEvent(id) {
+			// window.open('/event/'+id,'_blank');
+			// return;
 			this.eventId = id;
 			this.$router.push({ path: '/?date=' + this.date + '&eventId=' + this.eventId });
 			this.view = 'detail';
