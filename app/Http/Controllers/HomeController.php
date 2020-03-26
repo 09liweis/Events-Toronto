@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Event;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -25,7 +25,8 @@ class HomeController extends Controller
 	{
 		return view('home');
 	}
-	public function detail() {
-		return view('event/detail');
+	public function detail(int $id) {
+		$event = Event::findOrFail($id);
+		return view('event/detail',['event'=>$event]);
 	}
 }

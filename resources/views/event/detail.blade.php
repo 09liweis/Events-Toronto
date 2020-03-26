@@ -1,1 +1,1 @@
-<h1>Event Detail</h1>
+<h1>{{$event->name}}</h1>
