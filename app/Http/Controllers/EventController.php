@@ -101,7 +101,7 @@ class EventController extends Controller {
 	 * @return array
 	 */
 	public function dooropen() {
-		$api = 'http://app.toronto.ca/cc_sr_v1_app/data/DoorsOpenBuildingToursJsonPROD?limit=1000';
+		$api = 'https://secure.toronto.ca/cc_sr_v1/data/DoorsOpenBuildingToursJsonPROD?limit=1000';
 		$dooropen = json_decode(file_get_contents($api), true);
 		return $dooropen;
 	}
