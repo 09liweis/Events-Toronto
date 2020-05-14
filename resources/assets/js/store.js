@@ -4,16 +4,16 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 
 const state = {
-    events: []
+  events: []
 };
 
 const mutations = {
-    getEvents(state, events) {
-        state.events = events;
-    }
+  getEvents(state, events) {
+    state.events = events;
+  }
 };
 
 export default new Vuex.Store({
-    state,
-    mutations
+  state,
+  mutations
 });
