@@ -1,4 +1,6 @@
-API Webiset: https://www.toronto.ca/explore-enjoy/festivals-events/festivals-events-calendar/
+Website: https://www.toronto.ca/explore-enjoy/festivals-events/festivals-events-calendar/
+
+API: https://secure.toronto.ca/cc_sr_v1/data/edc_eventcal_APR?limit=500
 
 Design Reference: http://events.seetorontonow.com/
 
