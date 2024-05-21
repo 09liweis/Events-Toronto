@@ -9,5 +9,5 @@ Route::get('/', function () {
 });
 
 
-Route::get('/api/events', [EventController::class, 'index']);
-Route::get('/api/events/import',[EventController::class,'import']);
+Route::get('/api/v1/events', [EventController::class, 'index']);
+Route::get('/api/v1/events/import',[EventController::class,'import']);
