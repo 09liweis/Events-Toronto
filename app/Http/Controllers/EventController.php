@@ -27,6 +27,8 @@ class EventController extends Controller {
         "shortDesc" => $calEvent['shortDescription'],
         "category" =>$calEvent['categoryString'],
         "free" => $calEvent['freeEvent'],
+        "orgName" => $calEvent['orgName'],
+        "contactName" => $calEvent['contactName'],
       );
       $events[] = $event;
     }
