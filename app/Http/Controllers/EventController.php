@@ -15,7 +15,7 @@ class EventController extends Controller {
 
   public function import() {
     $events = array();
-    $apiUrl = "https://secure.toronto.ca/cc_sr_v1/data/edc_eventcal_APR?limit=5";
+    $apiUrl = "https://secure.toronto.ca/cc_sr_v1/data/edc_eventcal_APR?limit=1000";
     $response = file_get_contents($apiUrl);
     $data = json_decode($response, true);
     foreach ($data as $rawEvent) {
