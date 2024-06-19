@@ -5,9 +5,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\EventController;
 
 Route::get('/', function () {
-    return view('welcome');
+  return view('welcome');
 });
 
-
-Route::get('/api/v1/events', [EventController::class, 'index']);
-Route::get('/api/v1/events/import',[EventController::class,'import']);
+Route::prefix('/api/v1/')->group(function () {
+  Route::get('events', [EventController::class, 'index']);
+  Route::get('events/import',[EventController::class,'import']);
+});
