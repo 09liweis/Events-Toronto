@@ -24,7 +24,7 @@ class EventController extends Controller {
         "recId" => $calEvent['recId'],
         "name" => $calEvent['eventName'],
         "desc" => $calEvent['description'],
-        "shortDesc" => $calEvent['shortDescription'],
+        "shortDesc" => isset($calEvent['shortDescription'])?$calEvent['shortDescription']:'',
         "category" =>$calEvent['categoryString'],
         "free" => $calEvent['freeEvent'],
         "orgName" => $calEvent['orgName'],
