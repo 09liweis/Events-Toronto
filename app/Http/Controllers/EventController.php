@@ -20,6 +20,9 @@ class EventController extends Controller {
     $data = json_decode($response, true);
     foreach ($data as $rawEvent) {
       $calEvent = $rawEvent['calEvent'];
+
+      $imageUrl = isset($calEvent['image']) ? $calEvent['image']['url'] : null;
+      
       $event = array(
         "recId" => $calEvent['recId'],
         "name" => $calEvent['eventName'],
@@ -29,6 +32,7 @@ class EventController extends Controller {
         "free" => $calEvent['freeEvent'],
         "orgName" => $calEvent['orgName'],
         "contactName" => $calEvent['contactName'],
+        "imageUrl" => $imageUrl,
       );
       $events[] = $event;
     }
