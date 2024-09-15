@@ -32,6 +32,7 @@ class EventController extends Controller {
         "free" => $calEvent['freeEvent'],
         "orgName" => $calEvent['orgName'],
         "contactName" => $calEvent['contactName'],
+        "cost" => isset($calEvent['cost'])?$calEvent['cost']:null,
         "imageUrl" => $imageUrl,
       );
       $events[] = $event;
