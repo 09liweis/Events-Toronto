@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class EventController extends Controller {
   public function index() {
     return [
-      "status" => 1,
+      "status" => 200,
       "data" => []
     ];
   }
@@ -40,7 +40,7 @@ class EventController extends Controller {
     }
     return [
       "name" => "import",
-      "status" => 1,
+      "status" => 200,
       "data" => $events
     ];
   }
