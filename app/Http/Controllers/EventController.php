@@ -35,6 +35,7 @@ class EventController extends Controller {
         "cost" => isset($calEvent['cost'])?$calEvent['cost']:null,
         "imageUrl" => $imageUrl,
         "startDate" => isset($calEvent['startDate'])?$calEvent['startDate']:$calEvent['startDateTime'],
+        "website" => isset($calEvent['eventWebsite'])?$calEvent['eventWebsite']:null,
       );
       $events[] = $event;
     }
